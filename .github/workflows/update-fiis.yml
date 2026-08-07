@@ -1,0 +1,39 @@
+name: Atualizar Dados dos FIIs
+
+on:
+  schedule:
+    # Executa todos os dias às 09:00 e 21:00 UTC
+    - cron: '0 9,21 * * *'
+  workflow_dispatch: # Permite rodar manualmente com 1 clique no GitHub
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install requests
+
+      - name: Executar script de atualização
+        env:
+          BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
+        run: python update_fiis.py
+
+      - name: Salvar e publicar fiis.json
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add fiis.json
+          git commit -m "auto: atualizar cotações e proventos [skip ci]" || exit 0
+          git push
+
+      - name: Purgar cache do CDN (jsDelivr)
+        run: |
+          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/fiis.json" || true
