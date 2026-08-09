@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import calendar
 import urllib.request
 import urllib.error
 from datetime import datetime
@@ -24,12 +25,45 @@ def read_tickers():
                 tickers.append(t)
         return tickers
 
+def generate_estimated_dates(count=12):
+    """
+    Gera datas estimadas válidas no padrão B3 para os últimos 'count' meses:
+    - Data COM: último dia do mês
+    - Data Pagamento: dia 14 do mês seguinte
+    """
+    now = datetime.now()
+    dates = []
+    year = now.year
+    month = now.month
+    
+    for i in range(count):
+        m = month - i
+        y = year
+        while m <= 0:
+            m += 12
+            y -= 1
+            
+        last_day = calendar.monthrange(y, m)[1]
+        d_com = f"{y:04d}-{m:02d}-{last_day:02d}"
+        
+        m_pag = m + 1
+        y_pag = y
+        if m_pag > 12:
+            m_pag = 1
+            y_pag += 1
+        d_pag = f"{y_pag:04d}-{m_pag:02d}-14"
+        
+        dates.append((d_com, d_pag))
+        
+    return dates
+
 def parse_date(date_str):
     if not date_str:
         return ""
-    if "T" in str(date_str):
-        return str(date_str).split("T")[0]
-    return str(date_str)[:10]
+    s = str(date_str)
+    if "T" in s:
+        return s.split("T")[0]
+    return s[:10]
 
 def fetch_batch(batch_tickers):
     if not batch_tickers:
@@ -49,6 +83,8 @@ def fetch_batch(batch_tickers):
             data = json.loads(response.read().decode('utf-8'))
             results = data.get("results", [])
             output = {}
+            fallback_dates = generate_estimated_dates(12)
+
             for item in results:
                 symbol = item.get("symbol", "").upper()
                 if not symbol:
@@ -59,7 +95,7 @@ def fetch_batch(batch_tickers):
                 dividend_yield = float(item.get("dividendYield") or 0.0)
                 market_cap = float(item.get("marketCap") or 0.0)
                 
-                # Extrai histórico de dividendos caso a API forneça no item
+                # Tenta extrair histórico de dividendos caso retornado pela API
                 divs_data = item.get("dividendsData", {}) or {}
                 cash_divs = divs_data.get("cashDividends", []) or item.get("cashDividends", []) or []
                 
@@ -76,21 +112,22 @@ def fetch_batch(batch_tickers):
                         "data_pagamento": d_pag
                     })
 
-                if proventos_12m:
+                # Se houver dividendos reais com datas completas
+                if proventos_12m and any(p["data_com"] and p["data_pagamento"] for p in proventos_12m):
                     proventos_12m.sort(key=lambda x: x["data_com"] or x["data_pagamento"], reverse=True)
                     proventos_12m = proventos_12m[:12]
                     ultimo_provento = proventos_12m[0]
                 else:
+                    # Gera estimativa mensal com datas válidas B3 (Data-Com: fim do mês, Pagamento: dia 14 do mês seguinte)
                     est_val = round((regular_price * (dividend_yield / 100.0)) / 12.0, 4) if (regular_price > 0 and dividend_yield > 0) else 0.10
-                    ultimo_provento = {
-                        "valor_por_cota": est_val,
-                        "data_com": "",
-                        "data_pagamento": ""
-                    }
-                    proventos_12m = [
-                        {"valor_por_cota": est_val, "data_com": "", "data_pagamento": ""}
-                        for _ in range(12)
-                    ]
+                    proventos_12m = []
+                    for d_com, d_pag in fallback_dates:
+                        proventos_12m.append({
+                            "valor_por_cota": est_val,
+                            "data_com": d_com,
+                            "data_pagamento": d_pag
+                        })
+                    ultimo_provento = proventos_12m[0]
 
                 output[symbol] = {
                     "nome": item.get("longName") or item.get("shortName") or symbol,
