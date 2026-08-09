@@ -28,5 +28,14 @@
     ],
     "update_interval_hours": 12,
     "stale_warning_hours": 30
+  },
+  "comunicados_data": {
+    "status": true,
+    "urls": [
+      "https://cdn.jsdelivr.net/gh/mestremktdigital-crypto/meusfiisdividendos@main/comunicados.json",
+      "https://raw.githubusercontent.com/mestremktdigital-crypto/meusfiisdividendos/main/comunicados.json"
+    ],
+    "update_interval_hours": 12,
+    "stale_warning_hours": 30
   }
 }
