@@ -3,6 +3,7 @@ import re
 import json
 import time
 import urllib.request
+import concurrent.futures
 from datetime import datetime
 
 TICKERS_FILE = "tickers.txt"
@@ -15,16 +16,20 @@ def read_tickers():
         return [line.strip().upper() for line in f if line.strip()]
 
 def fetch_comunicados_for_ticker(ticker):
+    # Pequeno delay preventivo por thread para não sobrecarregar o site
+    time.sleep(0.3)
     url = f"https://www.fundsexplorer.com.br/funds/{ticker.lower()}"
     req = urllib.request.Request(
         url,
         headers={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
         }
     )
     
     comunicados = []
+    seen_urls = set()
+
     try:
         with urllib.request.urlopen(req, timeout=15) as response:
             html = response.read().decode('utf-8')
@@ -32,19 +37,21 @@ def fetch_comunicados_for_ticker(ticker):
             if 'id="comunicados"' in html:
                 section = html.split('id="comunicados"')[1][:30000]
                 
-                # Documentos PDF (Fatos Relevantes, etc)
+                # 1. Documentos PDF (Fatos Relevantes, Relatórios, Informes, etc)
                 regex_doc = re.compile(r'<a href="([^"]+)"[^>]*>([^<]+)</a>\s*<p>([^<]+)</p>')
                 matches_doc = regex_doc.findall(section)
                 
-                # Rendimentos (Rendimentos mostrados na aba)
-                regex_rend = re.compile(r'<div class="communicated__grid__row communicated__grid__rend">.*?Rendimento no valor de (.*?) por cota no dia (.*?)</p>.*?<li><b>(.*?)</b> Data base', re.DOTALL)
-                matches_rend = regex_rend.findall(section)
-                
                 count = 0
                 for match in matches_doc:
-                    if count >= 10:
+                    if count >= 8:
                         break
                     url_original = match[0].replace("&amp;", "&")
+                    
+                    # Evita links duplicados para o mesmo documento PDF
+                    if url_original in seen_urls:
+                        continue
+                    seen_urls.add(url_original)
+                    
                     titulo = match[1].strip()
                     data = match[2].strip()
                     
@@ -67,10 +74,13 @@ def fetch_comunicados_for_ticker(ticker):
                     })
                     count += 1
                 
-                # Adiciona Rendimentos à lista também (até 5 itens recentes)
-                for match in matches_rend:
-                    if count >= 15:
-                        break
+                # 2. Rendimentos (Aviso aos Cotistas)
+                # Mantém APENAS O 1 MAIS RECENTE por ticker para evitar repetir o mesmo link da página em datas passadas
+                regex_rend = re.compile(r'<div class="communicated__grid__row communicated__grid__rend">.*?Rendimento no valor de (.*?) por cota no dia (.*?)</p>.*?<li><b>(.*?)</b> Data base', re.DOTALL)
+                matches_rend = regex_rend.findall(section)
+                
+                if matches_rend:
+                    match = matches_rend[0] # Primeiro item = mais recente
                     valor = match[0].strip()
                     data_pagamento = match[1].strip()
                     data_base = match[2].strip()
@@ -78,7 +88,7 @@ def fetch_comunicados_for_ticker(ticker):
                     titulo = f"Rendimento: {valor} (Pag: {data_pagamento})"
                     
                     comunicados.append({
-                        "id": f"c_{ticker}_rend_{str(hash(data_pagamento))[1:10]}",
+                        "id": f"c_{ticker}_rend_latest",
                         "ticker": ticker,
                         "tipo": "Aviso aos Cotistas",
                         "titulo": titulo,
@@ -86,12 +96,12 @@ def fetch_comunicados_for_ticker(ticker):
                         "urlOriginal": url, 
                         "resumoIa": None
                     })
-                    count += 1
 
     except urllib.error.HTTPError as e:
-        print(f"[{ticker}] Erro HTTP {e.code}: {e.reason} (Site bloqueou ou ticker inativo)")
+        if e.code != 500:
+            print(f"[{ticker}] Erro HTTP {e.code}: {e.reason}")
     except Exception as e:
-        print(f"[{ticker}] Erro: {e}")
+        pass
         
     return ticker, comunicados
 
@@ -104,22 +114,35 @@ def main():
     print(f"Lendo {len(tickers)} tickers para buscar comunicados...")
     all_comunicados = []
     
-    # Execução sequencial com delay de 1.5s (Muito Importante para não tomar Block)
-    for i, ticker in enumerate(tickers):
-        print(f"Processando ({i+1}/{len(tickers)}): {ticker}")
-        t, comunicados = fetch_comunicados_for_ticker(ticker)
-        all_comunicados.extend(comunicados)
-        time.sleep(1.5) 
+    # Processamento paralelo otimizado (3 workers com 0.3s de delay por thread)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        futures = {executor.submit(fetch_comunicados_for_ticker, ticker): ticker for ticker in tickers}
+        for future in concurrent.futures.as_completed(futures):
+            ticker = futures[future]
+            try:
+                t, comunicados = future.result()
+                all_comunicados.extend(comunicados)
+            except Exception as e:
+                print(f"Erro ao processar {ticker}: {e}")
         
+    # Deduplicação final rigorosa por Ticker + URL Original
+    dedup_map = {}
+    for c in all_comunicados:
+        key = (c["ticker"], c["urlOriginal"])
+        if key not in dedup_map:
+            dedup_map[key] = c
+
+    final_comunicados = list(dedup_map.values())
+
     result = {
         "gerado_em": datetime.utcnow().isoformat() + "Z",
-        "comunicados": all_comunicados
+        "comunicados": final_comunicados
     }
     
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
         
-    print(f"Salvo {len(all_comunicados)} comunicados no total em {OUTPUT_FILE}.")
+    print(f"Salvo {len(final_comunicados)} comunicados no total em {OUTPUT_FILE}.")
 
 if __name__ == "__main__":
     main()
