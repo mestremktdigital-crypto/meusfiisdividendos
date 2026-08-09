@@ -2,14 +2,13 @@
   "app": {
     "status": true,
     "redirect_url": "",
-    "privacy_policy_url": "https://mestrehsapps.blogspot.com/p/politica-de-privacidade-mfiisdividendos.html",
-    "como_funciona_url": "https://mestremktdigital-crypto.github.io/mfiisdividendos/"
+    "privacy_policy_url": "https://mestrehsapps.blogspot.com/p/politica-de-privacidade-mfiisdividendos.html"
   },
   "ads": {
     "ad_status": true,
-    "admob_banner_id": "ca-app-pub-teste",
-    "admob_interstitial_id": "ca-app-pub-teste",
-    "admob_rewarded_id": "ca-app-pub-teste",
+    "admob_banner_id": "ca-app-pub-3940256099942544/6300978111",
+    "admob_interstitial_id": "ca-app-pub-3940256099942544/1033173712",
+    "admob_rewarded_id": "ca-app-pub-3940256099942544/5224354917",
     "interstitial_ad_interval": 3,
     "rewarded_ad_interval": 1
   },
