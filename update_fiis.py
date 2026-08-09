@@ -31,7 +31,7 @@ def fetch_batch(batch_tickers):
     tickers_str = ",".join(batch_tickers)
     token_param = f"&token={BRAPI_TOKEN}" if BRAPI_TOKEN else ""
     # Inclui fundamental=true e dividends=true para trazer dados fundamentalistas e histórico de proventos
-    url = f"https://brapi.dev/api/quote/{tickers_str}?fundamental=true&dividends=true{token_param}"
+    url = f"https://brapi.dev/api/quote/{tickers_str}?fundamental=true{token_param}"
     
     req = urllib.request.Request(
         url,
