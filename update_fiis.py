@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import time
 import urllib.request
@@ -8,7 +9,14 @@ from datetime import datetime
 BRAPI_TOKEN = os.environ.get("BRAPI_TOKEN", "").strip()
 TICKERS_FILE = "tickers.txt"
 OUTPUT_FILE = "fiis.json"
-BATCH_SIZE = 10  # Processa 10 tickers por requisição
+BATCH_SIZE = 10  # Processa 10 tickers por requisição na brapi
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                  '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept-Language': 'pt-BR,pt;q=0.9'
+}
+
 
 def read_tickers():
     if not os.path.exists(TICKERS_FILE):
@@ -24,22 +32,22 @@ def read_tickers():
                 tickers.append(t)
         return tickers
 
-def fetch_batch(batch_tickers):
+
+# --------------------------------------------------------------------------
+# FONTE 1: brapi.dev -> preço em tempo (quase) real e nome do fundo
+# --------------------------------------------------------------------------
+def fetch_brapi_batch(batch_tickers):
     if not batch_tickers:
         return {}
-    
+
     tickers_str = ",".join(batch_tickers)
     token_param = f"&token={BRAPI_TOKEN}" if BRAPI_TOKEN else ""
-    # Inclui fundamental=true e dividends=true para trazer dados fundamentalistas e histórico de proventos
     url = f"https://brapi.dev/api/quote/{tickers_str}?fundamental=true{token_param}"
-    
-    req = urllib.request.Request(
-        url,
-        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-    )
-    
+
+    req = urllib.request.Request(url, headers=HEADERS)
+
     try:
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=15) as response:
             data = json.loads(response.read().decode('utf-8'))
             results = data.get("results", [])
             output = {}
@@ -47,105 +55,160 @@ def fetch_batch(batch_tickers):
                 symbol = item.get("symbol", "").upper()
                 if not symbol:
                     continue
-                
-                regular_price = float(item.get("regularMarketPrice") or 0.0)
-                price_to_book = float(item.get("priceToBook") or 0.0)
-                book_value = float(item.get("bookValue") or 0.0)
-                market_cap = float(item.get("marketCap") or 0.0)
-                
-                # Extrai histórico de proventos (disponível via ?dividends=true)
-                divs_data = item.get("dividendsData", {})
-                cash_divs = divs_data.get("cashDividends", []) if isinstance(divs_data, dict) else []
-                
-                parsed_divs = []
-                for d in cash_divs:
-                    if not isinstance(d, dict):
-                        continue
-                    rate = float(d.get("rate") or 0.0)
-                    if rate <= 0:
-                        continue
-                    d_com_raw = d.get("lastDatePrior") or d.get("approvedOn") or ""
-                    d_pag_raw = d.get("paymentDate") or ""
-                    d_com = str(d_com_raw)[:10] if len(str(d_com_raw)) >= 10 else ""
-                    d_pag = str(d_pag_raw)[:10] if len(str(d_pag_raw)) >= 10 else ""
-                    parsed_divs.append({
-                        "valor_por_cota": round(rate, 4),
-                        "data_com": d_com,
-                        "data_pagamento": d_pag
-                    })
-                
-                # Ordena proventos da data mais recente para a mais antiga
-                parsed_divs.sort(key=lambda x: x["data_com"] or x["data_pagamento"], reverse=True)
-                
-                # Seleciona histórico de proventos dos últimos meses (até 18 registros)
-                proventos_12m = [
-                    {
-                        "valor_por_cota": p["valor_por_cota"],
-                        "data_com": p["data_com"],
-                        "data_pagamento": p["data_pagamento"]
-                    }
-                    for p in parsed_divs[:18]
-                ]
-                
-                # Obtém o último provento anunciado/pago
-                ultimo_provento = proventos_12m[0] if proventos_12m else {
-                    "valor_por_cota": 0.0,
-                    "data_com": "",
-                    "data_pagamento": ""
-                }
-                
-                # Tratamento do Dividend Yield 12M
-                dividend_yield_raw = item.get("dividendYield")
-                if dividend_yield_raw and float(dividend_yield_raw) > 0:
-                    dy_val = float(dividend_yield_raw)
-                    dy_12m = dy_val * 100.0 if dy_val <= 1.0 else dy_val
-                elif proventos_12m and regular_price > 0:
-                    soma_12m = sum(p["valor_por_cota"] for p in proventos_12m[:12])
-                    dy_12m = (soma_12m / regular_price) * 100.0
-                else:
-                    dy_12m = 0.0
-                
-                # Tratamento do Dividend Yield Mensal
-                if ultimo_provento["valor_por_cota"] > 0 and regular_price > 0:
-                    dy_mensal = (ultimo_provento["valor_por_cota"] / regular_price) * 100.0
-                elif dy_12m > 0:
-                    dy_mensal = dy_12m / 12.0
-                else:
-                    dy_mensal = 0.0
-                
                 output[symbol] = {
                     "nome": item.get("longName") or item.get("shortName") or symbol,
-                    "segmento": item.get("sector") or "Fundo Imobiliário",
-                    "setor_atuacao": item.get("sector") or "Fundo Imobiliário",
-                    "preco": round(regular_price, 2),
-                    "p_vp": round(price_to_book, 2),
-                    "valor_patrimonial_cota": round(book_value, 2),
-                    "dy_12m": round(dy_12m, 2),
-                    "dy_mensal": round(dy_mensal, 2),
-                    "patrimonio_liquido": float(market_cap),
-                    "vacancia_fisica": 0.0,
-                    "ultimo_provento": ultimo_provento,
-                    "proventos_12m": proventos_12m,
-                    "dados_completos": True
+                    "preco": float(item.get("regularMarketPrice") or 0.0),
+                    # Alguns tickers no plano pago já trazem isso; no free normalmente vem 0
+                    "segmento_brapi": item.get("sector") or "",
                 }
             return output
     except Exception as e:
-        print(f"  ❌ Erro no lote [{tickers_str}]: {e}")
-        # Se falhou o lote (ex: ticker inválido no grupo), tenta ticker por ticker
+        print(f"  ❌ Erro no lote brapi [{tickers_str}]: {e}")
         if len(batch_tickers) > 1:
             print("  🔄 Tentando buscar tickers do lote individualmente...")
             single_output = {}
             for single_t in batch_tickers:
-                res = fetch_batch([single_t])
+                res = fetch_brapi_batch([single_t])
                 single_output.update(res)
                 time.sleep(0.2)
             return single_output
         return {}
 
+
+def fetch_brapi_all(tickers):
+    brapi_data = {}
+    total_batches = (len(tickers) + BATCH_SIZE - 1) // BATCH_SIZE
+    for i in range(0, len(tickers), BATCH_SIZE):
+        batch = tickers[i:i + BATCH_SIZE]
+        batch_num = (i // BATCH_SIZE) + 1
+        print(f"🚀 [brapi] Lote {batch_num}/{total_batches} ({len(batch)} tickers)...")
+        batch_res = fetch_brapi_batch(batch)
+        brapi_data.update(batch_res)
+        print(f"  └─ {len(batch_res)} de {len(batch)} retornados.")
+        time.sleep(0.3)
+    return brapi_data
+
+
+# --------------------------------------------------------------------------
+# FONTE 2: Fundamentus -> P/VP, Dividend Yield, Segmento e Vacância REAIS
+# Uma única requisição cobre TODOS os FIIs listados na B3 (não gasta cota da brapi)
+# --------------------------------------------------------------------------
+def _to_float_br(txt):
+    """Converte '1.234,56' ou '8,50%' (formato BR) para float."""
+    if not txt:
+        return 0.0
+    txt = txt.replace('.', '').replace(',', '.').replace('%', '').strip()
+    try:
+        return float(txt)
+    except ValueError:
+        return 0.0
+
+
+def fetch_fundamentus_fiis():
+    url = "https://www.fundamentus.com.br/fii_resultado.php"
+    req = urllib.request.Request(url, headers=HEADERS)
+
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            raw = response.read()
+    except Exception as e:
+        print(f"  ❌ Erro ao acessar Fundamentus: {e}")
+        return {}
+
+    # O site é antigo e serve em Latin-1, não UTF-8
+    html = raw.decode('iso-8859-1', errors='ignore')
+
+    body_match = re.search(r'<tbody>(.*?)</tbody>', html, re.DOTALL)
+    if not body_match:
+        print("  ⚠️ Não foi possível localizar a tabela do Fundamentus (layout pode ter mudado).")
+        return {}
+
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', body_match.group(1), re.DOTALL)
+    result = {}
+
+    for row in rows:
+        cells = re.findall(r'<td[^>]*>(.*?)</td>', row, re.DOTALL)
+        if len(cells) < 13:
+            continue
+        clean = [re.sub(r'<[^>]+>', '', c).strip() for c in cells]
+
+        papel = clean[0].upper()
+        if not papel:
+            continue
+
+        result[papel] = {
+            "segmento": clean[1].strip() or "",
+            "dy_12m_pct": _to_float_br(clean[4]),
+            "p_vp": _to_float_br(clean[5]),
+            "valor_mercado": _to_float_br(clean[6]),
+            "vacancia_pct": _to_float_br(clean[12]),
+        }
+
+    print(f"  ✅ {len(result)} FIIs lidos do Fundamentus.")
+    return result
+
+
+# --------------------------------------------------------------------------
+# MERGE: combina as duas fontes e deriva VPA / PL a partir de dados reais
+# (P/VP = Preço ÷ VPA  =>  VPA = Preço ÷ P/VP; PL ≈ Valor de Mercado ÷ P/VP)
+# Nunca inventa número: quando falta dado nas duas fontes, marca dados_completos=False
+# --------------------------------------------------------------------------
+def merge_data(tickers, brapi_data, fundamentus_data):
+    merged = {}
+
+    for symbol in tickers:
+        b = brapi_data.get(symbol, {})
+        f = fundamentus_data.get(symbol, {})
+
+        preco = b.get("preco") or 0.0
+        nome = b.get("nome") or symbol
+
+        p_vp = f.get("p_vp") or 0.0
+        dy_12m = f.get("dy_12m_pct") or 0.0
+        segmento = f.get("segmento") or b.get("segmento_brapi") or "Fundo Imobiliário"
+        vacancia = f.get("vacancia_pct") or 0.0
+        valor_mercado = f.get("valor_mercado") or 0.0
+
+        vpa = round(preco / p_vp, 2) if (p_vp > 0 and preco > 0) else 0.0
+        # PL contábil aproximado a partir do valor de mercado reportado (dado real, não chute)
+        patrimonio_liquido = round(valor_mercado / p_vp, 2) if (p_vp > 0 and valor_mercado > 0) else valor_mercado
+
+        tem_preco = preco > 0
+        tem_fundamentos = p_vp > 0 and dy_12m > 0
+
+        if not b and not f:
+            fonte = "indisponivel"
+        elif b and f:
+            fonte = "brapi.dev + fundamentus.com.br"
+        elif f:
+            fonte = "fundamentus.com.br"
+        else:
+            fonte = "brapi.dev"
+
+        merged[symbol] = {
+            "nome": nome,
+            "segmento": segmento,
+            "setor_atuacao": segmento,
+            "preco": float(preco),
+            "p_vp": float(p_vp),
+            "valor_patrimonial_cota": vpa,
+            "dy_12m": float(dy_12m),
+            # Fundamentus não fornece DY mensal isolado; aproximação por 1/12 do DY 12m,
+            # igual à convenção já usada antes no script.
+            "dy_mensal": round(dy_12m / 12.0, 4) if dy_12m else 0.0,
+            "patrimonio_liquido": float(patrimonio_liquido),
+            "vacancia_fisica": float(vacancia),
+            "dados_completos": bool(tem_preco and tem_fundamentos),
+            "fonte_dados": fonte,
+        }
+
+    return merged
+
+
 def main():
     tickers = read_tickers()
     print(f"📌 Lendo {len(tickers)} tickers únicos de {TICKERS_FILE}...")
-    
+
     if not tickers:
         print("⚠️ Nenhum ticker encontrado. Encerrando.")
         return
@@ -155,30 +218,29 @@ def main():
     else:
         print("✅ BRAPI_TOKEN carregado com sucesso.")
 
-    fiis_data = {}
-    total_batches = (len(tickers) + BATCH_SIZE - 1) // BATCH_SIZE
+    print("\n--- Etapa 1/2: preços via brapi.dev ---")
+    brapi_data = fetch_brapi_all(tickers)
 
-    for i in range(0, len(tickers), BATCH_SIZE):
-        batch = tickers[i:i + BATCH_SIZE]
-        batch_num = (i // BATCH_SIZE) + 1
-        print(f"🚀 Processando lote {batch_num}/{total_batches} ({len(batch)} tickers)...")
-        
-        batch_res = fetch_batch(batch)
-        fiis_data.update(batch_res)
-        print(f"  └─ {len(batch_res)} de {len(batch)} FIIs retornados neste lote.")
-        time.sleep(0.3)
+    print("\n--- Etapa 2/2: fundamentos reais via fundamentus.com.br ---")
+    fundamentus_data = fetch_fundamentus_fiis()
 
+    fiis_data = merge_data(tickers, brapi_data, fundamentus_data)
+
+    completos = sum(1 for v in fiis_data.values() if v["dados_completos"])
     result = {
         "gerado_em": datetime.utcnow().isoformat() + "Z",
-        "fonte": "brapi.dev",
+        "fonte": "brapi.dev + fundamentus.com.br",
         "total_fiis": len(fiis_data),
-        "fiis": fiis_data
+        "fiis_com_dados_completos": completos,
+        "fiis": fiis_data,
     }
-    
+
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
-        
-    print(f"\n🎉 SUCESSO! {len(fiis_data)} FIIs salvos em {OUTPUT_FILE}.")
+
+    print(f"\n🎉 SUCESSO! {len(fiis_data)} FIIs salvos em {OUTPUT_FILE} "
+          f"({completos} com fundamentos completos).")
+
 
 if __name__ == "__main__":
     main()
