@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-08-09T05:24:24.731792Z",
+  "gerado_em": "2026-08-09T11:20:19.901506Z",
   "comunicados": [
     {
       "id": "c_ALZR11_1265340",
@@ -74,7 +74,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_ALZR11_rend_053513872",
+      "id": "c_ALZR11_rend_657112141",
       "ticker": "ALZR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 24/07/2026)",
@@ -83,7 +83,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_ALZR11_rend_893813842",
+      "id": "c_ALZR11_rend_443092646",
       "ticker": "ALZR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 25/06/2026)",
@@ -155,7 +155,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_ARRI11_rend_715233501",
+      "id": "c_ARRI11_rend_442364664",
       "ticker": "ARRI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 07/08/2026)",
@@ -164,7 +164,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_ARRI11_rend_276878502",
+      "id": "c_ARRI11_rend_312109444",
       "ticker": "ARRI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 07/07/2026)",
@@ -173,7 +173,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_ARRI11_rend_506657810",
+      "id": "c_ARRI11_rend_356447435",
       "ticker": "ARRI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 08/06/2026)",
@@ -254,7 +254,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BARI11_rend_834391436",
+      "id": "c_BARI11_rend_216740453",
       "ticker": "BARI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,76 (Pag: 03/09/2025)",
@@ -344,7 +344,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BBPO11_rend_616251384",
+      "id": "c_BBPO11_rend_105623541",
       "ticker": "BBPO11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,98 (Pag: 13/12/2024)",
@@ -614,7 +614,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_236312751",
+      "id": "c_BMLC11_rend_293850384",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 13/02/2026)",
@@ -623,7 +623,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_927692513",
+      "id": "c_BMLC11_rend_238328670",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 15/01/2026)",
@@ -632,7 +632,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_391365870",
+      "id": "c_BMLC11_rend_596391803",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 12/12/2025)",
@@ -641,7 +641,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_293299825",
+      "id": "c_BMLC11_rend_316123064",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 14/11/2025)",
@@ -650,7 +650,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_142387922",
+      "id": "c_BMLC11_rend_749363896",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,68 (Pag: 14/10/2025)",
@@ -659,7 +659,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_357130025",
+      "id": "c_BMLC11_rend_959791969",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 12/09/2025)",
@@ -668,7 +668,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_336451544",
+      "id": "c_BMLC11_rend_475663190",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,69 (Pag: 14/08/2025)",
@@ -677,7 +677,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_968251106",
+      "id": "c_BMLC11_rend_370632228",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 14/07/2025)",
@@ -686,7 +686,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_597501803",
+      "id": "c_BMLC11_rend_763492488",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 13/06/2025)",
@@ -695,7 +695,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BMLC11_rend_145488792",
+      "id": "c_BMLC11_rend_111583262",
       "ticker": "BMLC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,69 (Pag: 15/05/2025)",
@@ -857,7 +857,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BPFF11_rend_229361601",
+      "id": "c_BPFF11_rend_332872892",
       "ticker": "BPFF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,67 (Pag: 07/10/2025)",
@@ -866,7 +866,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BPFF11_rend_239585805",
+      "id": "c_BPFF11_rend_488268037",
       "ticker": "BPFF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 05/09/2025)",
@@ -1091,7 +1091,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_053513872",
+      "id": "c_BTAL11_rend_657112141",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 24/07/2026)",
@@ -1100,7 +1100,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_893813842",
+      "id": "c_BTAL11_rend_443092646",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 25/06/2026)",
@@ -1109,7 +1109,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_494927922",
+      "id": "c_BTAL11_rend_453600003",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 27/05/2026)",
@@ -1118,7 +1118,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_434029952",
+      "id": "c_BTAL11_rend_878681467",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 28/04/2026)",
@@ -1127,7 +1127,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_854973436",
+      "id": "c_BTAL11_rend_517148145",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 25/03/2026)",
@@ -1136,7 +1136,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTAL11_rend_808168675",
+      "id": "c_BTAL11_rend_928297317",
       "ticker": "BTAL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 27/02/2026)",
@@ -1217,7 +1217,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTLG11_rend_053513872",
+      "id": "c_BTLG11_rend_657112141",
       "ticker": "BTLG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,81 (Pag: 24/07/2026)",
@@ -1226,7 +1226,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTLG11_rend_893813842",
+      "id": "c_BTLG11_rend_443092646",
       "ticker": "BTLG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,81 (Pag: 25/06/2026)",
@@ -1307,7 +1307,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTRA11_rend_478572247",
+      "id": "c_BTRA11_rend_191926264",
       "ticker": "BTRA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,80 (Pag: 30/01/2026)",
@@ -1316,7 +1316,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_BTRA11_rend_681295960",
+      "id": "c_BTRA11_rend_097298187",
       "ticker": "BTRA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,40 (Pag: 30/12/2025)",
@@ -1379,7 +1379,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CXCE11B_rend_616251384",
+      "id": "c_CXCE11B_rend_105623541",
       "ticker": "CXCE11B",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,43 (Pag: 13/12/2024)",
@@ -1388,7 +1388,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CXCE11B_rend_638534485",
+      "id": "c_CXCE11B_rend_653122823",
       "ticker": "CXCE11B",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,43 (Pag: 14/11/2024)",
@@ -1397,7 +1397,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CXCE11B_rend_777492028",
+      "id": "c_CXCE11B_rend_540671722",
       "ticker": "CXCE11B",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,42 (Pag: 15/10/2024)",
@@ -1406,7 +1406,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CXCE11B_rend_256315427",
+      "id": "c_CXCE11B_rend_909288430",
       "ticker": "CXCE11B",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,43 (Pag: 13/09/2024)",
@@ -1559,7 +1559,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CPTS11_rend_615374205",
+      "id": "c_CPTS11_rend_644300528",
       "ticker": "CPTS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,09 (Pag: 21/07/2026)",
@@ -1568,7 +1568,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CPTS11_rend_026495291",
+      "id": "c_CPTS11_rend_772346608",
       "ticker": "CPTS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,09 (Pag: 22/06/2026)",
@@ -1577,7 +1577,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CPTS11_rend_246195316",
+      "id": "c_CPTS11_rend_034789476",
       "ticker": "CPTS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,09 (Pag: 20/05/2026)",
@@ -1640,7 +1640,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CVBI11_rend_273773726",
+      "id": "c_CVBI11_rend_571896534",
       "ticker": "CVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,88 (Pag: 16/01/2026)",
@@ -1649,7 +1649,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CVBI11_rend_270757869",
+      "id": "c_CVBI11_rend_539946990",
       "ticker": "CVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,83 (Pag: 15/12/2025)",
@@ -1658,7 +1658,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CVBI11_rend_648926826",
+      "id": "c_CVBI11_rend_832758041",
       "ticker": "CVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,90 (Pag: 17/11/2025)",
@@ -1667,7 +1667,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_CVBI11_rend_172893304",
+      "id": "c_CVBI11_rend_400240926",
       "ticker": "CVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,85 (Pag: 15/10/2025)",
@@ -1748,7 +1748,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_DEVA11_rend_567673282",
+      "id": "c_DEVA11_rend_401304666",
       "ticker": "DEVA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,30 (Pag: 14/08/2026)",
@@ -1757,7 +1757,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_DEVA11_rend_744878872",
+      "id": "c_DEVA11_rend_341338102",
       "ticker": "DEVA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,34 (Pag: 14/07/2026)",
@@ -2189,7 +2189,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FAED11_rend_567673282",
+      "id": "c_FAED11_rend_401304666",
       "ticker": "FAED11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,72 (Pag: 14/08/2026)",
@@ -2198,7 +2198,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FAED11_rend_744878872",
+      "id": "c_FAED11_rend_341338102",
       "ticker": "FAED11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,78 (Pag: 14/07/2026)",
@@ -2207,7 +2207,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FAED11_rend_389008567",
+      "id": "c_FAED11_rend_103289631",
       "ticker": "FAED11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,72 (Pag: 15/06/2026)",
@@ -2297,7 +2297,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FAMB11B_rend_125276244",
+      "id": "c_FAMB11B_rend_478553842",
       "ticker": "FAMB11B",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1.001,61 (Pag: 08/01/2025)",
@@ -2468,7 +2468,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FCFL11_rend_053513872",
+      "id": "c_FCFL11_rend_657112141",
       "ticker": "FCFL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,93 (Pag: 24/07/2026)",
@@ -2477,7 +2477,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FCFL11_rend_893813842",
+      "id": "c_FCFL11_rend_443092646",
       "ticker": "FCFL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,93 (Pag: 25/06/2026)",
@@ -2486,7 +2486,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_577159588",
+      "id": "c_FEXC11_rend_239724749",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,50 (Pag: 07/03/2023)",
@@ -2495,7 +2495,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_577159588",
+      "id": "c_FEXC11_rend_239724749",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 07/03/2023)",
@@ -2504,7 +2504,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_265935181",
+      "id": "c_FEXC11_rend_662700818",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,83 (Pag: 28/02/2023)",
@@ -2513,7 +2513,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_847257672",
+      "id": "c_FEXC11_rend_214615460",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,13 (Pag: 27/02/2023)",
@@ -2522,7 +2522,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_798004890",
+      "id": "c_FEXC11_rend_274406115",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,81 (Pag: 24/02/2023)",
@@ -2531,7 +2531,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FEXC11_rend_038905238",
+      "id": "c_FEXC11_rend_363871652",
       "ticker": "FEXC11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,05 (Pag: 23/02/2023)",
@@ -3053,7 +3053,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FLRP11_rend_567673282",
+      "id": "c_FLRP11_rend_401304666",
       "ticker": "FLRP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 14/08/2026)",
@@ -3062,7 +3062,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FLRP11_rend_744878872",
+      "id": "c_FLRP11_rend_341338102",
       "ticker": "FLRP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 14/07/2026)",
@@ -3071,7 +3071,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FLRP11_rend_389008567",
+      "id": "c_FLRP11_rend_103289631",
       "ticker": "FLRP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 15/06/2026)",
@@ -3161,7 +3161,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_FMOF11_rend_744878872",
+      "id": "c_FMOF11_rend_341338102",
       "ticker": "FMOF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,10 (Pag: 14/07/2026)",
@@ -3350,7 +3350,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_715233501",
+      "id": "c_GARE11_rend_442364664",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 07/08/2026)",
@@ -3359,7 +3359,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_276878502",
+      "id": "c_GARE11_rend_312109444",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 07/07/2026)",
@@ -3368,7 +3368,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_506657810",
+      "id": "c_GARE11_rend_356447435",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 08/06/2026)",
@@ -3377,7 +3377,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_630695580",
+      "id": "c_GARE11_rend_760881130",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 08/05/2026)",
@@ -3386,7 +3386,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_694478965",
+      "id": "c_GARE11_rend_142895262",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 08/04/2026)",
@@ -3395,7 +3395,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_704069290",
+      "id": "c_GARE11_rend_721301522",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 06/03/2026)",
@@ -3404,7 +3404,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_569501942",
+      "id": "c_GARE11_rend_156563042",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 06/02/2026)",
@@ -3413,7 +3413,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_189275898",
+      "id": "c_GARE11_rend_883994170",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 08/01/2026)",
@@ -3422,7 +3422,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_315496997",
+      "id": "c_GARE11_rend_548108558",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 05/12/2025)",
@@ -3431,7 +3431,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_GARE11_rend_523535443",
+      "id": "c_GARE11_rend_728643359",
       "ticker": "GARE11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 07/11/2025)",
@@ -4052,7 +4052,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HCTR11_rend_567673282",
+      "id": "c_HCTR11_rend_401304666",
       "ticker": "HCTR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,24 (Pag: 14/08/2026)",
@@ -4061,7 +4061,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HCTR11_rend_744878872",
+      "id": "c_HCTR11_rend_341338102",
       "ticker": "HCTR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,30 (Pag: 14/07/2026)",
@@ -4133,7 +4133,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGBS11_rend_567673282",
+      "id": "c_HGBS11_rend_401304666",
       "ticker": "HGBS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,17 (Pag: 14/08/2026)",
@@ -4142,7 +4142,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGBS11_rend_744878872",
+      "id": "c_HGBS11_rend_341338102",
       "ticker": "HGBS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,17 (Pag: 14/07/2026)",
@@ -4151,7 +4151,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGBS11_rend_389008567",
+      "id": "c_HGBS11_rend_103289631",
       "ticker": "HGBS11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,17 (Pag: 15/06/2026)",
@@ -4232,7 +4232,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGFF11_rend_916264472",
+      "id": "c_HGFF11_rend_225652588",
       "ticker": "HGFF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,99 (Pag: 03/10/2025)",
@@ -4313,7 +4313,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGLG11_rend_567673282",
+      "id": "c_HGLG11_rend_401304666",
       "ticker": "HGLG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,17 (Pag: 14/08/2026)",
@@ -4322,7 +4322,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HGLG11_rend_744878872",
+      "id": "c_HGLG11_rend_341338102",
       "ticker": "HGLG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,10 (Pag: 14/07/2026)",
@@ -4664,7 +4664,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HSML11_rend_715233501",
+      "id": "c_HSML11_rend_442364664",
       "ticker": "HSML11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,75 (Pag: 07/08/2026)",
@@ -4673,7 +4673,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HSML11_rend_276878502",
+      "id": "c_HSML11_rend_312109444",
       "ticker": "HSML11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,75 (Pag: 07/07/2026)",
@@ -4682,7 +4682,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HSML11_rend_506657810",
+      "id": "c_HSML11_rend_356447435",
       "ticker": "HSML11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,75 (Pag: 08/06/2026)",
@@ -4754,7 +4754,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HTMX11_rend_715233501",
+      "id": "c_HTMX11_rend_442364664",
       "ticker": "HTMX11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,20 (Pag: 07/08/2026)",
@@ -4763,7 +4763,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HTMX11_rend_276878502",
+      "id": "c_HTMX11_rend_312109444",
       "ticker": "HTMX11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 2,95 (Pag: 07/07/2026)",
@@ -4772,7 +4772,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HTMX11_rend_506657810",
+      "id": "c_HTMX11_rend_356447435",
       "ticker": "HTMX11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,20 (Pag: 08/06/2026)",
@@ -4853,7 +4853,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HCTR11_rend_567673282",
+      "id": "c_HCTR11_rend_401304666",
       "ticker": "HCTR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,24 (Pag: 14/08/2026)",
@@ -4862,7 +4862,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_HCTR11_rend_744878872",
+      "id": "c_HCTR11_rend_341338102",
       "ticker": "HCTR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,30 (Pag: 14/07/2026)",
@@ -5375,7 +5375,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_KNHY11_rend_547102895",
+      "id": "c_KNHY11_rend_631592103",
       "ticker": "KNHY11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,20 (Pag: 13/08/2026)",
@@ -5384,7 +5384,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_KNHY11_rend_729897180",
+      "id": "c_KNHY11_rend_424700735",
       "ticker": "KNHY11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,20 (Pag: 13/07/2026)",
@@ -5393,7 +5393,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_KNHY11_rend_404480589",
+      "id": "c_KNHY11_rend_096041659",
       "ticker": "KNHY11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,30 (Pag: 12/06/2026)",
@@ -5735,7 +5735,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_LGCP11_rend_616251384",
+      "id": "c_LGCP11_rend_105623541",
       "ticker": "LGCP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,80 (Pag: 13/12/2024)",
@@ -5744,7 +5744,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_LGCP11_rend_638534485",
+      "id": "c_LGCP11_rend_653122823",
       "ticker": "LGCP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,80 (Pag: 14/11/2024)",
@@ -5753,7 +5753,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_LGCP11_rend_080842958",
+      "id": "c_LGCP11_rend_239853615",
       "ticker": "LGCP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,80 (Pag: 14/10/2024)",
@@ -5834,7 +5834,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_MALL11_rend_968251106",
+      "id": "c_MALL11_rend_370632228",
       "ticker": "MALL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,86 (Pag: 14/07/2025)",
@@ -5843,7 +5843,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_MALL11_rend_597501803",
+      "id": "c_MALL11_rend_763492488",
       "ticker": "MALL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,85 (Pag: 13/06/2025)",
@@ -7085,7 +7085,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_PVBI11_rend_715233501",
+      "id": "c_PVBI11_rend_442364664",
       "ticker": "PVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,40 (Pag: 07/08/2026)",
@@ -7094,7 +7094,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_PVBI11_rend_276878502",
+      "id": "c_PVBI11_rend_312109444",
       "ticker": "PVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,40 (Pag: 07/07/2026)",
@@ -7103,7 +7103,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_PVBI11_rend_506657810",
+      "id": "c_PVBI11_rend_356447435",
       "ticker": "PVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,40 (Pag: 08/06/2026)",
@@ -7166,7 +7166,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_QAGR11_rend_504925043",
+      "id": "c_QAGR11_rend_055028930",
       "ticker": "QAGR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,46 (Pag: 08/04/2025)",
@@ -7175,7 +7175,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_QAGR11_rend_818319257",
+      "id": "c_QAGR11_rend_722207816",
       "ticker": "QAGR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,46 (Pag: 12/03/2025)",
@@ -7184,7 +7184,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_QAGR11_rend_849519048",
+      "id": "c_QAGR11_rend_557195754",
       "ticker": "QAGR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,46 (Pag: 10/02/2025)",
@@ -7193,7 +7193,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_QAGR11_rend_373248591",
+      "id": "c_QAGR11_rend_038658401",
       "ticker": "QAGR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,44 (Pag: 09/01/2025)",
@@ -7355,7 +7355,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRR11_rend_302667553",
+      "id": "c_RBRR11_rend_445929170",
       "ticker": "RBRR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,98 (Pag: 16/07/2026)",
@@ -7364,7 +7364,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRR11_rend_398019615",
+      "id": "c_RBRR11_rend_040885898",
       "ticker": "RBRR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,95 (Pag: 17/06/2026)",
@@ -7445,7 +7445,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRP11_rend_567673282",
+      "id": "c_RBRP11_rend_401304666",
       "ticker": "RBRP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,35 (Pag: 14/08/2026)",
@@ -7454,7 +7454,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRP11_rend_744878872",
+      "id": "c_RBRP11_rend_341338102",
       "ticker": "RBRP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,40 (Pag: 14/07/2026)",
@@ -7535,7 +7535,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRY11_rend_302667553",
+      "id": "c_RBRY11_rend_445929170",
       "ticker": "RBRY11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 16/07/2026)",
@@ -7544,7 +7544,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRY11_rend_398019615",
+      "id": "c_RBRY11_rend_040885898",
       "ticker": "RBRY11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,00 (Pag: 17/06/2026)",
@@ -7706,7 +7706,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECT11_rend_567673282",
+      "id": "c_RECT11_rend_401304666",
       "ticker": "RECT11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,45 (Pag: 14/08/2026)",
@@ -7715,7 +7715,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECT11_rend_744878872",
+      "id": "c_RECT11_rend_341338102",
       "ticker": "RECT11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,45 (Pag: 14/07/2026)",
@@ -7724,7 +7724,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECT11_rend_389008567",
+      "id": "c_RECT11_rend_103289631",
       "ticker": "RECT11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,45 (Pag: 15/06/2026)",
@@ -7796,7 +7796,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECR11_rend_567673282",
+      "id": "c_RECR11_rend_401304666",
       "ticker": "RECR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,10 (Pag: 14/08/2026)",
@@ -7805,7 +7805,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECR11_rend_744878872",
+      "id": "c_RECR11_rend_341338102",
       "ticker": "RECR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,08 (Pag: 14/07/2026)",
@@ -7814,7 +7814,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RECR11_rend_389008567",
+      "id": "c_RECR11_rend_103289631",
       "ticker": "RECR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,12 (Pag: 15/06/2026)",
@@ -7886,7 +7886,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RVBI11_rend_273773726",
+      "id": "c_RVBI11_rend_571896534",
       "ticker": "RVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,65 (Pag: 16/01/2026)",
@@ -7895,7 +7895,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RVBI11_rend_270757869",
+      "id": "c_RVBI11_rend_539946990",
       "ticker": "RVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,65 (Pag: 15/12/2025)",
@@ -7904,7 +7904,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_RVBI11_rend_648926826",
+      "id": "c_RVBI11_rend_832758041",
       "ticker": "RVBI11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,70 (Pag: 17/11/2025)",
@@ -8075,7 +8075,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_SDIL11_rend_576727290",
+      "id": "c_SDIL11_rend_157730986",
       "ticker": "SDIL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,75 (Pag: 14/08/2023)",
@@ -8084,7 +8084,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_SDIL11_rend_216291157",
+      "id": "c_SDIL11_rend_812055020",
       "ticker": "SDIL11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,83 (Pag: 14/07/2023)",
@@ -8426,7 +8426,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TGAR11_rend_567673282",
+      "id": "c_TGAR11_rend_401304666",
       "ticker": "TGAR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 14/08/2026)",
@@ -8435,7 +8435,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TGAR11_rend_744878872",
+      "id": "c_TGAR11_rend_341338102",
       "ticker": "TGAR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 14/07/2026)",
@@ -8444,7 +8444,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TGAR11_rend_389008567",
+      "id": "c_TGAR11_rend_103289631",
       "ticker": "TGAR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,72 (Pag: 15/06/2026)",
@@ -8453,7 +8453,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_236312751",
+      "id": "c_TEPP11_rend_293850384",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 13/02/2026)",
@@ -8462,7 +8462,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_927692513",
+      "id": "c_TEPP11_rend_238328670",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,08 (Pag: 15/01/2026)",
@@ -8471,7 +8471,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_391365870",
+      "id": "c_TEPP11_rend_596391803",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 12/12/2025)",
@@ -8480,7 +8480,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_293299825",
+      "id": "c_TEPP11_rend_316123064",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 14/11/2025)",
@@ -8489,7 +8489,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_142387922",
+      "id": "c_TEPP11_rend_749363896",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 14/10/2025)",
@@ -8498,7 +8498,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_357130025",
+      "id": "c_TEPP11_rend_959791969",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 12/09/2025)",
@@ -8507,7 +8507,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_336451544",
+      "id": "c_TEPP11_rend_475663190",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,09 (Pag: 14/08/2025)",
@@ -8516,7 +8516,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_968251106",
+      "id": "c_TEPP11_rend_370632228",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,11 (Pag: 14/07/2025)",
@@ -8525,7 +8525,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_597501803",
+      "id": "c_TEPP11_rend_763492488",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,10 (Pag: 13/06/2025)",
@@ -8534,7 +8534,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_TEPP11_rend_145488792",
+      "id": "c_TEPP11_rend_111583262",
       "ticker": "TEPP11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,10 (Pag: 15/05/2025)",
@@ -8966,7 +8966,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGHF11_rend_715233501",
+      "id": "c_VGHF11_rend_442364664",
       "ticker": "VGHF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,06 (Pag: 07/08/2026)",
@@ -8975,7 +8975,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGHF11_rend_276878502",
+      "id": "c_VGHF11_rend_312109444",
       "ticker": "VGHF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 07/07/2026)",
@@ -8984,7 +8984,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGHF11_rend_506657810",
+      "id": "c_VGHF11_rend_356447435",
       "ticker": "VGHF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 08/06/2026)",
@@ -8993,7 +8993,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_730005932",
+      "id": "c_VGIA11_rend_669596818",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,13 (Pag: 17/07/2026)",
@@ -9002,7 +9002,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_781126766",
+      "id": "c_VGIA11_rend_595104150",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,13 (Pag: 18/06/2026)",
@@ -9011,7 +9011,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_246195316",
+      "id": "c_VGIA11_rend_034789476",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,13 (Pag: 20/05/2026)",
@@ -9020,7 +9020,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_282761792",
+      "id": "c_VGIA11_rend_284367925",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,14 (Pag: 20/04/2026)",
@@ -9029,7 +9029,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_688213817",
+      "id": "c_VGIA11_rend_311100373",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 18/03/2026)",
@@ -9038,7 +9038,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_471943379",
+      "id": "c_VGIA11_rend_639318083",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 20/02/2026)",
@@ -9047,7 +9047,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_808539907",
+      "id": "c_VGIA11_rend_353286353",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,14 (Pag: 20/01/2026)",
@@ -9056,7 +9056,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_914635311",
+      "id": "c_VGIA11_rend_142244715",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,14 (Pag: 17/12/2025)",
@@ -9065,7 +9065,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_144026872",
+      "id": "c_VGIA11_rend_484120470",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,15 (Pag: 19/11/2025)",
@@ -9074,7 +9074,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VGIA11_rend_220751917",
+      "id": "c_VGIA11_rend_543660678",
       "ticker": "VGIA11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,14 (Pag: 17/10/2025)",
@@ -9236,7 +9236,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VILG11_rend_567673282",
+      "id": "c_VILG11_rend_401304666",
       "ticker": "VILG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,82 (Pag: 14/08/2026)",
@@ -9245,7 +9245,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VILG11_rend_744878872",
+      "id": "c_VILG11_rend_341338102",
       "ticker": "VILG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,82 (Pag: 14/07/2026)",
@@ -9254,7 +9254,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VILG11_rend_389008567",
+      "id": "c_VILG11_rend_103289631",
       "ticker": "VILG11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,82 (Pag: 15/06/2026)",
@@ -9704,7 +9704,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_VTLT11_rend_927692513",
+      "id": "c_VTLT11_rend_238328670",
       "ticker": "VTLT11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 1,26 (Pag: 15/01/2026)",
@@ -9875,7 +9875,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPIN11_rend_893813842",
+      "id": "c_XPIN11_rend_443092646",
       "ticker": "XPIN11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,85 (Pag: 25/06/2026)",
@@ -10046,7 +10046,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPML11_rend_053513872",
+      "id": "c_XPML11_rend_657112141",
       "ticker": "XPML11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,92 (Pag: 24/07/2026)",
@@ -10055,7 +10055,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPML11_rend_893813842",
+      "id": "c_XPML11_rend_443092646",
       "ticker": "XPML11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,92 (Pag: 25/06/2026)",
@@ -10145,7 +10145,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPPR11_rend_517980028",
+      "id": "c_XPPR11_rend_717394289",
       "ticker": "XPPR11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 15/01/2025)",
@@ -10217,7 +10217,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPSF11_rend_567673282",
+      "id": "c_XPSF11_rend_401304666",
       "ticker": "XPSF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 14/08/2026)",
@@ -10226,7 +10226,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPSF11_rend_744878872",
+      "id": "c_XPSF11_rend_341338102",
       "ticker": "XPSF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 14/07/2026)",
@@ -10235,7 +10235,7 @@
       "resumoIa": null
     },
     {
-      "id": "c_XPSF11_rend_389008567",
+      "id": "c_XPSF11_rend_103289631",
       "ticker": "XPSF11",
       "tipo": "Aviso aos Cotistas",
       "titulo": "Rendimento: R$ 0,07 (Pag: 15/06/2026)",
