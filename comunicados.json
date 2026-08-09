@@ -7,7 +7,7 @@
       "tipo": "Fato Relevante",
       "titulo": "Aviso de Início da Emissão de Cotas",
       "data": "01/08/2026",
-      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1280390&cvm=true",
+      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirHexDataHeader?id=1280390",
       "resumoIa": "Emissão para aquisição de novos galpões logísticos e imóveis urbanos com contratos atípicos."
     },
     {
@@ -16,7 +16,7 @@
       "tipo": "Relatório Gerencial",
       "titulo": "Relatório Gerencial Mensal",
       "data": "03/08/2026",
-      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1280391&cvm=true",
+      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirHexDataHeader?id=1280391",
       "resumoIa": "Distribuição mantida em R$ 0,10/cota com reserva de caixa acumulada e 100% dos CRIs adimplentes."
     }
   ]
