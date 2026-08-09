@@ -24,13 +24,21 @@ def read_tickers():
                 tickers.append(t)
         return tickers
 
+def parse_date(date_str):
+    if not date_str:
+        return ""
+    if "T" in str(date_str):
+        return str(date_str).split("T")[0]
+    return str(date_str)[:10]
+
 def fetch_batch(batch_tickers):
     if not batch_tickers:
         return {}
     
     tickers_str = ",".join(batch_tickers)
     token_param = f"&token={BRAPI_TOKEN}" if BRAPI_TOKEN else ""
-    url = f"https://brapi.dev/api/quote/{tickers_str}?fundamental=true{token_param}"
+    # Inclui &dividends=true para obter histórico real de proventos
+    url = f"https://brapi.dev/api/quote/{tickers_str}?fundamental=true&dividends=true{token_param}"
     
     req = urllib.request.Request(
         url,
@@ -51,6 +59,42 @@ def fetch_batch(batch_tickers):
                 book_value = item.get("bookValue") or 0.0
                 dividend_yield = item.get("dividendYield") or 0.0
                 market_cap = item.get("marketCap") or 0.0
+
+                # Extrai proventos reais retornados pela Brapi
+                divs_data = item.get("dividendsData", {}) or {}
+                cash_divs = divs_data.get("cashDividends", []) or item.get("cashDividends", []) or []
+                
+                proventos_12m = []
+                for div in cash_divs:
+                    rate = float(div.get("rate") or div.get("amount") or 0.0)
+                    if rate <= 0:
+                        continue
+                    d_com = parse_date(div.get("lastDatePrior") or div.get("approvedOn") or "")
+                    d_pag = parse_date(div.get("paymentDate") or "")
+                    proventos_12m.append({
+                        "valor_por_cota": rate,
+                        "data_com": d_com,
+                        "data_pagamento": d_pag
+                    })
+
+                # Ordena os proventos por data mais recente
+                proventos_12m.sort(key=lambda x: x["data_com"] or x["data_pagamento"], reverse=True)
+
+                # Limita aos últimos 12 meses/proventos
+                if len(proventos_12m) > 12:
+                    proventos_12m = proventos_12m[:12]
+
+                # Define o último provento
+                ultimo_provento = None
+                if proventos_12m:
+                    ultimo_provento = proventos_12m[0]
+                elif regular_price > 0 and dividend_yield > 0:
+                    est_val = round((regular_price * (dividend_yield / 100.0)) / 12.0, 4)
+                    ultimo_provento = {
+                        "valor_por_cota": est_val,
+                        "data_com": "",
+                        "data_pagamento": ""
+                    }
                 
                 output[symbol] = {
                     "nome": item.get("longName") or item.get("shortName") or symbol,
@@ -63,6 +107,8 @@ def fetch_batch(batch_tickers):
                     "dy_mensal": float(dividend_yield) / 12.0 if dividend_yield else 0.0,
                     "patrimonio_liquido": float(market_cap),
                     "vacancia_fisica": 0.0,
+                    "ultimo_provento": ultimo_provento,
+                    "proventos_12m": proventos_12m,
                     "dados_completos": True
                 }
             return output
