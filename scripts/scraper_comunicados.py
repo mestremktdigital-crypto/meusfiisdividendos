@@ -1,9 +1,9 @@
 import os
 import re
 import json
+import time
 import urllib.request
 from datetime import datetime
-import concurrent.futures
 
 TICKERS_FILE = "tickers.txt"
 OUTPUT_FILE = "comunicados.json"
@@ -18,7 +18,10 @@ def fetch_comunicados_for_ticker(ticker):
     url = f"https://www.fundsexplorer.com.br/funds/{ticker.lower()}"
     req = urllib.request.Request(
         url,
-        headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+        }
     )
     
     comunicados = []
@@ -26,15 +29,14 @@ def fetch_comunicados_for_ticker(ticker):
         with urllib.request.urlopen(req, timeout=15) as response:
             html = response.read().decode('utf-8')
             
-            # Pega apenas a seção de comunicados para evitar varrer o HTML todo
             if 'id="comunicados"' in html:
-                section = html.split('id="comunicados"')[1][:20000]
+                section = html.split('id="comunicados"')[1][:30000]
                 
-                # Regex para extrair a URL, Título e Data (Documentos PDF como Fatos Relevantes e Relatórios)
+                # Documentos PDF (Fatos Relevantes, etc)
                 regex_doc = re.compile(r'<a href="([^"]+)"[^>]*>([^<]+)</a>\s*<p>([^<]+)</p>')
                 matches_doc = regex_doc.findall(section)
                 
-                # Regex para extrair os "Rendimentos" informados na aba de comunicados
+                # Rendimentos (Rendimentos mostrados na aba)
                 regex_rend = re.compile(r'<div class="communicated__grid__row communicated__grid__rend">.*?Rendimento no valor de (.*?) por cota no dia (.*?)</p>.*?<li><b>(.*?)</b> Data base', re.DOTALL)
                 matches_rend = regex_rend.findall(section)
                 
@@ -65,7 +67,7 @@ def fetch_comunicados_for_ticker(ticker):
                     })
                     count += 1
                 
-                # Alguns fundos só exibem rendimentos nos comunicados recentes (ex: GARE11)
+                # Adiciona Rendimentos à lista também (até 5 itens recentes)
                 for match in matches_rend:
                     if count >= 15:
                         break
@@ -81,18 +83,15 @@ def fetch_comunicados_for_ticker(ticker):
                         "tipo": "Aviso aos Cotistas",
                         "titulo": titulo,
                         "data": data_base,
-                        "urlOriginal": url, # Redireciona para a página do fundo
+                        "urlOriginal": url, 
                         "resumoIa": None
                     })
                     count += 1
 
     except urllib.error.HTTPError as e:
-        if e.code == 500:
-            pass # FundsExplorer as vezes retorna 500 para tickers inativos/incorporados, ignorar.
-        else:
-            print(f"Erro HTTP {e.code} para {ticker}: {e.reason}")
+        print(f"[{ticker}] Erro HTTP {e.code}: {e.reason} (Site bloqueou ou ticker inativo)")
     except Exception as e:
-        pass
+        print(f"[{ticker}] Erro: {e}")
         
     return ticker, comunicados
 
@@ -103,21 +102,14 @@ def main():
         return
         
     print(f"Lendo {len(tickers)} tickers para buscar comunicados...")
-    
     all_comunicados = []
     
-    # Processamento paralelo com 10 workers para acelerar o scraping significativamente
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        futures = {executor.submit(fetch_comunicados_for_ticker, ticker): ticker for ticker in tickers}
-        
-        for future in concurrent.futures.as_completed(futures):
-            ticker = futures[future]
-            try:
-                t, comunicados = future.result()
-                all_comunicados.extend(comunicados)
-                print(f"[{t}] Encontrados {len(comunicados)} comunicados.")
-            except Exception as e:
-                print(f"Erro processando {ticker}: {e}")
+    # Execução sequencial com delay de 1.5s (Muito Importante para não tomar Block)
+    for i, ticker in enumerate(tickers):
+        print(f"Processando ({i+1}/{len(tickers)}): {ticker}")
+        t, comunicados = fetch_comunicados_for_ticker(ticker)
+        all_comunicados.extend(comunicados)
+        time.sleep(1.5) 
         
     result = {
         "gerado_em": datetime.utcnow().isoformat() + "Z",
