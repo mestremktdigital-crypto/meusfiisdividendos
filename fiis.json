@@ -1,18 +1,18 @@
 {
-  "gerado_em": "2026-08-10T01:06:03.109106Z",
+  "gerado_em": "2026-08-10T01:34:17.578734Z",
   "fonte": "brapi.dev + investidor10.com.br + fundamentus.com.br",
   "total_fiis": 127,
   "fiis_com_dados_completos": 118,
   "fiis": {
     "PETR4": {
       "nome": "Petroleo Brasileiro SA Pfd",
-      "segmento": "",
-      "setor_atuacao": "",
+      "segmento": "Petróleo, Gás e Biocombustíveis",
+      "setor_atuacao": "Exploração, Refino e Distribuição",
       "preco": 40.87,
       "p_vp": 1.1,
-      "valor_patrimonial_cota": 14.32,
-      "dy_12m": 0.0,
-      "dy_mensal": 0.0,
+      "valor_patrimonial_cota": 37.31,
+      "dy_12m": 7.2,
+      "dy_mensal": 0.6,
       "patrimonio_liquido": 480940000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -20,13 +20,13 @@
     },
     "MGLU3": {
       "nome": "Magazine Luiza S.A.",
-      "segmento": "",
-      "setor_atuacao": "",
+      "segmento": "Consumo Cíclico",
+      "setor_atuacao": "Eletrodomésticos",
       "preco": 4.4,
       "p_vp": 0.31,
-      "valor_patrimonial_cota": 9.26,
-      "dy_12m": 0.0,
-      "dy_mensal": 0.0,
+      "valor_patrimonial_cota": 14.39,
+      "dy_12m": 1.85,
+      "dy_mensal": 0.1542,
       "patrimonio_liquido": 11170000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -34,13 +34,13 @@
     },
     "VALE3": {
       "nome": "Vale S.A.",
-      "segmento": "",
-      "setor_atuacao": "",
+      "segmento": "Materiais Básicos",
+      "setor_atuacao": "Minerais Metálicos",
       "preco": 74.97,
       "p_vp": 1.69,
-      "valor_patrimonial_cota": 11.23,
-      "dy_12m": 0.0,
-      "dy_mensal": 0.0,
+      "valor_patrimonial_cota": 44.3,
+      "dy_12m": 7.31,
+      "dy_mensal": 0.6092,
       "patrimonio_liquido": 196640000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -48,13 +48,13 @@
     },
     "ITUB4": {
       "nome": "Itau Unibanco Holding SA Pfd",
-      "segmento": "",
-      "setor_atuacao": "",
+      "segmento": "Financeiro",
+      "setor_atuacao": "Bancos",
       "preco": 40.75,
       "p_vp": 2.06,
-      "valor_patrimonial_cota": 12.91,
-      "dy_12m": 0.0,
-      "dy_mensal": 0.0,
+      "valor_patrimonial_cota": 19.75,
+      "dy_12m": 8.66,
+      "dy_mensal": 0.7217,
       "patrimonio_liquido": 217780000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -117,7 +117,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "BCFF11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "BTG FUNDO DE FUNDOS",
       "segmento": "Títulos e Val. Mob.",
       "setor_atuacao": "Títulos e Val. Mob.",
       "preco": 7.28,
@@ -187,7 +187,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "BPFF11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "BRASIL PLURAL ABSOLUTO",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 53.15,
@@ -229,7 +229,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "BPRP11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "BRLPROP",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 107.5,
@@ -299,7 +299,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "CXCE11B": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "CAIXA CEDAE (OLD)",
       "segmento": "",
       "setor_atuacao": "",
       "preco": 44.01,
@@ -341,7 +341,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "CVBI11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "VBI CRI",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 82.9,
@@ -397,7 +397,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "DOVL11B": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "DOVEL",
       "segmento": "",
       "setor_atuacao": "",
       "preco": 784.35,
@@ -425,7 +425,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br"
     },
     "EDFO11B": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "EDIFÍCIO OUROINVEST (OLD)",
       "segmento": "",
       "setor_atuacao": "",
       "preco": 262.0,
@@ -467,7 +467,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "FAMB11B": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "EDIFÍCIO ALMIRANTE BARROSO",
       "segmento": "",
       "setor_atuacao": "",
       "preco": 671.01,
@@ -509,7 +509,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "FEXC11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "BTG PACTUAL FUNDO DE CRI",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 103.01,
@@ -635,7 +635,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "FTCE11B": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "OPPORTUNITY",
       "segmento": "",
       "setor_atuacao": "",
       "preco": 2.8,
@@ -649,7 +649,7 @@
       "fonte_dados": "investidor10.com.br"
     },
     "GALG11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "GUARDIAN LOGÍSTICA (OLD)",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
       "preco": 9.08,
@@ -677,7 +677,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "GCFF11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "GALAPAGOS FUNDO DE FUNDOS",
       "segmento": "Títulos e Val. Mob.",
       "setor_atuacao": "Títulos e Val. Mob.",
       "preco": 69.3,
@@ -1027,7 +1027,7 @@
       "fonte_dados": "indisponivel"
     },
     "LGCP11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "LOGCP INTER (OLD)",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
       "preco": 82.95,
@@ -1041,7 +1041,7 @@
       "fonte_dados": "investidor10.com.br + fundamentus.com.br"
     },
     "MALL11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "GENIAL MALLS (OLD)",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
       "preco": 99.9,
@@ -1069,7 +1069,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "MCHF11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "MAUÁ CAPITAL HEDGE FUND",
       "segmento": "Títulos e Val. Mob.",
       "setor_atuacao": "Títulos e Val. Mob.",
       "preco": 9.05,
@@ -1111,7 +1111,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "MGFF11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "MOGNO FUNDO DE FUNDOS",
       "segmento": "Títulos e Val. Mob.",
       "setor_atuacao": "Títulos e Val. Mob.",
       "preco": 69.99,
@@ -1251,7 +1251,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "QAGR11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "QUASAR AGRO (OLD)",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 41.0,
@@ -1391,7 +1391,7 @@
       "fonte_dados": "indisponivel"
     },
     "RVBI11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "VBI REITS FOF (OLD)",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 60.23,
@@ -1419,7 +1419,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "SDIL11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "SDI LOGÍSTICA RIO",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
       "preco": 97.78,
@@ -1741,7 +1741,7 @@
       "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "XPPR11": {
-      "nome": "Não adie mais seusplanos financeiros",
+      "nome": "XP PROPERTIES (OLD)",
       "segmento": "Escritórios",
       "setor_atuacao": "Escritórios",
       "preco": 12.54,
