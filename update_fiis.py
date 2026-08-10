@@ -220,7 +220,9 @@ def _parse_investidor10_proventos(text, max_meses=15):
     (cobre o caso de JSCP + Dividendos + Rend. Trib. no mesmo ciclo).
     Retorna lista ordenada do mais recente pro mais antigo, cada item no
     formato que o app espera: valor_por_cota / data_com / data_pagamento
-    (datas em ISO, YYYY-MM-DD). Se a página não tiver a tabela, retorna [].
+    (datas em ISO, YYYY-MM-DD). Se a página não tiver a tabela, retorna [].  Filtra estritamente apenas os proventos ocorridos nos últimos 12 MESES
+    e agrupa por mês da data-com, somando o valor de linhas do mesmo mês
+    (janela de até 370 dias a partir da data-com mais recente).
     """
     grupos = OrderedDict()
     for tipo, dcom_txt, dpag_txt, valor_txt in PROVENTO_LINHA_RE.findall(text):
@@ -244,6 +246,12 @@ def _parse_investidor10_proventos(text, max_meses=15):
         return []
 
     ordenado = sorted(grupos.values(), key=lambda g: g["data_com"], reverse=True)
+    most_recent = ordenado[0]["data_com"]
+    # Mantém estritamente apenas os proventos ocorridos nos últimos 12 meses (até 370 dias a partir do provento mais recente)
+    filtrado = [g for g in ordenado if (most_recent - g["data_com"]).days <= 370]
+    if not filtrado:
+        filtrado = ordenado[:max_meses]
+
     return [
         {
             "valor_por_cota": round(g["valor"], 6),
