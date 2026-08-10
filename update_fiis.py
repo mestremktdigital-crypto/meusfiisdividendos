@@ -200,59 +200,96 @@ def _http_get(url, use_curl_cffi=True):
 # --------------------------------------------------------------------------
 def _parse_investidor10_html(html):
     """Extrai os campos comuns às páginas de FII e de ação do Investidor10.
-    Alguns rótulos (VACÂNCIA, VAL. PATRIMONIAL P/COTA) só existem na página
-    de FII e simplesmente não aparecem em ações — tudo bem, ficam de fora do
-    dict sem inventar nada.
+
+    IMPORTANTE: FII e ação usam RÓTULOS DE TEXTO DIFERENTES pros mesmos dados
+    (confirmado comparando o HTML real de FII vs. o HTML real de PETR4). Por
+    isso cada campo abaixo tenta primeiro o rótulo de FII e, se não achar
+    nada, cai pro rótulo equivalente de ação. Isso é resistente: se um dia o
+    Investidor10 mudar o texto de um dos dois formatos, o outro continua
+    funcionando.
+
+    Campos que só existem mesmo em FII (VACÂNCIA) ficam de fora do dict pra
+    ação, sem inventar nada.
     """
     text = _get_flat_text(html)
 
-    # Preço da cota/ação: rótulo "VALOR DA COTA" no FII; ações usam outro
-    # rótulo perto do topo — tentamos os dois.
+    # Preço da cota/ação:
+    #   FII  -> rótulo "VALOR DA COTA"
+    #   ação -> "Cotação R$ 40,87" (rótulo e valor colados, sem ":" no meio —
+    #           existem várias outras ocorrências soltas de "Cotação" na
+    #           página, então exigir o "R$" logo em seguida evita pegar a
+    #           errada, ex: dentro do <title> ou nas cotações de commodities)
     preco_txt = (
         _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
+        or _extract_after(text, r'Cota[çc][ãa]o\s+R\$', r'([\d\.,]+)', window=20)
         or _extract_after(text, r'\bCOTAÇÃO\b', r'R\$\s*([\d\.,]+)')
     )
-    # DY (12M) é o rótulo confirmado na página de FII. Ações costumam expor
-    # só "DY" (sem o "(12M)") — NÃO confirmei esse rótulo ao vivo (não tenho
-    # acesso de rede ao investidor10.com.br neste ambiente), é best-effort;
-    # se não bater, o campo simplesmente fica de fora, sem inventar número.
+    # DY 12 meses:
+    #   FII  -> "DY (12M)"
+    #   ação -> só "DY 7,20%" no cabeçalho (sem "(12M)"), mas o texto exato
+    #           "DY atual: 7,20%" no gráfico de dividendos é mais específico
+    #           e evita pegar "DY:" da tabela de comparação com outras ações
     dy_12m = (
         _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
-        or _extract_after(text, r'\bDY\b', r'([\d,]+)\s*%')
+        or _extract_after(text, r'DY\s+atual\s*:', r'([\d,]+)\s*%')
     )
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
-    # "SEGMENTO" é o rótulo de FII; ações usam "SETOR DE ATUAÇÃO" — também
-    # não confirmado ao vivo, mesma ressalva do DY acima.
-    segmento = (
-        _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
-        or _extract_after(text, r'SETOR DE ATUA[ÇC][ÃA]O', r'([A-Za-zÀ-ú/, ]+?)(?:\s+SUBSETOR|\s+SEGMENTO|\s+ATIVIDADE)')
-    )
+
+    # Segmento/setor:
+    #   FII  -> "SEGMENTO <nome> TIPO DE FUNDO" ou "... PRAZO"
+    #   ação -> não tem esses marcadores; usamos o par "Setor <X> Segmento <Y>"
+    #           que aparece junto na ficha da empresa. "Setor" é a categoria
+    #           mais ampla (equivalente em granularidade ao "segmento" de
+    #           FII, ex: "Petróleo, Gás e Biocombustíveis"), então vira o
+    #           campo "segmento"; "Segmento" (mais específico, ex:
+    #           "Exploração, Refino e Distribuição") vira "setor_atuacao".
+    segmento = _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
+    setor_atuacao_acao = None
+    if not segmento:
+        m_setor = re.search(
+            r'\bSetor\s+([A-Za-zÀ-ú,\-/ ]+?)\s+Segmento\s+([A-Za-zÀ-ú,\-/ ]+?)'
+            r'(?:\s+Regi[oõ]es|\s+PRODUÇÃO|\s+negócios|\s{2,}|\.)',
+            text
+        )
+        if m_setor:
+            segmento = m_setor.group(1)
+            setor_atuacao_acao = m_setor.group(2).strip()
+
+    # VPA (valor patrimonial por cota/ação):
+    #   FII  -> "VAL. PATRIMONIAL P/COTA R$ X,XX"
+    #   ação -> só "VPA 37,31" (sem "R$", na tabela de múltiplos)
     vpa_txt = (
         _extract_after(text, r'VAL\.\s*PATRIMONIAL\s*P/\s*COTA', r'R\$\s*([\d\.,]+)')
-        or _extract_after(text, r'\bVPA\b', r'R\$?\s*([\d\.,]+)')
+        or _extract_after(text, r'\bVPA\b', r'([\d,]+)', window=20)
     )
-    # o valor patrimonial do fundo vem como "R$ 7,57" + unidade "Bilhões"
-    # separados (ex: "VALOR PATRIMONIAL R$ 7,57 Bilhões"). Pra ações, o
-    # rótulo equivalente costuma ser "PATRIMÔNIO LÍQUIDO" — tentativa extra,
-    # também não confirmada ao vivo.
+
+    # Patrimônio:
+    #   FII  -> "VALOR PATRIMONIAL R$ 7,57 Bilhões" (já é o patrimônio do fundo)
+    #   ação -> rótulo é outro: "Patrimônio Líquido R$ 480,94 Bilhões"
+    # (?<!P/ ) evita casar com "P/VP ... VALOR PATRIMONIAL" por engano.
     vp_match = re.search(
         r'(?<!P/ )VALOR PATRIMONIAL\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
         text, re.IGNORECASE
     ) or re.search(
-        r'PATRIM[ÔO]NIO\s*L[ÍI]QUIDO\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
+        r'Patrim[oô]nio\s+L[ií]quido\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
         text, re.IGNORECASE
     )
     valor_mercado = 0.0
     if vp_match:
         valor_mercado = _to_float_br_com_unidade(vp_match.group(1), vp_match.group(2))
 
-    # nome do ativo: pega do <h1>/<h2> quando dá, sem depender do texto corrido
+    # nome do ativo: pega do <h2> quando dá, sem depender do texto corrido.
+    # Tenta primeiro o <h2 class="name-company"> (elemento dedicado ao nome
+    # do ativo, existe tanto em FII quanto em ação) antes de cair pro
+    # primeiro <h2> da página — em ações, o primeiro <h2> às vezes é um
+    # banner promocional ("Não adie mais seus planos financeiros") e não o
+    # nome do ativo, então usar cegamente "o primeiro h2" pega o texto errado.
     nome = ""
     if HAS_BS4:
         try:
             soup = BeautifulSoup(html, "html.parser")
-            h2 = soup.find("h2")
+            h2 = soup.find("h2", class_="name-company") or soup.find("h2")
             if h2 and h2.get_text(strip=True):
                 nome = h2.get_text(strip=True)
         except Exception:
@@ -271,6 +308,8 @@ def _parse_investidor10_html(html):
         resultado["vacancia_pct"] = _to_float_br(vacancia)
     if segmento:
         resultado["segmento"] = segmento.strip(" -")
+    if setor_atuacao_acao:
+        resultado["setor_atuacao"] = setor_atuacao_acao
     if vpa_txt:
         resultado["vpa"] = _to_float_br(vpa_txt)
     if valor_mercado:
@@ -419,7 +458,13 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
         else:
             dy_12m = 0.0
 
-        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or ""
+        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or (
+            "Fundo Imobiliário" if achou_fundamentus else ""
+        )
+        # setor_atuacao: quando o investidor10 traz a classificação mais fina
+        # (caso de ações, ex: "Exploração, Refino e Distribuição"), usa ela;
+        # senão repete o mesmo valor de "segmento", como já era feito antes.
+        setor_atuacao = i10.get("setor_atuacao") or segmento
         vacancia = i10.get("vacancia_pct") or f.get("vacancia_pct") or 0.0
         valor_mercado = i10.get("valor_mercado") or f.get("valor_mercado") or 0.0
 
@@ -460,7 +505,7 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
         merged[symbol] = {
             "nome": nome,
             "segmento": segmento,
-            "setor_atuacao": segmento,
+            "setor_atuacao": setor_atuacao,
             "preco": float(preco),
             "p_vp": float(p_vp),
             "valor_patrimonial_cota": vpa,
