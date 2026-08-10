@@ -5,6 +5,7 @@ import time
 import urllib.request
 import urllib.error
 from datetime import datetime
+from collections import OrderedDict
 
 # --------------------------------------------------------------------------
 # Tenta usar curl_cffi (imita a "impressão digital" TLS de um browser real).
@@ -198,6 +199,61 @@ def _http_get(url, use_curl_cffi=True):
 # Uma requisição por ticker (duas só no caso de ações, que erram a primeira
 # tentativa por definição).
 # --------------------------------------------------------------------------
+# --------------------------------------------------------------------------
+# Histórico de dividendos/proventos: tabela "Histórico de Dividendos" que
+# existe tanto em FII quanto em ação no Investidor10 (colunas: tipo, data
+# com, pagamento, valor). Um ativo pode ter várias linhas com a MESMA data
+# com (ex: JSCP + Dividendos + Rend. Trib. pagos juntos), então agrupamos
+# por mês da data-com e somamos os valores — assim cada "mês" vira um único
+# provento consolidado, do jeito que o app espera pra desenhar 1 barra por
+# mês no gráfico.
+# --------------------------------------------------------------------------
+PROVENTO_LINHA_RE = re.compile(
+    r'([A-ZÀ-Ú][A-Za-zÀ-ú\.]*(?:\s+[A-ZÀ-Ú][A-Za-zÀ-ú\.]*){0,2})\s+'
+    r'(\d{2}/\d{2}/\d{4})\s+(\d{2}/\d{2}/\d{4})\s+(\d+,\d+)'
+)
+
+
+def _parse_investidor10_proventos(text, max_meses=15):
+    """Extrai o histórico de pagamentos (tipo, data com, pagamento, valor)
+    e agrupa por mês da data-com, somando o valor de linhas do mesmo mês
+    (cobre o caso de JSCP + Dividendos + Rend. Trib. no mesmo ciclo).
+    Retorna lista ordenada do mais recente pro mais antigo, cada item no
+    formato que o app espera: valor_por_cota / data_com / data_pagamento
+    (datas em ISO, YYYY-MM-DD). Se a página não tiver a tabela, retorna [].
+    """
+    grupos = OrderedDict()
+    for tipo, dcom_txt, dpag_txt, valor_txt in PROVENTO_LINHA_RE.findall(text):
+        try:
+            dcom = datetime.strptime(dcom_txt, '%d/%m/%Y')
+            dpag = datetime.strptime(dpag_txt, '%d/%m/%Y')
+        except ValueError:
+            continue
+        valor = _to_float_br(valor_txt)
+        if valor <= 0:
+            continue
+        chave_mes = dcom.strftime('%Y-%m')
+        g = grupos.setdefault(chave_mes, {"valor": 0.0, "data_com": dcom, "data_pagamento": dpag})
+        g["valor"] += valor
+        if dcom < g["data_com"]:
+            g["data_com"] = dcom
+        if dpag > g["data_pagamento"]:
+            g["data_pagamento"] = dpag
+
+    if not grupos:
+        return []
+
+    ordenado = sorted(grupos.values(), key=lambda g: g["data_com"], reverse=True)
+    return [
+        {
+            "valor_por_cota": round(g["valor"], 6),
+            "data_com": g["data_com"].strftime('%Y-%m-%d'),
+            "data_pagamento": g["data_pagamento"].strftime('%Y-%m-%d'),
+        }
+        for g in ordenado[:max_meses]
+    ]
+
+
 def _parse_investidor10_html(html):
     """Extrai os campos comuns às páginas de FII e de ação do Investidor10.
 
@@ -314,6 +370,14 @@ def _parse_investidor10_html(html):
         resultado["vpa"] = _to_float_br(vpa_txt)
     if valor_mercado:
         resultado["valor_mercado"] = valor_mercado
+
+    # Histórico de proventos (mesma tabela em FII e ação) -> alimenta o
+    # gráfico "DIVIDENDOS (12 MESES)" do app com dado real em vez da
+    # estimativa que ele usa quando esses campos não vêm preenchidos.
+    proventos = _parse_investidor10_proventos(text)
+    if proventos:
+        resultado["proventos_12m"] = proventos
+        resultado["ultimo_provento"] = proventos[0]
 
     return resultado
 
@@ -518,6 +582,16 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
             "dados_completos": bool(tem_preco and tem_fundamentos),
             "fonte_dados": fonte,
         }
+
+        # Proventos reais: só o investidor10 fornece o histórico completo por
+        # pagamento (brapi.dev e fundamentus.com.br não têm esse dado). Se
+        # não veio nada, deixa de fora — sem isso, o app já sabe cair no
+        # cálculo estimado sozinho (preço × DY mensal), então não há motivo
+        # pra inventar número aqui também.
+        proventos_12m = i10.get("proventos_12m")
+        if proventos_12m:
+            merged[symbol]["proventos_12m"] = proventos_12m
+            merged[symbol]["ultimo_provento"] = i10.get("ultimo_provento")
 
     return merged
 
