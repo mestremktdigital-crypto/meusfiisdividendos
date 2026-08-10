@@ -7,11 +7,11 @@ import urllib.error
 from datetime import datetime
 
 # --------------------------------------------------------------------------
-# Tenta usar curl_cffi (imita a "impressão digital" TLS de um browser real,
-# necessário pra não tomar 403 do Cloudflare no Status Invest). Se não
-# estiver instalado, cai pro urllib puro — funciona pro Investidor10 e pro
-# Fundamentus, mas o Status Invest pode falhar sem ele (o código já trata
-# isso e simplesmente pula a fonte, sem quebrar o resto do script).
+# Tenta usar curl_cffi (imita a "impressão digital" TLS de um browser real).
+# Ajuda o Investidor10 a não cair em bloqueio anti-bot vindo de IP de
+# datacenter (GitHub Actions). Se não estiver instalado, cai pro urllib puro
+# — o Investidor10 costuma funcionar assim mesmo, só com um pouco mais de
+# chance de bloqueio ocasional.
 # --------------------------------------------------------------------------
 try:
     from curl_cffi import requests as cffi_requests
@@ -26,17 +26,15 @@ except ImportError:
     HAS_BS4 = False
 
 BRAPI_TOKEN = os.environ.get("BRAPI_TOKEN", "").strip()
-BOLSAI_API_KEY = os.environ.get("BOLSAI_API_KEY", "").strip()  # opcional
-# Permite desligar as fontes novas via secret/variável de ambiente, caso
-# alguma delas comece a dar problema recorrente no GitHub Actions.
+# Permite desligar o Investidor10 via secret/variável de ambiente, caso
+# comece a dar problema recorrente no GitHub Actions.
 ENABLE_INVESTIDOR10 = os.environ.get("ENABLE_INVESTIDOR10", "true").strip().lower() != "false"
-ENABLE_STATUSINVEST = os.environ.get("ENABLE_STATUSINVEST", "true").strip().lower() != "false"
 
 TICKERS_FILE = "tickers.txt"
 OUTPUT_FILE = "fiis.json"
 BATCH_SIZE = 1  # O plano atual da brapi só aceita 1 ticker por chamada (lotes de 10 dão 400)
 SCRAPE_TIMEOUT = 15
-SCRAPE_SLEEP = 0.4  # intervalo entre requisições pros sites raspados (educado com o servidor)
+SCRAPE_SLEEP = 0.4  # intervalo entre requisições pro Investidor10 (educado com o servidor)
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -65,7 +63,7 @@ def read_tickers():
 
 
 # --------------------------------------------------------------------------
-# FONTE 1: brapi.dev -> preço em tempo (quase) real e nome do fundo
+# FONTE 1: brapi.dev -> preço em tempo (quase) real e nome do ativo
 # --------------------------------------------------------------------------
 def fetch_brapi_batch(batch_tickers):
     if not batch_tickers:
@@ -120,7 +118,7 @@ def fetch_brapi_all(tickers):
 
 
 # --------------------------------------------------------------------------
-# Helpers de parsing compartilhados pelo Investidor10 e pelo Status Invest
+# Helpers de parsing compartilhados
 # --------------------------------------------------------------------------
 def _to_float_br(txt):
     """Converte '1.234,56' ou '8,50%' (formato BR) para float. '-' vira 0.0."""
@@ -179,8 +177,8 @@ def _extract_after(text, label_pattern, value_pattern, window=300):
 
 
 def _http_get(url, use_curl_cffi=True):
-    """GET genérico: tenta curl_cffi (impersona Chrome, contorna Cloudflare)
-    e cai pro urllib se ele não estiver disponível ou falhar."""
+    """GET genérico: tenta curl_cffi (impersona Chrome) e cai pro urllib se
+    ele não estiver disponível ou falhar."""
     if use_curl_cffi and HAS_CURL_CFFI:
         resp = cffi_requests.get(url, headers=HEADERS, timeout=SCRAPE_TIMEOUT, impersonate="chrome")
         resp.raise_for_status()
@@ -192,24 +190,28 @@ def _http_get(url, use_curl_cffi=True):
 
 
 # --------------------------------------------------------------------------
-# FONTE 2: Investidor10 (scraping) -> dados mais atualizados que o
-# Fundamentus, cobre exatamente os campos que o plano free da brapi deixa
-# em branco (P/VP, DY, VPA, vacância, segmento). Uma requisição por ticker.
+# FONTE 2: Investidor10 (scraping) -> nossa fonte principal de fundamentos
+# em tempo (quase) real. Cobre FIIs (/fiis/<ticker>/) E ações (/acoes/<ticker>/)
+# — tenta a URL de FII primeiro (maioria dos tickers da carteira), e só cai
+# pra URL de ação se a de FII não trouxer nada reconhecível (ticker não
+# existe nessa categoria, ou é mesmo uma ação como PETR4/VALE3).
+# Uma requisição por ticker (duas só no caso de ações, que erram a primeira
+# tentativa por definição).
 # --------------------------------------------------------------------------
-def fetch_investidor10_fii(ticker):
-    url = f"https://investidor10.com.br/fiis/{ticker.lower()}/"
-    try:
-        html = _http_get(url)
-    except Exception as e:
-        print(f"    ❌ [investidor10] Erro em {ticker}: {e}")
-        return {}
-
+def _parse_investidor10_html(html):
+    """Extrai os campos comuns às páginas de FII e de ação do Investidor10.
+    Alguns rótulos (VACÂNCIA, VAL. PATRIMONIAL P/COTA) só existem na página
+    de FII e simplesmente não aparecem em ações — tudo bem, ficam de fora do
+    dict sem inventar nada.
+    """
     text = _get_flat_text(html)
 
-    # Preço da cota: rótulo "VALOR DA COTA" (mais específico que o
-    # "{TICKER} Cotação" lá em cima, que aparece antes de o texto ficar
-    # previsível o bastante pra raspar com segurança).
-    preco_txt = _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
+    # Preço da cota/ação: rótulo "VALOR DA COTA" no FII; ações usam outro
+    # rótulo perto do topo — tentamos os dois.
+    preco_txt = (
+        _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
+        or _extract_after(text, r'\bCOTAÇÃO\b', r'R\$\s*([\d\.,]+)')
+    )
     dy_12m = _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
@@ -225,7 +227,7 @@ def fetch_investidor10_fii(ticker):
     if vp_match:
         valor_mercado = _to_float_br_com_unidade(vp_match.group(1), vp_match.group(2))
 
-    # nome do fundo: pega do <h1>/<h2> quando dá, sem depender do texto corrido
+    # nome do ativo: pega do <h1>/<h2> quando dá, sem depender do texto corrido
     nome = ""
     if HAS_BS4:
         try:
@@ -257,6 +259,32 @@ def fetch_investidor10_fii(ticker):
     return resultado
 
 
+def fetch_investidor10_fii(ticker):
+    urls = (
+        ("fii", f"https://investidor10.com.br/fiis/{ticker.lower()}/"),
+        ("acao", f"https://investidor10.com.br/acoes/{ticker.lower()}/"),
+    )
+    ultimo_erro = None
+    for categoria, url in urls:
+        try:
+            html = _http_get(url)
+        except Exception as e:
+            ultimo_erro = e
+            continue  # tenta a próxima categoria (fii -> ação)
+
+        resultado = _parse_investidor10_html(html)
+        if resultado:
+            return resultado
+        # página respondeu mas não achou nada reconhecível: também tenta a
+        # próxima categoria antes de desistir.
+
+    if ultimo_erro:
+        print(f"    ❌ [investidor10] {ticker} não encontrado (fii/ação): {ultimo_erro}")
+    else:
+        print(f"    ⚠️ [investidor10] {ticker} respondeu mas sem dados reconhecíveis.")
+    return {}
+
+
 def fetch_investidor10_all(tickers):
     if not ENABLE_INVESTIDOR10:
         print("  ⏭️  ENABLE_INVESTIDOR10=false — pulando Investidor10.")
@@ -279,157 +307,10 @@ def fetch_investidor10_all(tickers):
 
 
 # --------------------------------------------------------------------------
-# FONTE 3: Status Invest -> segunda camada de dados atualizados, cobre o que
-# sobrar do Investidor10. Se curl_cffi não estiver instalado, essa fonte é
-# pulada silenciosamente (o Status Invest costuma bloquear requisições
-# "cruas" vindas de IPs de datacenter como os runners do GitHub Actions).
-#
-# Tenta primeiro o endpoint em lote usado pela página de busca avançada
-# (fundos-imobiliarios/busca-avancada) — 1 requisição pra ~124 FIIs em vez
-# de 1 por ticker. Honestidade sobre o que isso resolve: a URL e os nomes
-# de campo (ticker/companyName/pvp/netWorth...) foram inferidos a partir do
-# HTML da página de busca avançada, não confirmados contra uma resposta
-# real do endpoint — não dá pra garantir 100% que batem. Por isso a função
-# de lote é 100% best-effort: se o endpoint não existir, mudar de nome de
-# campo, ou o site bloquear, ela retorna {} e o código cai automaticamente
-# pro scraping por ticker abaixo (que já foi validado), sem quebrar nada.
-# --------------------------------------------------------------------------
-def fetch_statusinvest_batch():
-    if not HAS_CURL_CFFI:
-        print("  ⏭️  curl_cffi não instalado — pulando tentativa de lote do Status Invest.")
-        return {}
-
-    url = ("https://statusinvest.com.br/category/advancedsearchresultpaginated"
-           '?search={"Sector":null,"SubSector":null,"Segment":null,"my_range":"-20;100"}'
-           "&orderColumn=&isAsc=&page=0&take=1000&CategoryType=2")
-
-    try:
-        resp = cffi_requests.get(
-            url,
-            headers={
-                **HEADERS,
-                "X-Requested-With": "XMLHttpRequest",
-                "Referer": "https://statusinvest.com.br/fundos-imobiliarios",
-            },
-            impersonate="chrome",
-            timeout=20,
-        )
-        if resp.status_code != 200:
-            print(f"  ❌ [statusinvest-lote] HTTP {resp.status_code} (provável bloqueio anti-bot).")
-            return {}
-        data = resp.json()
-    except Exception as e:
-        print(f"  ❌ [statusinvest-lote] Erro: {e}")
-        return {}
-
-    items = data.get("list") if isinstance(data, dict) else data
-    if not items:
-        print("  ⚠️ [statusinvest-lote] Resposta sem lista de FIIs (endpoint/layout pode ter mudado).")
-        return {}
-
-    # Debug: imprime as chaves brutas do 1º item, igual já fazemos no
-    # fetch_bolsai_fii. Serve pra confirmar (ou corrigir rápido, num log do
-    # workflow_dispatch) os nomes de campo assumidos abaixo, sem precisar
-    # adivinhar de novo caso o site mude alguma coisa.
-    print(f"  🔎 [statusinvest-lote] campos brutos do 1º item: {list(items[0].keys())}")
-
-    result = {}
-    for item in items:
-        papel = (item.get("ticker") or item.get("code") or "").upper()
-        if not papel or not TICKER_RE.match(papel):
-            continue
-        result[papel] = {
-            "nome": item.get("companyName") or item.get("name") or "",
-            "segmento": item.get("segment") or item.get("sectorName") or "",
-            "preco": float(item.get("price") or item.get("value") or 0.0),
-            "dy_12m_pct": float(item.get("dy") or 0.0),
-            "p_vp": float(item.get("pvp") or 0.0),
-            "valor_mercado": float(item.get("netWorth") or item.get("marketCap") or 0.0),
-            "vacancia_pct": float(item.get("vacancy") or 0.0),
-        }
-
-    print(f"  ✅ [statusinvest-lote] {len(result)} FIIs lidos em 1 única requisição.")
-    return result
-
-
-def fetch_statusinvest_fii(ticker):
-    url = f"https://statusinvest.com.br/fundos-imobiliarios/{ticker.lower()}"
-    try:
-        html = _http_get(url, use_curl_cffi=True)
-    except Exception as e:
-        print(f"    ❌ [statusinvest] Erro em {ticker}: {e}")
-        return {}
-
-    text = _get_flat_text(html)
-
-    preco = _extract_after(text, r'Valor atual', r'R\$\s*([\d\.,]+)')
-    dy_12m = _extract_after(text, r'Dividend Yield', r'([\d,]+)\s*%')
-    p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
-    vpa_txt = _extract_after(text, r'Val\.\s*patrim\w*\.?\s*p/\s*cota', r'R\$\s*([\d\.,]+)')
-    patrimonio_txt = _extract_after(text, r'Patrim[ôo]nio\b', r'R\$\s*([\d\.,]+)')
-
-    resultado = {}
-    if preco:
-        resultado["preco"] = _to_float_br(preco)
-    if dy_12m:
-        resultado["dy_12m_pct"] = _to_float_br(dy_12m)
-    if p_vp:
-        resultado["p_vp"] = _to_float_br(p_vp)
-    if vpa_txt:
-        resultado["vpa"] = _to_float_br(vpa_txt)
-    if patrimonio_txt:
-        resultado["valor_mercado"] = _to_float_br(patrimonio_txt)
-
-    return resultado
-
-
-def fetch_statusinvest_all(tickers):
-    if not ENABLE_STATUSINVEST:
-        print("  ⏭️  ENABLE_STATUSINVEST=false — pulando Status Invest.")
-        return {}
-    if not HAS_CURL_CFFI:
-        print("  ⚠️ curl_cffi não instalado — pulando Status Invest (adicione ao requirements.txt).")
-        print("     Sem ele o Status Invest costuma bloquear com 403 (proteção Cloudflare).")
-        return {}
-
-    # Tentativa 1: endpoint em lote (1 requisição em vez de 1 por ticker).
-    batch_data = fetch_statusinvest_batch()
-    result = {t: batch_data[t] for t in tickers if t in batch_data}
-    faltantes = [t for t in tickers if t not in result]
-
-    if not faltantes:
-        print(f"  ✅ {len(result)} de {len(tickers)} resolvidos via Status Invest (lote).")
-        return result
-
-    # Tentativa 2 (fallback): scraping por ticker só pra quem o lote não
-    # cobriu — ou pra todo mundo, se o lote falhou por completo.
-    if batch_data:
-        print(f"  🔎 [statusinvest] Lote resolveu {len(result)}; "
-              f"buscando os {len(faltantes)} restantes por ticker...")
-    else:
-        print(f"  🔎 [statusinvest] Lote indisponível; buscando {len(faltantes)} tickers individualmente...")
-
-    ok_individual = 0
-    for t in faltantes:
-        dados = fetch_statusinvest_fii(t)
-        if dados:
-            result[t] = dados
-            ok_individual += 1
-        time.sleep(SCRAPE_SLEEP)
-    print(f"  ✅ {len(result)} de {len(tickers)} resolvidos via Status Invest "
-          f"(lote: {len(result) - ok_individual}, individual: {ok_individual}).")
-    return result
-
-
-# --------------------------------------------------------------------------
-# FONTE 4: Fundamentus -> camada de segurança final antes do bolsai. Cobre o
-# que as duas fontes de cima não trouxerem. Uma única requisição cobre todos
-# os FIIs de uma vez (por isso continua valendo a pena manter, mesmo tendo
-# atraso em relação ao Investidor10/Status Invest).
-#
-# StatusInvest via HTML foi mantido acima como fonte separada; o antigo
-# comentário sobre "StatusInvest removido por bloquear 403" não vale mais
-# porque agora usamos curl_cffi pra imitar o TLS de um browser real.
+# FONTE 3 (último recurso): Fundamentus -> dados atrasados em relação ao
+# Investidor10, então só entra pra preencher o que sobrar. Uma única
+# requisição cobre todos os FIIs de uma vez (por isso ainda vale manter,
+# mesmo com o atraso: é praticamente de graça).
 # --------------------------------------------------------------------------
 def fetch_fundamentus_fiis():
     url = "https://www.fundamentus.com.br/fii_resultado.php"
@@ -482,120 +363,60 @@ def fetch_fundamentus_fiis():
 
 
 # --------------------------------------------------------------------------
-# FONTE 5 (opcional): bolsai.com -> só chamada para os tickers que sobraram
-# sem preço/fundamentos depois de TODAS as fontes anteriores. Cota free é
-# 200 req/dia e é compartilhada com qualquer outro uso que você faça da
-# bolsai, então NÃO varremos todos os tickers com ela — só o resto
-# (tipicamente bem pouca coisa, dado que agora são 4 fontes antes dela).
-# Só roda se o secret BOLSAI_API_KEY existir no repositório.
-# --------------------------------------------------------------------------
-def fetch_bolsai_fii(ticker):
-    if not BOLSAI_API_KEY:
-        return {}
-
-    url = f"https://api.usebolsai.com/api/v1/fiis/{ticker}"
-    req = urllib.request.Request(url, headers={**HEADERS, "X-API-Key": BOLSAI_API_KEY})
-
-    try:
-        with urllib.request.urlopen(req, timeout=15) as response:
-            item = json.loads(response.read().decode('utf-8'))
-    except Exception as e:
-        print(f"    ❌ [bolsai] Erro em {ticker}: {e}")
-        return {}
-
-    print(f"    🔎 [bolsai] campos brutos de {ticker}: {list(item.keys())}")
-
-    return {
-        "nome": item.get("name") or item.get("company_name") or "",
-        "segmento": item.get("segment") or item.get("segmento") or "",
-        "preco": float(item.get("close_price") or item.get("price") or 0.0),
-        "p_vp": float(item.get("p_vp") or item.get("price_to_book") or 0.0),
-        "dy_12m_pct": float(item.get("dividend_yield_ttm") or item.get("dy_12m") or 0.0),
-        "vpa": float(item.get("nav_per_share") or item.get("book_value_per_share") or 0.0),
-        "vacancia_pct": float(item.get("vacancy_rate") or item.get("vacancia") or 0.0),
-    }
-
-
-def fetch_bolsai_for_missing(pendentes):
-    if not BOLSAI_API_KEY:
-        print("  ⏭️  BOLSAI_API_KEY não configurado — pulando fallback bolsai.")
-        return {}
-    if not pendentes:
-        return {}
-
-    print(f"  🔁 Consultando bolsai para {len(pendentes)} tickers pendentes...")
-    result = {}
-    for t in pendentes:
-        dados = fetch_bolsai_fii(t)
-        if dados:
-            result[t] = dados
-        time.sleep(0.3)
-    print(f"  ✅ {len(result)} de {len(pendentes)} resolvidos via bolsai.")
-    return result
-
-
-# --------------------------------------------------------------------------
-# MERGE: combina as 5 fontes e deriva VPA / PL quando algo faltar.
+# MERGE: combina brapi + investidor10 + fundamentus e deriva VPA / PL quando
+# algo faltar.
 # Ordem de prioridade (mais atual -> mais atrasado):
-#   Preço:       brapi > investidor10 > statusinvest > fundamentus > bolsai
-#   Fundamentos: investidor10 > statusinvest > fundamentus > bolsai
+#   Preço:       brapi > investidor10 > fundamentus
+#   Fundamentos: investidor10 > fundamentus (fundamentus é ÚLTIMO CASO)
 # Nunca inventa número: quando falta dado em todas as fontes, marca
 # dados_completos=False.
 # --------------------------------------------------------------------------
-def merge_data(tickers, brapi_data, inv10_data, status_data, fundamentus_data, bolsai_data=None):
-    bolsai_data = bolsai_data or {}
+def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
     merged = {}
 
     for symbol in tickers:
         b = brapi_data.get(symbol, {})
         i10 = inv10_data.get(symbol, {})
-        si = status_data.get(symbol, {})
         f = fundamentus_data.get(symbol, {})
-        k = bolsai_data.get(symbol, {})
 
         achou_inv10 = symbol in inv10_data
-        achou_status = symbol in status_data
         achou_fundamentus = symbol in fundamentus_data
-        achou_bolsai = symbol in bolsai_data
 
-        # Preço: brapi (tempo quase real) > investidor10 > statusinvest > fundamentus > bolsai
-        preco = b.get("preco") or i10.get("preco") or si.get("preco") or f.get("preco") or k.get("preco") or 0.0
-        nome = b.get("nome") or i10.get("nome") or k.get("nome") or symbol
+        # Preço: brapi (tempo quase real) > investidor10 > fundamentus
+        preco = b.get("preco") or i10.get("preco") or f.get("preco") or 0.0
+        nome = b.get("nome") or i10.get("nome") or symbol
 
-        # Fundamentos: investidor10 > statusinvest > fundamentus > bolsai
-        p_vp = i10.get("p_vp") or si.get("p_vp") or f.get("p_vp") or k.get("p_vp") or 0.0
+        # Fundamentos: investidor10 primeiro sempre; fundamentus só entra
+        # quando o investidor10 não trouxe o campo específico (não é
+        # "tudo ou nada" por ticker, é campo a campo, pra aproveitar ao
+        # máximo o que o investidor10 já trouxe de mais atual).
+        p_vp = i10.get("p_vp") or f.get("p_vp") or 0.0
 
         if achou_inv10 and i10.get("dy_12m_pct") is not None:
             dy_12m = i10.get("dy_12m_pct") or 0.0
-        elif achou_status and si.get("dy_12m_pct") is not None:
-            dy_12m = si.get("dy_12m_pct") or 0.0
         elif achou_fundamentus:
             dy_12m = f.get("dy_12m_pct") or 0.0
         else:
-            dy_12m = k.get("dy_12m_pct") or 0.0
+            dy_12m = 0.0
 
-        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or k.get("segmento") or "Fundo Imobiliário"
-        vacancia = i10.get("vacancia_pct") or f.get("vacancia_pct") or k.get("vacancia_pct") or 0.0
-        valor_mercado = i10.get("valor_mercado") or si.get("valor_mercado") or f.get("valor_mercado") or 0.0
+        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or "Fundo Imobiliário"
+        vacancia = i10.get("vacancia_pct") or f.get("vacancia_pct") or 0.0
+        valor_mercado = i10.get("valor_mercado") or f.get("valor_mercado") or 0.0
 
-        # VPA: usa o valor já pronto da fonte mais atual que tiver, senão
-        # deriva de Preço ÷ P/VP (nunca inventa: só deriva se os dois dados
-        # vierem da MESMA fonte, senão o VPA sai distorcido).
+        # VPA: usa o valor já pronto do investidor10 quando tiver, senão
+        # deriva de Preço ÷ P/VP do Fundamentus (nunca mistura fonte de
+        # preço com fonte de P/VP diferentes, pra não distorcer o número).
         if i10.get("vpa"):
             vpa = round(i10.get("vpa"), 2)
-        elif si.get("vpa"):
-            vpa = round(si.get("vpa"), 2)
         elif achou_fundamentus and p_vp > 0 and f.get("preco"):
             vpa = round(f.get("preco") / p_vp, 2)
-        elif p_vp > 0 and k.get("vpa"):
-            vpa = round(k.get("vpa"), 2)
         else:
             vpa = 0.0
 
-        # valor_mercado já É o patrimônio quando vem do Investidor10/StatusInvest
-        # (que reportam patrimônio do fundo, não capitalização de mercado);
-        # quando só temos os dados do Fundamentus, valor_mercado ÷ p_vp
-        # aproxima o patrimônio líquido, igual à lógica original.
+        # valor_mercado já É o patrimônio quando vem do Investidor10 (que
+        # reporta patrimônio do fundo, não capitalização de mercado);
+        # quando só temos o dado do Fundamentus, valor_mercado ÷ p_vp
+        # aproxima o patrimônio líquido.
         if valor_mercado:
             patrimonio_liquido = valor_mercado
         elif p_vp > 0 and f.get("valor_mercado"):
@@ -604,20 +425,16 @@ def merge_data(tickers, brapi_data, inv10_data, status_data, fundamentus_data, b
             patrimonio_liquido = 0.0
 
         tem_preco = preco > 0
-        # "Completo" = encontramos o FII em pelo menos uma fonte de fundamentos.
-        tem_fundamentos = achou_inv10 or achou_status or achou_fundamentus or achou_bolsai
+        # "Completo" = encontramos o ticker em pelo menos uma fonte de fundamentos.
+        tem_fundamentos = achou_inv10 or achou_fundamentus
 
         fontes = []
         if b:
             fontes.append("brapi.dev")
         if i10:
             fontes.append("investidor10.com.br")
-        if si:
-            fontes.append("statusinvest.com.br")
         if f:
             fontes.append("fundamentus.com.br")
-        if k:
-            fontes.append("bolsai")
         fonte = " + ".join(fontes) if fontes else "indisponivel"
 
         merged[symbol] = {
@@ -653,45 +470,22 @@ def main():
     else:
         print("✅ BRAPI_TOKEN carregado com sucesso.")
 
-    print("\n--- Etapa 1/5: preços via brapi.dev ---")
+    print("\n--- Etapa 1/3: preços via brapi.dev ---")
     brapi_data = fetch_brapi_all(tickers)
 
-    print("\n--- Etapa 2/5: fundamentos atualizados via investidor10.com.br ---")
+    print("\n--- Etapa 2/3: fundamentos em tempo real via investidor10.com.br ---")
     inv10_data = fetch_investidor10_all(tickers)
 
-    print("\n--- Etapa 3/5: fundamentos atualizados via statusinvest.com.br ---")
-    status_data = fetch_statusinvest_all(tickers)
-
-    print("\n--- Etapa 4/5: fundamentos via fundamentus.com.br (fallback com atraso) ---")
+    print("\n--- Etapa 3/3: fundamentus.com.br (ÚLTIMO CASO, só preenche o que sobrar) ---")
     fundamentus_data = fetch_fundamentus_fiis()
 
-    # Quem ficou sem preço OU sem qualquer fonte de fundamentos depois das
-    # quatro primeiras fontes
-    pendentes = [
-        t for t in tickers
-        if not (
-            (brapi_data.get(t, {}).get("preco")
-             or inv10_data.get(t, {}).get("preco")
-             or status_data.get(t, {}).get("preco")
-             or fundamentus_data.get(t, {}).get("preco"))
-            and (t in inv10_data or t in status_data or t in fundamentus_data)
-        )
-    ]
-
-    print(f"\n--- Etapa 5/5: fallback bolsai só para pendentes ({len(pendentes)} tickers) ---")
-    bolsai_data = fetch_bolsai_for_missing(pendentes)
-
-    fiis_data = merge_data(tickers, brapi_data, inv10_data, status_data, fundamentus_data, bolsai_data)
+    fiis_data = merge_data(tickers, brapi_data, inv10_data, fundamentus_data)
 
     completos = sum(1 for v in fiis_data.values() if v["dados_completos"])
     fontes_usadas = ["brapi.dev"]
     if ENABLE_INVESTIDOR10 and HAS_BS4:
         fontes_usadas.append("investidor10.com.br")
-    if ENABLE_STATUSINVEST and HAS_CURL_CFFI:
-        fontes_usadas.append("statusinvest.com.br")
     fontes_usadas.append("fundamentus.com.br")
-    if BOLSAI_API_KEY:
-        fontes_usadas.append("bolsai")
     result = {
         "gerado_em": datetime.utcnow().isoformat() + "Z",
         "fonte": " + ".join(fontes_usadas),
