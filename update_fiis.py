@@ -10,8 +10,7 @@ from collections import OrderedDict
 # --------------------------------------------------------------------------
 # Tenta usar curl_cffi (imita a "impressão digital" TLS de um browser real).
 # Ajuda o Investidor10 a não cair em bloqueio anti-bot vindo de IP de
-# datacenter (GitHub Actions). Se não estiver instalado, cai pro urllib puro
-# — o Investidor10 costuma funcionar assim mesmo.
+# datacenter (GitHub Actions). Se não estiver instalado, cai pro urllib puro.
 # --------------------------------------------------------------------------
 try:
     from curl_cffi import requests as cffi_requests
@@ -167,7 +166,7 @@ def _extract_after(text, label_pattern, value_pattern, window=300):
 
 
 def _http_get(url, use_curl_cffi=True):
-    """GET genérico: tenta curl_cffi (impersona Chrome) e cai pro urllib se falhar."""
+    """GET genérico: tenta curl_cffi e cai pro urllib."""
     if use_curl_cffi and HAS_CURL_CFFI:
         resp = cffi_requests.get(url, headers=HEADERS, timeout=SCRAPE_TIMEOUT, impersonate="chrome")
         resp.raise_for_status()
@@ -179,7 +178,7 @@ def _http_get(url, use_curl_cffi=True):
 
 
 # --------------------------------------------------------------------------
-# FONTE 2: Investidor10 (scraping)
+# Histórico de dividendos/proventos
 # --------------------------------------------------------------------------
 PROVENTO_LINHA_RE = re.compile(
     r'([A-ZÀ-Ú][A-Za-zÀ-ú\.]*(?:\s+[A-ZÀ-Ú][A-Za-zÀ-ú\.]*){0,2})\s+'
@@ -188,7 +187,10 @@ PROVENTO_LINHA_RE = re.compile(
 
 
 def _parse_investidor10_proventos(text, max_meses=15):
-    """Extrai o histórico de pagamentos e agrupa por mês da data-com."""
+    """Extrai o histórico de pagamentos e agrupa por mês da data-com.
+    Filtra estritamente apenas os proventos ocorridos nos últimos 12 MESES
+    (janela de até 370 dias a partir da data-com mais recente).
+    """
     grupos = OrderedDict()
     for tipo, dcom_txt, dpag_txt, valor_txt in PROVENTO_LINHA_RE.findall(text):
         try:
@@ -211,13 +213,20 @@ def _parse_investidor10_proventos(text, max_meses=15):
         return []
 
     ordenado = sorted(grupos.values(), key=lambda g: g["data_com"], reverse=True)
+    most_recent = ordenado[0]["data_com"]
+
+    # Mantém estritamente apenas os proventos ocorridos nos últimos 12 meses (até 370 dias a partir do provento mais recente)
+    filtrado = [g for g in ordenado if (most_recent - g["data_com"]).days <= 370]
+    if not filtrado:
+        filtrado = ordenado[:max_meses]
+
     return [
         {
             "valor_por_cota": round(g["valor"], 6),
             "data_com": g["data_com"].strftime('%Y-%m-%d'),
             "data_pagamento": g["data_pagamento"].strftime('%Y-%m-%d'),
         }
-        for g in ordenado[:max_meses]
+        for g in filtrado
     ]
 
 
@@ -225,24 +234,22 @@ def _parse_investidor10_html(html):
     """Extrai os campos comuns às páginas de FII e de ação do Investidor10."""
     text = _get_flat_text(html)
 
-    # Preço da cota/ação
+    # Preço da cota/ação:
     preco_txt = (
         _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
         or _extract_after(text, r'Cota[çc][ãa]o\s+R\$', r'([\d\.,]+)', window=20)
         or _extract_after(text, r'\bCOTAÇÃO\b', r'R\$\s*([\d\.,]+)')
     )
-    # DY 12 meses
+    # DY 12 meses:
     dy_12m = (
         _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
         or _extract_after(text, r'DY\s+atual\s*:', r'([\d,]+)\s*%')
     )
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
+    p_l = _extract_after(text, r'\bP\s*/\s*L\b', r'([\d,]+)')
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
 
-    # P/L (Preço / Lucro) para Ações:
-    p_l = _extract_after(text, r'\bP\s*/\s*L\b', r'([\d,]+)', window=20)
-
-    # Segmento/setor
+    # Segmento/setor:
     segmento = _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
     setor_atuacao_acao = None
     if not segmento:
@@ -255,13 +262,13 @@ def _parse_investidor10_html(html):
             segmento = m_setor.group(1)
             setor_atuacao_acao = m_setor.group(2).strip()
 
-    # VPA (valor patrimonial por cota/ação)
+    # VPA (valor patrimonial por cota/ação):
     vpa_txt = (
         _extract_after(text, r'VAL\.\s*PATRIMONIAL\s*P/\s*COTA', r'R\$\s*([\d\.,]+)')
         or _extract_after(text, r'\bVPA\b', r'([\d,]+)', window=20)
     )
 
-    # Patrimônio
+    # Patrimônio:
     vp_match = re.search(
         r'(?<!P/ )VALOR PATRIMONIAL\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
         text, re.IGNORECASE
@@ -358,6 +365,9 @@ def fetch_investidor10_all(tickers):
     return result
 
 
+# --------------------------------------------------------------------------
+# FONTE 3 (último recurso): Fundamentus
+# --------------------------------------------------------------------------
 def fetch_fundamentus_fiis():
     url = "https://www.fundamentus.com.br/fii_resultado.php"
     req = urllib.request.Request(url, headers=HEADERS)
@@ -402,6 +412,9 @@ def fetch_fundamentus_fiis():
     return result
 
 
+# --------------------------------------------------------------------------
+# MERGE
+# --------------------------------------------------------------------------
 def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
     merged = {}
 
@@ -502,7 +515,7 @@ def main():
     print("\n--- Etapa 2/3: fundamentos em tempo real via investidor10.com.br ---")
     inv10_data = fetch_investidor10_all(tickers)
 
-    print("\n--- Etapa 3/3: fundamentus.com.br (ÚLTIMO CASO, só preenche o que sobrar) ---")
+    print("\n--- Etapa 3/3: fundamentus.com.br (ÚLTIMO CASO) ---")
     fundamentus_data = fetch_fundamentus_fiis()
 
     fiis_data = merge_data(tickers, brapi_data, inv10_data, fundamentus_data)
@@ -523,7 +536,7 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
-    print(f"\n🎉 SUCESSO! {len(fiis_data)} FIIs salvos em {OUTPUT_FILE} "
+    print(f"\n🎉 SUCESSO! {len(fiis_data)} ativos salvos em {OUTPUT_FILE} "
           f"({completos} com fundamentos completos).")
 
 
