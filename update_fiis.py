@@ -258,7 +258,7 @@ def _parse_investidor10_proventos(text, max_meses=15):
             "data_com": g["data_com"].strftime('%Y-%m-%d'),
             "data_pagamento": g["data_pagamento"].strftime('%Y-%m-%d'),
         }
-        for g in ordenado[:max_meses]
+        for g in filtrado
     ]
 
 
