@@ -1,64 +1,64 @@
 {
-  "gerado_em": "2026-08-10T00:20:26.271479Z",
-  "fonte": "brapi.dev + investidor10.com.br + statusinvest.com.br + fundamentus.com.br",
+  "gerado_em": "2026-08-10T00:53:20.102829Z",
+  "fonte": "brapi.dev + investidor10.com.br + fundamentus.com.br",
   "total_fiis": 127,
-  "fiis_com_dados_completos": 114,
+  "fiis_com_dados_completos": 118,
   "fiis": {
     "PETR4": {
       "nome": "Petroleo Brasileiro SA Pfd",
       "segmento": "Fundo Imobiliário",
       "setor_atuacao": "Fundo Imobiliário",
       "preco": 40.87,
-      "p_vp": 0.0,
+      "p_vp": 1.1,
       "valor_patrimonial_cota": 0.0,
       "dy_12m": 0.0,
       "dy_mensal": 0.0,
       "patrimonio_liquido": 0.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "brapi.dev"
+      "dados_completos": true,
+      "fonte_dados": "brapi.dev + investidor10.com.br"
     },
     "MGLU3": {
       "nome": "Magazine Luiza S.A.",
       "segmento": "Fundo Imobiliário",
       "setor_atuacao": "Fundo Imobiliário",
       "preco": 4.4,
-      "p_vp": 0.0,
+      "p_vp": 0.31,
       "valor_patrimonial_cota": 0.0,
       "dy_12m": 0.0,
       "dy_mensal": 0.0,
       "patrimonio_liquido": 0.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "brapi.dev"
+      "dados_completos": true,
+      "fonte_dados": "brapi.dev + investidor10.com.br"
     },
     "VALE3": {
       "nome": "Vale S.A.",
       "segmento": "Fundo Imobiliário",
       "setor_atuacao": "Fundo Imobiliário",
       "preco": 74.97,
-      "p_vp": 0.0,
+      "p_vp": 1.69,
       "valor_patrimonial_cota": 0.0,
       "dy_12m": 0.0,
       "dy_mensal": 0.0,
       "patrimonio_liquido": 0.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "brapi.dev"
+      "dados_completos": true,
+      "fonte_dados": "brapi.dev + investidor10.com.br"
     },
     "ITUB4": {
       "nome": "Itau Unibanco Holding SA Pfd",
       "segmento": "Fundo Imobiliário",
       "setor_atuacao": "Fundo Imobiliário",
       "preco": 40.75,
-      "p_vp": 0.0,
+      "p_vp": 2.06,
       "valor_patrimonial_cota": 0.0,
       "dy_12m": 0.0,
       "dy_mensal": 0.0,
       "patrimonio_liquido": 0.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "brapi.dev"
+      "dados_completos": true,
+      "fonte_dados": "brapi.dev + investidor10.com.br"
     },
     "ALZR11": {
       "nome": "Alianza Trust Renda Imobiliaria Fundo Investimento Imobiliario Investor",
@@ -67,12 +67,12 @@
       "preco": 9.92,
       "p_vp": 0.93,
       "valor_patrimonial_cota": 10.67,
-      "dy_12m": 9.11,
-      "dy_mensal": 0.7592,
-      "patrimonio_liquido": 1631960000.0,
+      "dy_12m": 10.11,
+      "dy_mensal": 0.8425,
+      "patrimonio_liquido": 1760000000.0,
       "vacancia_fisica": 12.46,
       "dados_completos": true,
-      "fonte_dados": "brapi.dev + fundamentus.com.br"
+      "fonte_dados": "brapi.dev + investidor10.com.br + fundamentus.com.br"
     },
     "ARRI11": {
       "nome": "Fundo de Investimento Imobiliario Atrio Reit Recebiveis",
