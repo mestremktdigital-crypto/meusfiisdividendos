@@ -213,6 +213,46 @@ PROVENTO_LINHA_RE = re.compile(
     r'(\d{2}/\d{2}/\d{4})\s+(\d{2}/\d{2}/\d{4})\s+(\d+,\d+)'
 )
 
+# Tipos de linha que aparecem na mesma tabela "Histórico de Dividendos" do
+# Investidor10 mas que NÃO são distribuição de caixa por cota/ação (o valor
+# reportado nelas é uma proporção/percentual do evento societário, não um
+# R$/cota real) — por isso são excluídos da soma de proventos. Ex.:
+# "Bonificação" 0,05 significa "5% de ações novas grátis", não R$0,05.
+TIPOS_NAO_MONETARIOS = {
+    "bonificacao", "bonificação",
+    "desdobramento", "desdobro",
+    "grupamento",
+    "direito de subscricao", "direito de subscrição",
+    "subscricao", "subscrição",
+}
+
+
+def _is_provento_monetario(tipo_txt):
+    """True se a linha for de fato uma distribuição em dinheiro
+    (Dividendos, JSCP, Rend. Trib. etc.), False se for um evento societário
+    não-monetário (bonificação, desdobramento, grupamento, subscrição)."""
+    tipo_norm = tipo_txt.strip().lower()
+    tipo_norm = (
+        tipo_norm
+        .replace('á', 'a').replace('ã', 'a').replace('â', 'a')
+        .replace('é', 'e').replace('ê', 'e')
+        .replace('í', 'i')
+        .replace('ó', 'o').replace('õ', 'o').replace('ô', 'o')
+        .replace('ú', 'u').replace('ç', 'c')
+    )
+    for termo in TIPOS_NAO_MONETARIOS:
+        termo_norm = (
+            termo
+            .replace('á', 'a').replace('ã', 'a').replace('â', 'a')
+            .replace('é', 'e').replace('ê', 'e')
+            .replace('í', 'i')
+            .replace('ó', 'o').replace('õ', 'o').replace('ô', 'o')
+            .replace('ú', 'u').replace('ç', 'c')
+        )
+        if termo_norm in tipo_norm:
+            return False
+    return True
+
 
 def _parse_investidor10_proventos(text, max_meses=15):
     """Extrai o histórico de pagamentos (tipo, data com, pagamento, valor)
@@ -224,6 +264,8 @@ def _parse_investidor10_proventos(text, max_meses=15):
     """
     grupos = OrderedDict()
     for tipo, dcom_txt, dpag_txt, valor_txt in PROVENTO_LINHA_RE.findall(text):
+        if not _is_provento_monetario(tipo):
+            continue
         try:
             dcom = datetime.strptime(dcom_txt, '%d/%m/%Y')
             dpag = datetime.strptime(dpag_txt, '%d/%m/%Y')
