@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-08-10T16:29:55.656482Z",
+  "gerado_em": "2026-08-10T17:38:01.534346Z",
   "fonte": "brapi.dev + investidor10.com.br + fundamentus.com.br",
   "total_fiis": 118,
   "fiis_com_dados_completos": 118,
@@ -8,9 +8,9 @@
       "nome": "Petroleo Brasileiro SA Pfd",
       "segmento": "Petróleo, Gás e Biocombustíveis",
       "setor_atuacao": "Exploração, Refino e Distribuição",
-      "preco": 41.71,
+      "preco": 42.03,
       "p_vp": 1.12,
-      "p_l": 4.03,
+      "p_l": 4.05,
       "valor_patrimonial_cota": 37.31,
       "dy_12m": 7.2,
       "dy_mensal": 0.6,
@@ -43,56 +43,6 @@
           "valor_por_cota": 0.671924,
           "data_com": "2025-08-21",
           "data_pagamento": "2025-12-22"
-        },
-        {
-          "valor_por_cota": 0.909166,
-          "data_com": "2025-06-02",
-          "data_pagamento": "2025-09-22"
-        },
-        {
-          "valor_por_cota": 0.74813,
-          "data_com": "2025-04-16",
-          "data_pagamento": "2025-06-20"
-        },
-        {
-          "valor_por_cota": 2.908633,
-          "data_com": "2024-12-11",
-          "data_pagamento": "2025-03-20"
-        },
-        {
-          "valor_por_cota": 1.465952,
-          "data_com": "2024-08-21",
-          "data_pagamento": "2024-12-20"
-        },
-        {
-          "valor_por_cota": 1.043242,
-          "data_com": "2024-06-11",
-          "data_pagamento": "2024-09-20"
-        },
-        {
-          "valor_por_cota": 1.776022,
-          "data_com": "2024-05-02",
-          "data_pagamento": "2024-06-20"
-        },
-        {
-          "valor_por_cota": 1.150024,
-          "data_com": "2024-04-25",
-          "data_pagamento": "2024-06-20"
-        },
-        {
-          "valor_por_cota": 1.355277,
-          "data_com": "2023-11-21",
-          "data_pagamento": "2024-03-20"
-        },
-        {
-          "valor_por_cota": 1.149304,
-          "data_com": "2023-08-21",
-          "data_pagamento": "2023-12-15"
-        },
-        {
-          "valor_por_cota": 1.893576,
-          "data_com": "2023-06-12",
-          "data_pagamento": "2023-09-20"
         }
       ],
       "ultimo_provento": {
@@ -105,9 +55,9 @@
       "nome": "Magazine Luiza S.A.",
       "segmento": "Consumo Cíclico",
       "setor_atuacao": "Eletrodomésticos",
-      "preco": 4.6,
+      "preco": 4.56,
       "p_vp": 0.32,
-      "p_l": 40.33,
+      "p_l": 40.15,
       "valor_patrimonial_cota": 14.39,
       "dy_12m": 1.85,
       "dy_mensal": 0.1542,
@@ -130,66 +80,6 @@
           "valor_por_cota": 0.305175,
           "data_com": "2025-04-25",
           "data_pagamento": "2025-05-05"
-        },
-        {
-          "valor_por_cota": 0.15494,
-          "data_com": "2021-07-05",
-          "data_pagamento": "2022-05-06"
-        },
-        {
-          "valor_por_cota": 0.26302,
-          "data_com": "2020-12-29",
-          "data_pagamento": "2021-05-05"
-        },
-        {
-          "valor_por_cota": 0.235415,
-          "data_com": "2020-07-30",
-          "data_pagamento": "2020-08-19"
-        },
-        {
-          "valor_por_cota": 0.089473,
-          "data_com": "2019-12-30",
-          "data_pagamento": "2020-08-19"
-        },
-        {
-          "valor_por_cota": 0.184,
-          "data_com": "2019-10-07",
-          "data_pagamento": "2020-08-19"
-        },
-        {
-          "valor_por_cota": 0.115706,
-          "data_com": "2019-04-15",
-          "data_pagamento": "2019-04-26"
-        },
-        {
-          "valor_por_cota": 0.18522,
-          "data_com": "2018-12-28",
-          "data_pagamento": "2019-04-26"
-        },
-        {
-          "valor_por_cota": 0.082656,
-          "data_com": "2018-04-16",
-          "data_pagamento": "2018-04-25"
-        },
-        {
-          "valor_por_cota": 0.123894,
-          "data_com": "2017-12-19",
-          "data_pagamento": "2018-04-25"
-        },
-        {
-          "valor_por_cota": 0.011007,
-          "data_com": "2017-04-14",
-          "data_pagamento": "2018-04-25"
-        },
-        {
-          "valor_por_cota": 0.034018,
-          "data_com": "2015-04-27",
-          "data_pagamento": "2015-05-08"
-        },
-        {
-          "valor_por_cota": 0.024438,
-          "data_com": "2015-01-14",
-          "data_pagamento": "2015-05-08"
         }
       ],
       "ultimo_provento": {
@@ -202,9 +92,9 @@
       "nome": "Vale S.A.",
       "segmento": "Materiais Básicos",
       "setor_atuacao": "Minerais Metálicos",
-      "preco": 75.87,
-      "p_vp": 1.71,
-      "p_l": 32.42,
+      "preco": 75.84,
+      "p_vp": 1.72,
+      "p_l": 32.54,
       "valor_patrimonial_cota": 44.3,
       "dy_12m": 7.31,
       "dy_mensal": 0.6092,
@@ -227,66 +117,6 @@
           "valor_por_cota": 1.895387,
           "data_com": "2025-08-12",
           "data_pagamento": "2025-09-03"
-        },
-        {
-          "valor_por_cota": 2.141847,
-          "data_com": "2025-03-07",
-          "data_pagamento": "2025-03-14"
-        },
-        {
-          "valor_por_cota": 0.520531,
-          "data_com": "2024-12-11",
-          "data_pagamento": "2025-03-14"
-        },
-        {
-          "valor_por_cota": 2.093798,
-          "data_com": "2024-08-02",
-          "data_pagamento": "2024-09-04"
-        },
-        {
-          "valor_por_cota": 2.738548,
-          "data_com": "2024-03-11",
-          "data_pagamento": "2024-03-19"
-        },
-        {
-          "valor_por_cota": 2.331662,
-          "data_com": "2023-11-21",
-          "data_pagamento": "2023-12-01"
-        },
-        {
-          "valor_por_cota": 1.918472,
-          "data_com": "2023-08-11",
-          "data_pagamento": "2023-09-01"
-        },
-        {
-          "valor_por_cota": 1.827646,
-          "data_com": "2023-03-13",
-          "data_pagamento": "2023-03-22"
-        },
-        {
-          "valor_por_cota": 0.292012,
-          "data_com": "2022-12-12",
-          "data_pagamento": "2023-03-22"
-        },
-        {
-          "valor_por_cota": 3.572056,
-          "data_com": "2022-08-11",
-          "data_pagamento": "2022-09-01"
-        },
-        {
-          "valor_por_cota": 3.719256,
-          "data_com": "2022-03-08",
-          "data_pagamento": "2022-03-16"
-        },
-        {
-          "valor_por_cota": 8.197239,
-          "data_com": "2021-09-22",
-          "data_pagamento": "2021-09-30"
-        },
-        {
-          "valor_por_cota": 2.18967,
-          "data_com": "2021-06-23",
-          "data_pagamento": "2021-06-30"
         }
       ],
       "ultimo_provento": {
@@ -299,9 +129,9 @@
       "nome": "Itau Unibanco Holding SA Pfd",
       "segmento": "Financeiro",
       "setor_atuacao": "Bancos",
-      "preco": 40.68,
-      "p_vp": 2.06,
-      "p_l": 9.57,
+      "preco": 40.46,
+      "p_vp": 2.05,
+      "p_l": 9.55,
       "valor_patrimonial_cota": 19.75,
       "dy_12m": 8.66,
       "dy_mensal": 0.7217,
@@ -374,16 +204,6 @@
           "valor_por_cota": 0.01765,
           "data_com": "2025-11-28",
           "data_pagamento": "2026-01-02"
-        },
-        {
-          "valor_por_cota": 0.01765,
-          "data_com": "2025-10-31",
-          "data_pagamento": "2025-12-01"
-        },
-        {
-          "valor_por_cota": 0.01765,
-          "data_com": "2025-09-30",
-          "data_pagamento": "2025-11-03"
         }
       ],
       "ultimo_provento": {
@@ -396,7 +216,7 @@
       "nome": "Alianza Trust Renda Imobiliaria Fundo Investimento Imobiliario Investor",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 9.9,
+      "preco": 9.89,
       "p_vp": 0.93,
       "p_l": 0.0,
       "valor_patrimonial_cota": 10.67,
@@ -471,16 +291,6 @@
           "valor_por_cota": 0.0937,
           "data_com": "2025-07-18",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.08155,
-          "data_com": "2025-06-17",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.08155,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -493,7 +303,7 @@
       "nome": "Fundo de Investimento Imobiliario Atrio Reit Recebiveis",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 4.71,
+      "preco": 4.72,
       "p_vp": 0.56,
       "p_l": 0.0,
       "valor_patrimonial_cota": 8.39,
@@ -568,16 +378,6 @@
           "valor_por_cota": 0.09,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.09,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.09,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -670,11 +470,6 @@
           "valor_por_cota": 0.8,
           "data_com": "2024-08-30",
           "data_pagamento": "2024-09-20"
-        },
-        {
-          "valor_por_cota": 0.88,
-          "data_com": "2024-07-31",
-          "data_pagamento": "2024-08-21"
         }
       ],
       "ultimo_provento": {
@@ -762,16 +557,6 @@
           "valor_por_cota": 0.92,
           "data_com": "2022-09-30",
           "data_pagamento": "2022-10-17"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2022-08-31",
-          "data_pagamento": "2022-09-15"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2022-07-29",
-          "data_pagamento": "2022-08-12"
         }
       ],
       "ultimo_provento": {
@@ -854,21 +639,6 @@
           "valor_por_cota": 0.07,
           "data_com": "2023-12-07",
           "data_pagamento": "2023-12-14"
-        },
-        {
-          "valor_por_cota": 0.07,
-          "data_com": "2023-11-08",
-          "data_pagamento": "2023-11-16"
-        },
-        {
-          "valor_por_cota": 0.07,
-          "data_com": "2023-10-06",
-          "data_pagamento": "2023-10-16"
-        },
-        {
-          "valor_por_cota": 0.07,
-          "data_com": "2023-09-08",
-          "data_pagamento": "2023-09-15"
         }
       ],
       "ultimo_provento": {
@@ -881,7 +651,7 @@
       "nome": "Bradesco Carteira Imobiliatia Ative- Fundo de Fundos de Investimento Imobiliario- FII Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 87.66,
+      "preco": 87.65,
       "p_vp": 0.88,
       "p_l": 0.0,
       "valor_patrimonial_cota": 99.28,
@@ -956,16 +726,6 @@
           "valor_por_cota": 0.84,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-28"
-        },
-        {
-          "valor_por_cota": 0.84,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-28"
-        },
-        {
-          "valor_por_cota": 0.84,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-30"
         }
       ],
       "ultimo_provento": {
@@ -978,12 +738,12 @@
       "nome": "Banestes Recebiveis Imobiliarios Fundo de Investimento Imobiliario- FII Cotas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 58.62,
+      "preco": 58.35,
       "p_vp": 0.69,
       "p_l": 0.0,
       "valor_patrimonial_cota": 84.82,
-      "dy_12m": 16.37,
-      "dy_mensal": 1.3642,
+      "dy_12m": 16.4,
+      "dy_mensal": 1.3667,
       "patrimonio_liquido": 530809999.99999994,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -1053,16 +813,6 @@
           "valor_por_cota": 0.91,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-15"
-        },
-        {
-          "valor_por_cota": 0.85,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-15"
-        },
-        {
-          "valor_por_cota": 0.88,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -1075,12 +825,12 @@
       "nome": "Fundo de Investimento BM Brascan Lages Corporativas - FII Cotas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 98.51,
+      "preco": 97.68,
       "p_vp": 0.89,
       "p_l": 0.0,
       "valor_patrimonial_cota": 110.33,
-      "dy_12m": 9.52,
-      "dy_mensal": 0.7933,
+      "dy_12m": 8.82,
+      "dy_mensal": 0.735,
       "patrimonio_liquido": 110160000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -1150,16 +900,6 @@
           "valor_por_cota": 0.69,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -1172,12 +912,12 @@
       "nome": "Banrisul Novas Fronteiras Fundo de Investimento Imobiliario - FII Cotas",
       "segmento": "Varejo",
       "setor_atuacao": "Varejo",
-      "preco": 40.0,
-      "p_vp": 0.57,
+      "preco": 39.88,
+      "p_vp": 0.58,
       "p_l": 0.0,
       "valor_patrimonial_cota": 68.72,
-      "dy_12m": 20.9,
-      "dy_mensal": 1.7417,
+      "dy_12m": 20.63,
+      "dy_mensal": 1.7192,
       "patrimonio_liquido": 48110000.0,
       "vacancia_fisica": 26.9,
       "dados_completos": true,
@@ -1247,16 +987,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -1349,11 +1079,6 @@
           "valor_por_cota": 0.62,
           "data_com": "2024-09-30",
           "data_pagamento": "2024-10-07"
-        },
-        {
-          "valor_por_cota": 0.62,
-          "data_com": "2024-08-30",
-          "data_pagamento": "2024-09-06"
         }
       ],
       "ultimo_provento": {
@@ -1366,12 +1091,12 @@
       "nome": "Fundo de Investimento Imobiliario - FII BTG Pactual Corporate Office Fund Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 38.99,
-      "p_vp": 0.49,
+      "preco": 39.08,
+      "p_vp": 0.48,
       "p_l": 0.0,
       "valor_patrimonial_cota": 80.64,
-      "dy_12m": 13.46,
-      "dy_mensal": 1.1217,
+      "dy_12m": 12.64,
+      "dy_mensal": 1.0533,
       "patrimonio_liquido": 2150000000.0,
       "vacancia_fisica": 10.4,
       "dados_completos": true,
@@ -1441,16 +1166,6 @@
           "valor_por_cota": 0.41,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.41,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.41,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -1538,16 +1253,6 @@
           "valor_por_cota": 0.9,
           "data_com": "2023-09-08",
           "data_pagamento": "2023-09-15"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2023-08-07",
-          "data_pagamento": "2023-08-14"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2023-07-07",
-          "data_pagamento": "2023-07-14"
         }
       ],
       "ultimo_provento": {
@@ -1560,12 +1265,12 @@
       "nome": "Fundo de Investimento Imobiliario BTG Pactual Agro Logistica",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
-      "preco": 85.87,
-      "p_vp": 0.75,
+      "preco": 85.91,
+      "p_vp": 0.74,
       "p_l": 0.0,
       "valor_patrimonial_cota": 116.38,
-      "dy_12m": 13.38,
-      "dy_mensal": 1.115,
+      "dy_12m": 13.54,
+      "dy_mensal": 1.1283,
       "patrimonio_liquido": 696290000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -1635,16 +1340,6 @@
           "valor_por_cota": 0.9,
           "data_com": "2025-07-17",
           "data_pagamento": "2025-07-24"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-06-18",
-          "data_pagamento": "2025-06-26"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-05-20",
-          "data_pagamento": "2025-05-27"
         }
       ],
       "ultimo_provento": {
@@ -1657,12 +1352,12 @@
       "nome": "BTG Pactual Logistica Fundo de Investimento Imobiliario Responsabilidade Limitada",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 100.7,
+      "preco": 100.56,
       "p_vp": 0.94,
       "p_l": 0.0,
       "valor_patrimonial_cota": 107.04,
-      "dy_12m": 9.49,
-      "dy_mensal": 0.7908,
+      "dy_12m": 9.54,
+      "dy_mensal": 0.795,
       "patrimonio_liquido": 7430000000.0,
       "vacancia_fisica": 2.1,
       "dados_completos": true,
@@ -1732,16 +1427,6 @@
           "valor_por_cota": 0.7801,
           "data_com": "2025-07-15",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.78,
-          "data_com": "2025-06-13",
-          "data_pagamento": "2025-06-23"
-        },
-        {
-          "valor_por_cota": 0.78,
-          "data_com": "2025-05-15",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -1754,12 +1439,12 @@
       "nome": "Fundo de Investimento Imobiliario BTG Pactual Terras Agricolas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 70.5,
+      "preco": 70.68,
       "p_vp": 0.6,
       "p_l": 0.0,
       "valor_patrimonial_cota": 117.88,
-      "dy_12m": 11.46,
-      "dy_mensal": 0.955,
+      "dy_12m": 11.51,
+      "dy_mensal": 0.9592,
       "patrimonio_liquido": 393610000.0,
       "vacancia_fisica": 5.76,
       "dados_completos": true,
@@ -1829,16 +1514,6 @@
           "valor_por_cota": 0.83,
           "data_com": "2025-07-24",
           "data_pagamento": "2025-07-31"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-06-23",
-          "data_pagamento": "2025-06-30"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-05-23",
-          "data_pagamento": "2025-05-30"
         }
       ],
       "ultimo_provento": {
@@ -1926,16 +1601,6 @@
           "valor_por_cota": 0.408196,
           "data_com": "2023-07-31",
           "data_pagamento": "2023-08-15"
-        },
-        {
-          "valor_por_cota": 0.412764,
-          "data_com": "2023-06-30",
-          "data_pagamento": "2023-07-14"
-        },
-        {
-          "valor_por_cota": 0.389849,
-          "data_com": "2023-05-31",
-          "data_pagamento": "2023-06-15"
         }
       ],
       "ultimo_provento": {
@@ -2003,36 +1668,6 @@
           "valor_por_cota": 0.65,
           "data_com": "2024-07-08",
           "data_pagamento": "2024-07-16"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2024-06-10",
-          "data_pagamento": "2024-06-18"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2024-05-09",
-          "data_pagamento": "2024-05-17"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2024-04-08",
-          "data_pagamento": "2024-04-16"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2024-03-08",
-          "data_pagamento": "2024-03-18"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2024-02-08",
-          "data_pagamento": "2024-02-20"
-        },
-        {
-          "valor_por_cota": 0.48,
-          "data_com": "2024-01-09",
-          "data_pagamento": "2024-01-16"
         }
       ],
       "ultimo_provento": {
@@ -2045,12 +1680,12 @@
       "nome": "Capitania Securities II Fundo de Investimento Imobiliario Cotas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 7.51,
+      "preco": 7.49,
       "p_vp": 0.87,
       "p_l": 0.0,
       "valor_patrimonial_cota": 8.65,
-      "dy_12m": 14.22,
-      "dy_mensal": 1.185,
+      "dy_12m": 14.28,
+      "dy_mensal": 1.19,
       "patrimonio_liquido": 3140000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -2120,16 +1755,6 @@
           "valor_por_cota": 0.088,
           "data_com": "2025-07-10",
           "data_pagamento": "2025-07-17"
-        },
-        {
-          "valor_por_cota": 0.087,
-          "data_com": "2025-06-11",
-          "data_pagamento": "2025-06-18"
-        },
-        {
-          "valor_por_cota": 0.085,
-          "data_com": "2025-05-13",
-          "data_pagamento": "2025-05-20"
         }
       ],
       "ultimo_provento": {
@@ -2146,8 +1771,8 @@
       "p_vp": 0.89,
       "p_l": 0.0,
       "valor_patrimonial_cota": 92.88,
-      "dy_12m": 2.53,
-      "dy_mensal": 0.2108,
+      "dy_12m": 1.27,
+      "dy_mensal": 0.1058,
       "patrimonio_liquido": 1020000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -2217,16 +1842,6 @@
           "valor_por_cota": 0.86,
           "data_com": "2024-09-09",
           "data_pagamento": "2024-09-16"
-        },
-        {
-          "valor_por_cota": 0.97,
-          "data_com": "2024-08-08",
-          "data_pagamento": "2024-08-15"
-        },
-        {
-          "valor_por_cota": 0.88,
-          "data_com": "2024-07-08",
-          "data_pagamento": "2024-07-15"
         }
       ],
       "ultimo_provento": {
@@ -2239,12 +1854,12 @@
       "nome": "Devant Recebiveis Imobiliarios Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 17.38,
-      "p_vp": 0.2,
+      "preco": 17.29,
+      "p_vp": 0.19,
       "p_l": 0.0,
       "valor_patrimonial_cota": 94.49,
-      "dy_12m": 23.36,
-      "dy_mensal": 1.9467,
+      "dy_12m": 22.52,
+      "dy_mensal": 1.8767,
       "patrimonio_liquido": 1330000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -2314,16 +1929,6 @@
           "valor_por_cota": 0.34,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.46,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.45,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -2411,16 +2016,6 @@
           "valor_por_cota": 10.29303,
           "data_com": "2025-07-11",
           "data_pagamento": "2025-07-21"
-        },
-        {
-          "valor_por_cota": 9.563615,
-          "data_com": "2025-06-12",
-          "data_pagamento": "2025-06-20"
-        },
-        {
-          "valor_por_cota": 6.00241,
-          "data_com": "2025-05-14",
-          "data_pagamento": "2025-05-21"
         }
       ],
       "ultimo_provento": {
@@ -2523,16 +2118,6 @@
           "valor_por_cota": 1.766012,
           "data_com": "2023-07-31",
           "data_pagamento": "2023-08-10"
-        },
-        {
-          "valor_por_cota": 1.745264,
-          "data_com": "2023-06-30",
-          "data_pagamento": "2023-07-10"
-        },
-        {
-          "valor_por_cota": 1.662319,
-          "data_com": "2023-05-31",
-          "data_pagamento": "2023-06-09"
         }
       ],
       "ultimo_provento": {
@@ -2549,8 +2134,8 @@
       "p_vp": 0.78,
       "p_l": 0.0,
       "valor_patrimonial_cota": 394.36,
-      "dy_12m": 8.58,
-      "dy_mensal": 0.715,
+      "dy_12m": 8.59,
+      "dy_mensal": 0.7158,
       "patrimonio_liquido": 161640000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -2620,16 +2205,6 @@
           "valor_por_cota": 2.0,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.97,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.95,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -2642,12 +2217,12 @@
       "nome": "Fundo de Investimeno Imobiliario FII Anhanguera Educacional Responsabilidade Limitada",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 152.0,
+      "preco": 152.55,
       "p_vp": 0.68,
       "p_l": 0.0,
       "valor_patrimonial_cota": 224.44,
-      "dy_12m": 14.52,
-      "dy_mensal": 1.21,
+      "dy_12m": 13.48,
+      "dy_mensal": 1.1233,
       "patrimonio_liquido": 155400000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -2717,16 +2292,6 @@
           "valor_por_cota": 1.66,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.74468,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.71,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -2739,7 +2304,7 @@
       "nome": "EDIFÍCIO ALMIRANTE BARROSO",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 671.01,
+      "preco": 689.99,
       "p_vp": 0.69,
       "p_l": 0.0,
       "valor_patrimonial_cota": 972.12,
@@ -2759,71 +2324,6 @@
           "valor_por_cota": 45.426656,
           "data_com": "2025-01-31",
           "data_pagamento": "2025-02-07"
-        },
-        {
-          "valor_por_cota": 9.16,
-          "data_com": "2020-10-30",
-          "data_pagamento": "2020-11-13"
-        },
-        {
-          "valor_por_cota": 25.284962,
-          "data_com": "2020-09-30",
-          "data_pagamento": "2020-10-14"
-        },
-        {
-          "valor_por_cota": 26.130163,
-          "data_com": "2020-08-31",
-          "data_pagamento": "2020-09-14"
-        },
-        {
-          "valor_por_cota": 25.922259,
-          "data_com": "2020-07-31",
-          "data_pagamento": "2020-08-13"
-        },
-        {
-          "valor_por_cota": 32.000101,
-          "data_com": "2020-06-30",
-          "data_pagamento": "2020-07-13"
-        },
-        {
-          "valor_por_cota": 32.178642,
-          "data_com": "2020-05-29",
-          "data_pagamento": "2020-06-12"
-        },
-        {
-          "valor_por_cota": 30.090745,
-          "data_com": "2020-04-30",
-          "data_pagamento": "2020-05-14"
-        },
-        {
-          "valor_por_cota": 29.748246,
-          "data_com": "2020-03-31",
-          "data_pagamento": "2020-04-14"
-        },
-        {
-          "valor_por_cota": 28.425929,
-          "data_com": "2020-02-28",
-          "data_pagamento": "2020-03-12"
-        },
-        {
-          "valor_por_cota": 29.044033,
-          "data_com": "2020-01-31",
-          "data_pagamento": "2020-02-13"
-        },
-        {
-          "valor_por_cota": 29.677112,
-          "data_com": "2019-12-30",
-          "data_pagamento": "2020-01-14"
-        },
-        {
-          "valor_por_cota": 29.15922,
-          "data_com": "2019-11-29",
-          "data_pagamento": "2019-12-12"
-        },
-        {
-          "valor_por_cota": 28.2529,
-          "data_com": "2019-10-31",
-          "data_pagamento": "2019-11-13"
         }
       ],
       "ultimo_provento": {
@@ -2836,12 +2336,12 @@
       "nome": "BRC Renda Corporativa Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 78.78,
-      "p_vp": 0.82,
+      "preco": 78.64,
+      "p_vp": 0.81,
       "p_l": 0.0,
       "valor_patrimonial_cota": 97.15,
-      "dy_12m": 12.12,
-      "dy_mensal": 1.01,
+      "dy_12m": 12.18,
+      "dy_mensal": 1.015,
       "patrimonio_liquido": 664770000.0,
       "vacancia_fisica": 1.51,
       "dados_completos": true,
@@ -2911,16 +2411,6 @@
           "valor_por_cota": 0.8,
           "data_com": "2025-08-06",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.8,
-          "data_com": "2025-07-04",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.8,
-          "data_com": "2025-06-05",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -2933,12 +2423,12 @@
       "nome": "Fundo de Investimento Imobiliario - FII Campus Faria Lima Responsabilidade Limitada Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 123.0,
-      "p_vp": 0.97,
+      "preco": 123.2,
+      "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 125.18,
-      "dy_12m": 9.05,
-      "dy_mensal": 0.7542,
+      "dy_12m": 8.96,
+      "dy_mensal": 0.7467,
       "patrimonio_liquido": 434860000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -3008,16 +2498,6 @@
           "valor_por_cota": 0.9,
           "data_com": "2025-07-18",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.91,
-          "data_com": "2025-06-17",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -3105,16 +2585,6 @@
           "valor_por_cota": 0.934541,
           "data_com": "2022-01-07",
           "data_pagamento": "2022-01-14"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2021-12-07",
-          "data_pagamento": "2021-12-14"
-        },
-        {
-          "valor_por_cota": 0.82,
-          "data_com": "2021-11-08",
-          "data_pagamento": "2021-11-16"
         }
       ],
       "ultimo_provento": {
@@ -3127,12 +2597,12 @@
       "nome": "General Shopping Ativo e Renda Fundo de Investimento Imobiliario Cotas",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 48.99,
-      "p_vp": 0.69,
+      "preco": 48.35,
+      "p_vp": 0.7,
       "p_l": 0.0,
       "valor_patrimonial_cota": 70.12,
-      "dy_12m": 12.02,
-      "dy_mensal": 1.0017,
+      "dy_12m": 11.74,
+      "dy_mensal": 0.9783,
       "patrimonio_liquido": 199840000.0,
       "vacancia_fisica": 7.0,
       "dados_completos": true,
@@ -3202,16 +2672,6 @@
           "valor_por_cota": 0.48,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.48,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.45,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -3224,12 +2684,12 @@
       "nome": "Fundo de Investimento Industrial do Brasil Cotas",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
-      "preco": 435.01,
-      "p_vp": 0.73,
+      "preco": 435.0,
+      "p_vp": 0.74,
       "p_l": 0.0,
       "valor_patrimonial_cota": 594.01,
-      "dy_12m": 8.64,
-      "dy_mensal": 0.72,
+      "dy_12m": 8.59,
+      "dy_mensal": 0.7158,
       "patrimonio_liquido": 406890000.0,
       "vacancia_fisica": 5.62,
       "dados_completos": true,
@@ -3299,16 +2759,6 @@
           "valor_por_cota": 3.58,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-11"
-        },
-        {
-          "valor_por_cota": 4.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-10"
-        },
-        {
-          "valor_por_cota": 3.9,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-10"
         }
       ],
       "ultimo_provento": {
@@ -3341,41 +2791,6 @@
           "valor_por_cota": 0.466162,
           "data_com": "2023-11-30",
           "data_pagamento": "2023-12-06"
-        },
-        {
-          "valor_por_cota": 5.593945,
-          "data_com": "2022-08-23",
-          "data_pagamento": "2022-08-30"
-        },
-        {
-          "valor_por_cota": 5.593945,
-          "data_com": "2022-06-23",
-          "data_pagamento": "2022-06-30"
-        },
-        {
-          "valor_por_cota": 1.864648,
-          "data_com": "2022-05-04",
-          "data_pagamento": "2022-05-11"
-        },
-        {
-          "valor_por_cota": 11.18789,
-          "data_com": "2022-02-22",
-          "data_pagamento": "2022-03-03"
-        },
-        {
-          "valor_por_cota": 4.661621,
-          "data_com": "2021-11-26",
-          "data_pagamento": "2021-12-03"
-        },
-        {
-          "valor_por_cota": 13.052538,
-          "data_com": "2021-10-20",
-          "data_pagamento": "2021-10-27"
-        },
-        {
-          "valor_por_cota": 3.729297,
-          "data_com": "2021-09-09",
-          "data_pagamento": "2021-09-17"
         }
       ],
       "ultimo_provento": {
@@ -3389,7 +2804,7 @@
       "segmento": "",
       "setor_atuacao": "",
       "preco": 2.52,
-      "p_vp": 0.43,
+      "p_vp": 0.42,
       "p_l": 0.0,
       "valor_patrimonial_cota": 5.97,
       "dy_12m": 0.0,
@@ -3404,11 +2819,11 @@
       "segmento": "Outros",
       "setor_atuacao": "Outros",
       "preco": 91.22,
-      "p_vp": 0.99,
+      "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 93.25,
-      "dy_12m": 15.35,
-      "dy_mensal": 1.2792,
+      "dy_12m": 14.36,
+      "dy_mensal": 1.1967,
       "patrimonio_liquido": 70110000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -3478,16 +2893,6 @@
           "valor_por_cota": 1.05,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.4,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.15,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -3500,12 +2905,12 @@
       "nome": "Hedge Floripa Shopping Fundo de Investimento Imobiliario",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 20.4,
+      "preco": 20.2,
       "p_vp": 0.97,
       "p_l": 0.0,
       "valor_patrimonial_cota": 21.01,
-      "dy_12m": 8.71,
-      "dy_mensal": 0.7258,
+      "dy_12m": 8.73,
+      "dy_mensal": 0.7275,
       "patrimonio_liquido": 162490000.0,
       "vacancia_fisica": 1.4,
       "dados_completos": true,
@@ -3575,16 +2980,6 @@
           "valor_por_cota": 0.14,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.29,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.14,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -3642,46 +3037,6 @@
           "valor_por_cota": 0.51,
           "data_com": "2025-06-30",
           "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.42,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-04-30",
-          "data_pagamento": "2025-05-15"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-03-31",
-          "data_pagamento": "2025-04-14"
-        },
-        {
-          "valor_por_cota": 0.27,
-          "data_com": "2025-02-28",
-          "data_pagamento": "2025-03-18"
-        },
-        {
-          "valor_por_cota": 0.23,
-          "data_com": "2025-01-31",
-          "data_pagamento": "2025-02-14"
-        },
-        {
-          "valor_por_cota": 0.99,
-          "data_com": "2024-12-30",
-          "data_pagamento": "2025-01-15"
-        },
-        {
-          "valor_por_cota": 0.5,
-          "data_com": "2024-06-28",
-          "data_pagamento": "2024-07-15"
-        },
-        {
-          "valor_por_cota": 0.46,
-          "data_com": "2023-12-28",
-          "data_pagamento": "2024-01-15"
         }
       ],
       "ultimo_provento": {
@@ -3719,66 +3074,6 @@
           "valor_por_cota": 24.25925,
           "data_com": "2025-08-04",
           "data_pagamento": "2025-08-29"
-        },
-        {
-          "valor_por_cota": 50.21373,
-          "data_com": "2025-02-03",
-          "data_pagamento": "2025-02-28"
-        },
-        {
-          "valor_por_cota": 32.84307,
-          "data_com": "2024-08-01",
-          "data_pagamento": "2024-08-30"
-        },
-        {
-          "valor_por_cota": 59.06138,
-          "data_com": "2024-02-05",
-          "data_pagamento": "2024-02-29"
-        },
-        {
-          "valor_por_cota": 112.9596,
-          "data_com": "2023-08-01",
-          "data_pagamento": "2023-08-18"
-        },
-        {
-          "valor_por_cota": 86.12324,
-          "data_com": "2023-02-06",
-          "data_pagamento": "2023-02-28"
-        },
-        {
-          "valor_por_cota": 37.628886,
-          "data_com": "2022-08-15",
-          "data_pagamento": "2022-08-31"
-        },
-        {
-          "valor_por_cota": 98.303411,
-          "data_com": "2022-04-29",
-          "data_pagamento": "2022-05-06"
-        },
-        {
-          "valor_por_cota": 70.290319,
-          "data_com": "2022-01-21",
-          "data_pagamento": "2022-01-28"
-        },
-        {
-          "valor_por_cota": 93.890536,
-          "data_com": "2021-08-16",
-          "data_pagamento": "2021-08-25"
-        },
-        {
-          "valor_por_cota": 77.420337,
-          "data_com": "2021-02-22",
-          "data_pagamento": "2021-03-01"
-        },
-        {
-          "valor_por_cota": 281.484683,
-          "data_com": "2020-12-14",
-          "data_pagamento": "2020-12-21"
-        },
-        {
-          "valor_por_cota": 164.664932,
-          "data_com": "2019-12-03",
-          "data_pagamento": "2019-12-04"
         }
       ],
       "ultimo_provento": {
@@ -3866,16 +3161,6 @@
           "valor_por_cota": 0.081,
           "data_com": "2023-01-31",
           "data_pagamento": "2023-02-07"
-        },
-        {
-          "valor_por_cota": 0.082,
-          "data_com": "2022-12-29",
-          "data_pagamento": "2023-01-06"
-        },
-        {
-          "valor_por_cota": 0.082,
-          "data_com": "2022-11-30",
-          "data_pagamento": "2022-12-07"
         }
       ],
       "ultimo_provento": {
@@ -3888,12 +3173,12 @@
       "nome": "Fundo de Investimento Imobiliario Guardian Real Estate",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 8.19,
+      "preco": 8.2,
       "p_vp": 0.89,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.19,
-      "dy_12m": 12.19,
-      "dy_mensal": 1.0158,
+      "dy_12m": 12.18,
+      "dy_mensal": 1.015,
       "patrimonio_liquido": 2660000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -3963,16 +3248,6 @@
           "valor_por_cota": 0.083,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.083,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.083,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -4045,31 +3320,6 @@
           "valor_por_cota": 0.76,
           "data_com": "2022-08-11",
           "data_pagamento": "2022-08-18"
-        },
-        {
-          "valor_por_cota": 0.79,
-          "data_com": "2022-07-13",
-          "data_pagamento": "2022-07-20"
-        },
-        {
-          "valor_por_cota": 1.27,
-          "data_com": "2022-06-13",
-          "data_pagamento": "2022-06-21"
-        },
-        {
-          "valor_por_cota": 1.25,
-          "data_com": "2022-05-12",
-          "data_pagamento": "2022-05-19"
-        },
-        {
-          "valor_por_cota": 1.28,
-          "data_com": "2022-04-13",
-          "data_pagamento": "2022-04-22"
-        },
-        {
-          "valor_por_cota": 1.25,
-          "data_com": "2022-03-14",
-          "data_pagamento": "2022-03-21"
         }
       ],
       "ultimo_provento": {
@@ -4082,12 +3332,12 @@
       "nome": "Galapagos Recebiveis Imobiliarios Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 64.82,
+      "preco": 65.2,
       "p_vp": 0.71,
       "p_l": 0.0,
       "valor_patrimonial_cota": 92.17,
-      "dy_12m": 15.54,
-      "dy_mensal": 1.295,
+      "dy_12m": 15.47,
+      "dy_mensal": 1.2892,
       "patrimonio_liquido": 134009999.99999999,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -4157,16 +3407,6 @@
           "valor_por_cota": 0.87,
           "data_com": "2025-07-11",
           "data_pagamento": "2025-07-18"
-        },
-        {
-          "valor_por_cota": 0.87,
-          "data_com": "2025-06-12",
-          "data_pagamento": "2025-06-20"
-        },
-        {
-          "valor_por_cota": 0.87,
-          "data_com": "2025-05-14",
-          "data_pagamento": "2025-05-21"
         }
       ],
       "ultimo_provento": {
@@ -4179,12 +3419,12 @@
       "nome": "Zagros Renda Imobiliaria Fundo de Investimento Imobiliario - Responsabilidade Limitada",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 9.66,
-      "p_vp": 0.88,
+      "preco": 9.65,
+      "p_vp": 0.87,
       "p_l": 0.0,
       "valor_patrimonial_cota": 11.03,
-      "dy_12m": 12.41,
-      "dy_mensal": 1.0342,
+      "dy_12m": 12.44,
+      "dy_mensal": 1.0367,
       "patrimonio_liquido": 2360000000.0,
       "vacancia_fisica": 0.19,
       "dados_completos": true,
@@ -4254,16 +3494,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2025-08-01",
           "data_pagamento": "2025-08-08"
-        },
-        {
-          "valor_por_cota": 0.105,
-          "data_com": "2025-07-01",
-          "data_pagamento": "2025-07-08"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-06-02",
-          "data_pagamento": "2025-06-09"
         }
       ],
       "ultimo_provento": {
@@ -4276,8 +3506,8 @@
       "nome": "General Shopping e Outlets do Brasil Fundo de Investimento Imobiliario",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 11.49,
-      "p_vp": 0.93,
+      "preco": 11.58,
+      "p_vp": 0.91,
       "p_l": 0.0,
       "valor_patrimonial_cota": 12.73,
       "dy_12m": 0.0,
@@ -4366,16 +3596,6 @@
           "valor_por_cota": 1.05,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-12"
-        },
-        {
-          "valor_por_cota": 1.15,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-11"
-        },
-        {
-          "valor_por_cota": 1.15,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -4388,12 +3608,12 @@
       "nome": "Fundo de Investimento Imobiliario Hectare CE",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 15.59,
+      "preco": 15.38,
       "p_vp": 0.16,
       "p_l": 0.0,
       "valor_patrimonial_cota": 100.62,
-      "dy_12m": 22.92,
-      "dy_mensal": 1.91,
+      "dy_12m": 21.63,
+      "dy_mensal": 1.8025,
       "patrimonio_liquido": 2220000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -4463,16 +3683,6 @@
           "valor_por_cota": 0.3,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.3759,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.28,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -4486,11 +3696,11 @@
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
       "preco": 18.87,
-      "p_vp": 0.94,
+      "p_vp": 0.93,
       "p_l": 0.0,
       "valor_patrimonial_cota": 20.3,
-      "dy_12m": 10.17,
-      "dy_mensal": 0.8475,
+      "dy_12m": 10.22,
+      "dy_mensal": 0.8517,
       "patrimonio_liquido": 2930000000.0,
       "vacancia_fisica": 4.8,
       "dados_completos": true,
@@ -4560,16 +3770,6 @@
           "valor_por_cota": 0.15,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.16,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.16,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -4662,11 +3862,6 @@
           "valor_por_cota": 0.7,
           "data_com": "2024-09-30",
           "data_pagamento": "2024-10-14"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2024-08-30",
-          "data_pagamento": "2024-09-13"
         }
       ],
       "ultimo_provento": {
@@ -4679,12 +3874,12 @@
       "nome": "Patria Log - Fundo de Investimento Imobiliario - Responsabilidade Limitada Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 146.01,
+      "preco": 145.68,
       "p_vp": 0.88,
       "p_l": 0.0,
       "valor_patrimonial_cota": 166.6,
-      "dy_12m": 9.03,
-      "dy_mensal": 0.7525,
+      "dy_12m": 9.09,
+      "dy_mensal": 0.7575,
       "patrimonio_liquido": 7600000000.0,
       "vacancia_fisica": 3.1,
       "dados_completos": true,
@@ -4754,16 +3949,6 @@
           "valor_por_cota": 1.1,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.1,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.1,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -4796,71 +3981,6 @@
           "valor_por_cota": 107.6,
           "data_com": "2026-05-29",
           "data_pagamento": "2026-06-15"
-        },
-        {
-          "valor_por_cota": 189.2,
-          "data_com": "2024-10-31",
-          "data_pagamento": "2024-11-14"
-        },
-        {
-          "valor_por_cota": 1.75,
-          "data_com": "2024-09-30",
-          "data_pagamento": "2024-10-14"
-        },
-        {
-          "valor_por_cota": 1.7,
-          "data_com": "2024-08-30",
-          "data_pagamento": "2024-09-13"
-        },
-        {
-          "valor_por_cota": 1.7,
-          "data_com": "2024-07-31",
-          "data_pagamento": "2024-08-14"
-        },
-        {
-          "valor_por_cota": 1.7,
-          "data_com": "2024-06-28",
-          "data_pagamento": "2024-07-12"
-        },
-        {
-          "valor_por_cota": 1.7,
-          "data_com": "2024-05-31",
-          "data_pagamento": "2024-06-14"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2024-04-30",
-          "data_pagamento": "2024-05-15"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2024-03-28",
-          "data_pagamento": "2024-04-12"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2024-02-29",
-          "data_pagamento": "2024-03-14"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2024-01-31",
-          "data_pagamento": "2024-02-16"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2023-12-28",
-          "data_pagamento": "2024-01-15"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2023-11-30",
-          "data_pagamento": "2023-12-14"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2023-10-31",
-          "data_pagamento": "2023-11-16"
         }
       ],
       "ultimo_provento": {
@@ -4873,12 +3993,12 @@
       "nome": "Patria Escritorios - Fundo de Investimento Imobi liario - Responsabilidade Limitada",
       "segmento": "Escritórios",
       "setor_atuacao": "Escritórios",
-      "preco": 116.59,
+      "preco": 115.87,
       "p_vp": 0.8,
       "p_l": 0.0,
       "valor_patrimonial_cota": 146.56,
-      "dy_12m": 9.8,
-      "dy_mensal": 0.8167,
+      "dy_12m": 9.86,
+      "dy_mensal": 0.8217,
       "patrimonio_liquido": 1730000000.0,
       "vacancia_fisica": 5.8,
       "dados_completos": true,
@@ -4948,16 +4068,6 @@
           "valor_por_cota": 0.85,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 2.55,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.85,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -4970,12 +4080,12 @@
       "nome": "HSI Logistica Fundo de Investimento Imobiliario",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
-      "preco": 85.1,
-      "p_vp": 0.78,
+      "preco": 85.31,
+      "p_vp": 0.77,
       "p_l": 0.0,
       "valor_patrimonial_cota": 110.2,
-      "dy_12m": 9.97,
-      "dy_mensal": 0.8308,
+      "dy_12m": 10.12,
+      "dy_mensal": 0.8433,
       "patrimonio_liquido": 1400000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -5045,16 +4155,6 @@
           "valor_por_cota": 0.66,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -5067,12 +4167,12 @@
       "nome": "HSI Malls Fundo de Investimento Imobiliario",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 83.57,
-      "p_vp": 0.84,
+      "preco": 83.49,
+      "p_vp": 0.83,
       "p_l": 0.0,
       "valor_patrimonial_cota": 100.06,
-      "dy_12m": 10.17,
-      "dy_mensal": 0.8475,
+      "dy_12m": 10.22,
+      "dy_mensal": 0.8517,
       "patrimonio_liquido": 2130000000.0,
       "vacancia_fisica": 3.8,
       "dados_completos": true,
@@ -5142,16 +4242,6 @@
           "valor_por_cota": 0.66,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -5164,12 +4254,12 @@
       "nome": "Fundo de Investimento Imobiliario Hotel Maxinvest Cotas",
       "segmento": "Hotel",
       "setor_atuacao": "Hotel",
-      "preco": 136.29,
-      "p_vp": 0.91,
+      "preco": 136.02,
+      "p_vp": 0.92,
       "p_l": 0.0,
       "valor_patrimonial_cota": 148.86,
-      "dy_12m": 12.64,
-      "dy_mensal": 1.0533,
+      "dy_12m": 12.58,
+      "dy_mensal": 1.0483,
       "patrimonio_liquido": 429910000.0,
       "vacancia_fisica": 39.0,
       "dados_completos": true,
@@ -5239,16 +4329,6 @@
           "valor_por_cota": 1.22,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 1.5,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 1.54,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -5336,16 +4416,6 @@
           "valor_por_cota": 0.75,
           "data_com": "2024-11-11",
           "data_pagamento": "2024-11-19"
-        },
-        {
-          "valor_por_cota": 0.8,
-          "data_com": "2024-10-09",
-          "data_pagamento": "2024-10-16"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2024-09-10",
-          "data_pagamento": "2024-09-17"
         }
       ],
       "ultimo_provento": {
@@ -5358,12 +4428,12 @@
       "nome": "JS Real Estate Multigestao-FII Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 57.38,
-      "p_vp": 0.57,
+      "preco": 57.43,
+      "p_vp": 0.56,
       "p_l": 0.0,
       "valor_patrimonial_cota": 101.64,
-      "dy_12m": 10.04,
-      "dy_mensal": 0.8367,
+      "dy_12m": 10.15,
+      "dy_mensal": 0.8458,
       "patrimonio_liquido": 2109999999.9999998,
       "vacancia_fisica": 9.4,
       "dados_completos": true,
@@ -5433,16 +4503,6 @@
           "valor_por_cota": 0.48,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.48,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.48,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -5530,16 +4590,6 @@
           "valor_por_cota": 0.11,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 0.11,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.14,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -5552,12 +4602,12 @@
       "nome": "Kinea Fundo Fundos de Investimento Imobiliario -FII",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 77.42,
-      "p_vp": 0.87,
+      "preco": 77.24,
+      "p_vp": 0.86,
       "p_l": 0.0,
       "valor_patrimonial_cota": 89.31,
-      "dy_12m": 12.38,
-      "dy_mensal": 1.0317,
+      "dy_12m": 12.43,
+      "dy_mensal": 1.0358,
       "patrimonio_liquido": 626470000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -5627,16 +4677,6 @@
           "valor_por_cota": 0.75,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.75,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.75,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -5649,12 +4689,12 @@
       "nome": "Kinea Rendimentos Imobiliarios Fundo de Investimento Imobiliario - FII Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 106.24,
-      "p_vp": 1.04,
+      "preco": 106.03,
+      "p_vp": 1.03,
       "p_l": 0.0,
       "valor_patrimonial_cota": 102.48,
-      "dy_12m": 13.46,
-      "dy_mensal": 1.1217,
+      "dy_12m": 13.53,
+      "dy_mensal": 1.1275,
       "patrimonio_liquido": 10970000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -5724,16 +4764,6 @@
           "valor_por_cota": 1.35,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 1.2,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-11"
-        },
-        {
-          "valor_por_cota": 1.2,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -5746,12 +4776,12 @@
       "nome": "Kinea High Yield CRI Fundo De Investimento Imobiliario - FII",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 99.37,
-      "p_vp": 1.0,
+      "preco": 98.49,
+      "p_vp": 1.01,
       "p_l": 0.0,
       "valor_patrimonial_cota": 97.66,
-      "dy_12m": 13.35,
-      "dy_mensal": 1.1125,
+      "dy_12m": 13.23,
+      "dy_mensal": 1.1025,
       "patrimonio_liquido": 3040000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -5821,16 +4851,6 @@
           "valor_por_cota": 1.3,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 1.3,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-11"
-        },
-        {
-          "valor_por_cota": 1.35,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -5843,12 +4863,12 @@
       "nome": "Kinea Indices Precos Fundo de Investimento Imobiliario- FII Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 90.34,
+      "preco": 90.41,
       "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 92.06,
-      "dy_12m": 11.24,
-      "dy_mensal": 0.9367,
+      "dy_12m": 11.29,
+      "dy_mensal": 0.9408,
       "patrimonio_liquido": 7370000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -5918,16 +4938,6 @@
           "valor_por_cota": 0.8,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 0.8,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-11"
-        },
-        {
-          "valor_por_cota": 1.04,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -5940,12 +4950,12 @@
       "nome": "Kinea Renda Imobiliaria Fundo de Investimento Imobiliario - FII Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 152.95,
-      "p_vp": 0.94,
+      "preco": 152.17,
+      "p_vp": 0.93,
       "p_l": 0.0,
       "valor_patrimonial_cota": 163.51,
-      "dy_12m": 8.44,
-      "dy_mensal": 0.7033,
+      "dy_12m": 8.52,
+      "dy_mensal": 0.71,
       "patrimonio_liquido": 4610000000.0,
       "vacancia_fisica": 3.9,
       "dados_completos": true,
@@ -6015,16 +5025,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -6037,12 +5037,12 @@
       "nome": "Kinea Securities Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 9.01,
-      "p_vp": 1.04,
+      "preco": 9.0,
+      "p_vp": 1.03,
       "p_l": 0.0,
       "valor_patrimonial_cota": 8.7,
-      "dy_12m": 12.76,
-      "dy_mensal": 1.0633,
+      "dy_12m": 12.81,
+      "dy_mensal": 1.0675,
       "patrimonio_liquido": 1760000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -6112,16 +5112,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 0.09,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -6209,16 +5199,6 @@
           "valor_por_cota": 0.64,
           "data_com": "2023-08-31",
           "data_pagamento": "2023-09-15"
-        },
-        {
-          "valor_por_cota": 0.64,
-          "data_com": "2023-07-31",
-          "data_pagamento": "2023-08-14"
-        },
-        {
-          "valor_por_cota": 0.64,
-          "data_com": "2023-06-30",
-          "data_pagamento": "2023-07-14"
         }
       ],
       "ultimo_provento": {
@@ -6306,16 +5286,6 @@
           "valor_por_cota": 0.8,
           "data_com": "2024-06-28",
           "data_pagamento": "2024-07-12"
-        },
-        {
-          "valor_por_cota": 0.87,
-          "data_com": "2024-05-31",
-          "data_pagamento": "2024-06-14"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2024-04-30",
-          "data_pagamento": "2024-05-15"
         }
       ],
       "ultimo_provento": {
@@ -6328,12 +5298,12 @@
       "nome": "Fundo de Investimento Imobiliario Maua Capital Recebiveis Imobiliarios",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 92.64,
-      "p_vp": 0.99,
+      "preco": 92.42,
+      "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 93.81,
-      "dy_12m": 12.9,
-      "dy_mensal": 1.075,
+      "dy_12m": 13.05,
+      "dy_mensal": 1.0875,
       "patrimonio_liquido": 1590000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -6403,16 +5373,6 @@
           "valor_por_cota": 0.9,
           "data_com": "2025-07-10",
           "data_pagamento": "2025-07-17"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-06-11",
-          "data_pagamento": "2025-06-18"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-05-13",
-          "data_pagamento": "2025-05-20"
         }
       ],
       "ultimo_provento": {
@@ -6495,21 +5455,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2023-04-13",
           "data_pagamento": "2023-04-20"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2023-03-10",
-          "data_pagamento": "2023-03-17"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2023-02-10",
-          "data_pagamento": "2023-02-17"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2023-01-11",
-          "data_pagamento": "2023-01-18"
         }
       ],
       "ultimo_provento": {
@@ -6522,12 +5467,12 @@
       "nome": "Merito Recebiveis Imobiliarios FII-Fundo de Investimento",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 28.6,
+      "preco": 28.68,
       "p_vp": 0.29,
       "p_l": 0.0,
       "valor_patrimonial_cota": 97.85,
-      "dy_12m": 40.31,
-      "dy_mensal": 3.3592,
+      "dy_12m": 40.39,
+      "dy_mensal": 3.3658,
       "patrimonio_liquido": 665380000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -6597,16 +5542,6 @@
           "valor_por_cota": 1.06,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.11,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.1,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -6694,16 +5629,6 @@
           "valor_por_cota": 0.15,
           "data_com": "2022-08-11",
           "data_pagamento": "2022-08-18"
-        },
-        {
-          "valor_por_cota": 0.138889,
-          "data_com": "2022-07-13",
-          "data_pagamento": "2022-07-20"
-        },
-        {
-          "valor_por_cota": 0.127778,
-          "data_com": "2022-06-13",
-          "data_pagamento": "2022-06-21"
         }
       ],
       "ultimo_provento": {
@@ -6786,21 +5711,6 @@
           "valor_por_cota": 0.54,
           "data_com": "2023-02-07",
           "data_pagamento": "2023-02-16"
-        },
-        {
-          "valor_por_cota": 0.511434,
-          "data_com": "2023-01-06",
-          "data_pagamento": "2023-01-17"
-        },
-        {
-          "valor_por_cota": 0.53,
-          "data_com": "2022-12-07",
-          "data_pagamento": "2022-12-16"
-        },
-        {
-          "valor_por_cota": 0.53,
-          "data_com": "2022-11-08",
-          "data_pagamento": "2022-11-18"
         }
       ],
       "ultimo_provento": {
@@ -6888,16 +5798,6 @@
           "valor_por_cota": 0.6,
           "data_com": "2022-11-14",
           "data_pagamento": "2022-11-22"
-        },
-        {
-          "valor_por_cota": 0.6,
-          "data_com": "2022-10-14",
-          "data_pagamento": "2022-10-21"
-        },
-        {
-          "valor_por_cota": 0.65,
-          "data_com": "2022-09-14",
-          "data_pagamento": "2022-09-21"
         }
       ],
       "ultimo_provento": {
@@ -6911,11 +5811,11 @@
       "segmento": "Logística",
       "setor_atuacao": "Logística",
       "preco": 9.45,
-      "p_vp": 1.03,
+      "p_vp": 1.02,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.23,
-      "dy_12m": 12.63,
-      "dy_mensal": 1.0525,
+      "dy_12m": 12.65,
+      "dy_mensal": 1.0542,
       "patrimonio_liquido": 4250000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -6985,16 +5885,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -7007,7 +5897,7 @@
       "nome": "Navi Imobiliario Total Return Fundos de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 72.22,
+      "preco": 72.23,
       "p_vp": 0.82,
       "p_l": 0.0,
       "valor_patrimonial_cota": 87.64,
@@ -7082,16 +5972,6 @@
           "valor_por_cota": 0.98402,
           "data_com": "2025-07-11",
           "data_pagamento": "2025-07-18"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2025-06-12",
-          "data_pagamento": "2025-06-20"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2025-05-14",
-          "data_pagamento": "2025-05-21"
         }
       ],
       "ultimo_provento": {
@@ -7179,16 +6059,6 @@
           "valor_por_cota": 1.65862,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 1.58,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 1.56,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -7202,11 +6072,11 @@
       "segmento": "Hospital",
       "setor_atuacao": "Hospital",
       "preco": 11.9,
-      "p_vp": 0.68,
+      "p_vp": 0.72,
       "p_l": 0.0,
       "valor_patrimonial_cota": 16.59,
-      "dy_12m": 11.12,
-      "dy_mensal": 0.9267,
+      "dy_12m": 10.5,
+      "dy_mensal": 0.875,
       "patrimonio_liquido": 688320000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -7276,16 +6146,6 @@
           "valor_por_cota": 0.08713,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-08"
-        },
-        {
-          "valor_por_cota": 0.08694,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-08"
-        },
-        {
-          "valor_por_cota": 0.08548,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-09"
         }
       ],
       "ultimo_provento": {
@@ -7298,12 +6158,12 @@
       "nome": "Ourinvest JPP Fundo de Investimento Imobiliario - FII",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 69.45,
-      "p_vp": 0.71,
+      "preco": 69.19,
+      "p_vp": 0.7,
       "p_l": 0.0,
       "valor_patrimonial_cota": 99.02,
-      "dy_12m": 19.81,
-      "dy_mensal": 1.6508,
+      "dy_12m": 20.21,
+      "dy_mensal": 1.6842,
       "patrimonio_liquido": 322040000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -7373,16 +6233,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.34,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.15,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -7399,8 +6249,8 @@
       "p_vp": 0.87,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.53,
-      "dy_12m": 14.27,
-      "dy_mensal": 1.1892,
+      "dy_12m": 14.36,
+      "dy_mensal": 1.1967,
       "patrimonio_liquido": 355170000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -7470,16 +6320,6 @@
           "valor_por_cota": 0.092,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.095,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.093,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -7492,12 +6332,12 @@
       "nome": "Fundo de Investimento Imobiliario FII Parque Dom Pedro Shopping Center Responsabilidade Limitada",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 2515.01,
-      "p_vp": 0.96,
+      "preco": 2510.0,
+      "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 2590.65,
-      "dy_12m": 9.22,
-      "dy_mensal": 0.7683,
+      "dy_12m": 8.99,
+      "dy_mensal": 0.7492,
       "patrimonio_liquido": 671250000.0,
       "vacancia_fisica": 2.1,
       "dados_completos": true,
@@ -7567,16 +6407,6 @@
           "valor_por_cota": 18.32588,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-20"
-        },
-        {
-          "valor_por_cota": 25.5,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-18"
-        },
-        {
-          "valor_por_cota": 24.5,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-20"
         }
       ],
       "ultimo_provento": {
@@ -7589,12 +6419,12 @@
       "nome": "Patria - VBI Asset Management Ltda",
       "segmento": "Escritórios",
       "setor_atuacao": "Escritórios",
-      "preco": 66.19,
-      "p_vp": 0.64,
+      "preco": 66.12,
+      "p_vp": 0.63,
       "p_l": 0.0,
       "valor_patrimonial_cota": 104.53,
-      "dy_12m": 7.75,
-      "dy_mensal": 0.6458,
+      "dy_12m": 7.76,
+      "dy_mensal": 0.6467,
       "patrimonio_liquido": 2840000000.0,
       "vacancia_fisica": 17.1,
       "dados_completos": true,
@@ -7664,16 +6494,6 @@
           "valor_por_cota": 0.5,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.5,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.5,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -7761,16 +6581,6 @@
           "valor_por_cota": 0.442,
           "data_com": "2024-02-01",
           "data_pagamento": "2024-02-08"
-        },
-        {
-          "valor_por_cota": 0.43,
-          "data_com": "2024-01-02",
-          "data_pagamento": "2024-01-09"
-        },
-        {
-          "valor_por_cota": 0.43,
-          "data_com": "2023-12-01",
-          "data_pagamento": "2023-12-08"
         }
       ],
       "ultimo_provento": {
@@ -7853,21 +6663,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2024-12-10",
           "data_pagamento": "2024-12-17"
-        },
-        {
-          "valor_por_cota": 0.09,
-          "data_com": "2024-11-11",
-          "data_pagamento": "2024-11-19"
-        },
-        {
-          "valor_por_cota": 0.055,
-          "data_com": "2024-10-09",
-          "data_pagamento": "2024-10-16"
-        },
-        {
-          "valor_por_cota": 0.055,
-          "data_com": "2024-09-10",
-          "data_pagamento": "2024-09-17"
         }
       ],
       "ultimo_provento": {
@@ -7880,12 +6675,12 @@
       "nome": "Patria Rendimento High Grade",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 75.99,
-      "p_vp": 0.83,
+      "preco": 75.8,
+      "p_vp": 0.82,
       "p_l": 0.0,
       "valor_patrimonial_cota": 92.06,
-      "dy_12m": 13.01,
-      "dy_mensal": 1.0842,
+      "dy_12m": 13.1,
+      "dy_mensal": 1.0917,
       "patrimonio_liquido": 1500000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -7955,16 +6750,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-09",
           "data_pagamento": "2025-07-16"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-06-10",
-          "data_pagamento": "2025-06-17"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-05-12",
-          "data_pagamento": "2025-05-19"
         }
       ],
       "ultimo_provento": {
@@ -7977,12 +6762,12 @@
       "nome": "Patria Properties",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 42.77,
+      "preco": 42.78,
       "p_vp": 0.54,
       "p_l": 0.0,
       "valor_patrimonial_cota": 79.07,
-      "dy_12m": 12.07,
-      "dy_mensal": 1.0058,
+      "dy_12m": 11.1,
+      "dy_mensal": 0.925,
       "patrimonio_liquido": 963040000.0,
       "vacancia_fisica": 23.8,
       "dados_completos": true,
@@ -8052,16 +6837,6 @@
           "valor_por_cota": 0.4,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.4,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -8074,12 +6849,12 @@
       "nome": "Patria Credito Imobiliario Estruturado",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 83.96,
-      "p_vp": 0.84,
+      "preco": 84.0,
+      "p_vp": 0.83,
       "p_l": 0.0,
       "valor_patrimonial_cota": 100.73,
-      "dy_12m": 16.15,
-      "dy_mensal": 1.3458,
+      "dy_12m": 16.34,
+      "dy_mensal": 1.3617,
       "patrimonio_liquido": 1290000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -8149,16 +6924,6 @@
           "valor_por_cota": 1.15,
           "data_com": "2025-07-09",
           "data_pagamento": "2025-07-16"
-        },
-        {
-          "valor_por_cota": 1.1,
-          "data_com": "2025-06-10",
-          "data_pagamento": "2025-06-17"
-        },
-        {
-          "valor_por_cota": 1.1,
-          "data_com": "2025-05-12",
-          "data_pagamento": "2025-05-19"
         }
       ],
       "ultimo_provento": {
@@ -8186,12 +6951,12 @@
       "nome": "Fundo de Investimento Imobiliario FII REC Renda Imobiliaria",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 33.87,
+      "preco": 33.16,
       "p_vp": 0.38,
       "p_l": 0.0,
       "valor_patrimonial_cota": 89.71,
-      "dy_12m": 16.28,
-      "dy_mensal": 1.3567,
+      "dy_12m": 15.46,
+      "dy_mensal": 1.2883,
       "patrimonio_liquido": 766450000.0,
       "vacancia_fisica": 8.2,
       "dados_completos": true,
@@ -8261,16 +7026,6 @@
           "valor_por_cota": 0.37,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.37,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.37,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -8283,12 +7038,12 @@
       "nome": "Fundo de Investimento Imobiliario FII REC Recebiveis Imobiliarios",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 76.44,
-      "p_vp": 0.91,
+      "preco": 76.21,
+      "p_vp": 0.89,
       "p_l": 0.0,
       "valor_patrimonial_cota": 86.48,
-      "dy_12m": 15.08,
-      "dy_mensal": 1.2567,
+      "dy_12m": 14.22,
+      "dy_mensal": 1.185,
       "patrimonio_liquido": 2290000000.0,
       "vacancia_fisica": 100.0,
       "dados_completos": true,
@@ -8358,16 +7113,6 @@
           "valor_por_cota": 0.951,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0141,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.0543,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -8384,8 +7129,8 @@
       "p_vp": 0.81,
       "p_l": 0.0,
       "valor_patrimonial_cota": 73.96,
-      "dy_12m": 3.49,
-      "dy_mensal": 0.2908,
+      "dy_12m": 2.32,
+      "dy_mensal": 0.1933,
       "patrimonio_liquido": 760040000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -8455,16 +7200,6 @@
           "valor_por_cota": 0.75,
           "data_com": "2024-10-08",
           "data_pagamento": "2024-10-15"
-        },
-        {
-          "valor_por_cota": 0.75,
-          "data_com": "2024-09-09",
-          "data_pagamento": "2024-09-16"
-        },
-        {
-          "valor_por_cota": 0.75,
-          "data_com": "2024-08-08",
-          "data_pagamento": "2024-08-15"
         }
       ],
       "ultimo_provento": {
@@ -8552,16 +7287,6 @@
           "valor_por_cota": 0.03,
           "data_com": "2024-06-28",
           "data_pagamento": "2024-07-12"
-        },
-        {
-          "valor_por_cota": 0.033,
-          "data_com": "2024-05-31",
-          "data_pagamento": "2024-06-14"
-        },
-        {
-          "valor_por_cota": 0.036,
-          "data_com": "2024-04-30",
-          "data_pagamento": "2024-05-15"
         }
       ],
       "ultimo_provento": {
@@ -8649,16 +7374,6 @@
           "valor_por_cota": 0.76,
           "data_com": "2022-06-30",
           "data_pagamento": "2022-07-15"
-        },
-        {
-          "valor_por_cota": 0.76,
-          "data_com": "2022-05-31",
-          "data_pagamento": "2022-06-15"
-        },
-        {
-          "valor_por_cota": 0.76,
-          "data_com": "2022-04-29",
-          "data_pagamento": "2022-05-13"
         }
       ],
       "ultimo_provento": {
@@ -8671,12 +7386,12 @@
       "nome": "SP Downtown Fundo de Investimento Imobiliario - FII Cotas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 34.28,
+      "preco": 33.9,
       "p_vp": 0.64,
       "p_l": 0.0,
       "valor_patrimonial_cota": 53.77,
-      "dy_12m": 16.97,
-      "dy_mensal": 1.4142,
+      "dy_12m": 17.09,
+      "dy_mensal": 1.4242,
       "patrimonio_liquido": 96680000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -8746,16 +7461,6 @@
           "valor_por_cota": 0.42,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.45,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.42,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -8768,12 +7473,12 @@
       "nome": "Suno Recebiveis Imobiliarios Fundo de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 84.75,
+      "preco": 84.83,
       "p_vp": 0.88,
       "p_l": 0.0,
       "valor_patrimonial_cota": 96.53,
-      "dy_12m": 14.12,
-      "dy_mensal": 1.1767,
+      "dy_12m": 14.14,
+      "dy_mensal": 1.1783,
       "patrimonio_liquido": 405430000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -8843,16 +7548,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-15",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-13",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-05-15",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -8865,12 +7560,12 @@
       "nome": "Suno Fundo de Fundos de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 72.7,
+      "preco": 72.63,
       "p_vp": 0.85,
       "p_l": 0.0,
       "valor_patrimonial_cota": 85.32,
-      "dy_12m": 14.08,
-      "dy_mensal": 1.1733,
+      "dy_12m": 14.09,
+      "dy_mensal": 1.1742,
       "patrimonio_liquido": 343030000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -8940,16 +7635,6 @@
           "valor_por_cota": 0.72,
           "data_com": "2025-07-15",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.72,
-          "data_com": "2025-06-13",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.72,
-          "data_com": "2025-05-15",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -8962,12 +7647,12 @@
       "nome": "Fundo de Investimento Imobiliario TG Ativo Real Cotas",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 47.01,
+      "preco": 46.98,
       "p_vp": 0.44,
       "p_l": 0.0,
       "valor_patrimonial_cota": 108.03,
-      "dy_12m": 21.03,
-      "dy_mensal": 1.7525,
+      "dy_12m": 21.34,
+      "dy_mensal": 1.7783,
       "patrimonio_liquido": 2550000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9037,16 +7722,6 @@
           "valor_por_cota": 1.0,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9059,12 +7734,12 @@
       "nome": "Tellus Properties - Fundo de Investimento Imobiliario",
       "segmento": "Lajes Corporativas",
       "setor_atuacao": "Lajes Corporativas",
-      "preco": 7.63,
+      "preco": 7.62,
       "p_vp": 0.8,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.51,
-      "dy_12m": 15.4,
-      "dy_mensal": 1.2833,
+      "dy_12m": 15.42,
+      "dy_mensal": 1.285,
       "patrimonio_liquido": 471960000.0,
       "vacancia_fisica": 5.69,
       "dados_completos": true,
@@ -9134,16 +7809,6 @@
           "valor_por_cota": 0.091155,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.11,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.095,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9156,12 +7821,12 @@
       "nome": "TRX Real Estate Fundo Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 83.6,
-      "p_vp": 0.9,
+      "preco": 83.09,
+      "p_vp": 0.88,
       "p_l": 0.0,
       "valor_patrimonial_cota": 95.75,
-      "dy_12m": 13.76,
-      "dy_mensal": 1.1467,
+      "dy_12m": 14.05,
+      "dy_mensal": 1.1708,
       "patrimonio_liquido": 5980000000.0,
       "vacancia_fisica": 0.67,
       "dados_completos": true,
@@ -9231,16 +7896,6 @@
           "valor_por_cota": 0.93,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.51,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.93,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9253,12 +7908,12 @@
       "nome": "URCA Prime Renda Fundo de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 17.98,
+      "preco": 17.84,
       "p_vp": 0.19,
       "p_l": 0.0,
       "valor_patrimonial_cota": 94.55,
-      "dy_12m": 22.36,
-      "dy_mensal": 1.8633,
+      "dy_12m": 22.66,
+      "dy_mensal": 1.8883,
       "patrimonio_liquido": 1110000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9328,16 +7983,6 @@
           "valor_por_cota": 0.4,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.45,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.45,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9350,12 +7995,12 @@
       "nome": "Vectis Juros Real Fundo de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 67.75,
-      "p_vp": 0.74,
+      "preco": 67.59,
+      "p_vp": 0.73,
       "p_l": 0.0,
       "valor_patrimonial_cota": 92.26,
-      "dy_12m": 16.44,
-      "dy_mensal": 1.37,
+      "dy_12m": 16.56,
+      "dy_mensal": 1.38,
       "patrimonio_liquido": 1360000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9425,16 +8070,6 @@
           "valor_por_cota": 0.95,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-13"
-        },
-        {
-          "valor_por_cota": 0.95,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-11"
-        },
-        {
-          "valor_por_cota": 1.05,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-12"
         }
       ],
       "ultimo_provento": {
@@ -9447,12 +8082,12 @@
       "nome": "Vinci Credit Securities Fundo de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 7.29,
-      "p_vp": 0.76,
+      "preco": 7.31,
+      "p_vp": 0.77,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.45,
-      "dy_12m": 15.26,
-      "dy_mensal": 1.2717,
+      "dy_12m": 15.05,
+      "dy_mensal": 1.2542,
       "patrimonio_liquido": 194180000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9522,16 +8157,6 @@
           "valor_por_cota": 0.09,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.11,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9544,12 +8169,12 @@
       "nome": "Valora Hedge Fund Fundo de Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 5.14,
-      "p_vp": 0.64,
+      "preco": 5.13,
+      "p_vp": 0.63,
       "p_l": 0.0,
       "valor_patrimonial_cota": 8.22,
-      "dy_12m": 16.44,
-      "dy_mensal": 1.37,
+      "dy_12m": 16.6,
+      "dy_mensal": 1.3833,
       "patrimonio_liquido": 1350000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9619,16 +8244,6 @@
           "valor_por_cota": 0.09,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-07"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-07"
-        },
-        {
-          "valor_por_cota": 0.09,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-06"
         }
       ],
       "ultimo_provento": {
@@ -9641,12 +8256,12 @@
       "nome": "Valora CRA Fundo de Investimento nas Cadeias Produtivas Agroindustriais Fiagro Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 8.43,
+      "preco": 8.41,
       "p_vp": 0.87,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.69,
-      "dy_12m": 19.64,
-      "dy_mensal": 1.6367,
+      "dy_12m": 19.57,
+      "dy_mensal": 1.6308,
       "patrimonio_liquido": 1030000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9716,16 +8331,6 @@
           "valor_por_cota": 0.125,
           "data_com": "2025-07-10",
           "data_pagamento": "2025-07-17"
-        },
-        {
-          "valor_por_cota": 0.125,
-          "data_com": "2025-06-11",
-          "data_pagamento": "2025-06-18"
-        },
-        {
-          "valor_por_cota": 0.12,
-          "data_com": "2025-05-13",
-          "data_pagamento": "2025-05-20"
         }
       ],
       "ultimo_provento": {
@@ -9738,12 +8343,12 @@
       "nome": "Valora Re III Fundo De Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 9.63,
+      "preco": 9.6,
       "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.81,
-      "dy_12m": 15.82,
-      "dy_mensal": 1.3183,
+      "dy_12m": 15.8,
+      "dy_mensal": 1.3167,
       "patrimonio_liquido": 1430000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -9813,16 +8418,6 @@
           "valor_por_cota": 0.12,
           "data_com": "2025-07-10",
           "data_pagamento": "2025-07-17"
-        },
-        {
-          "valor_por_cota": 0.12,
-          "data_com": "2025-06-11",
-          "data_pagamento": "2025-06-18"
-        },
-        {
-          "valor_por_cota": 0.12,
-          "data_com": "2025-05-13",
-          "data_pagamento": "2025-05-20"
         }
       ],
       "ultimo_provento": {
@@ -9835,12 +8430,12 @@
       "nome": "Vinci Logistica Fundo de Investimento Imobiliario - FII",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
-      "preco": 90.16,
-      "p_vp": 0.83,
+      "preco": 90.21,
+      "p_vp": 0.82,
       "p_l": 0.0,
       "valor_patrimonial_cota": 109.32,
-      "dy_12m": 10.3,
-      "dy_mensal": 0.8583,
+      "dy_12m": 10.38,
+      "dy_mensal": 0.865,
       "patrimonio_liquido": 1640000000.0,
       "vacancia_fisica": 0.5,
       "dados_completos": true,
@@ -9910,16 +8505,6 @@
           "valor_por_cota": 0.72,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.7,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.69,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -9932,12 +8517,12 @@
       "nome": "Vinci Offices Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 4.43,
-      "p_vp": 0.46,
+      "preco": 4.44,
+      "p_vp": 0.45,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.78,
-      "dy_12m": 12.11,
-      "dy_mensal": 1.0092,
+      "dy_12m": 12.14,
+      "dy_mensal": 1.0117,
       "patrimonio_liquido": 810050000.0,
       "vacancia_fisica": 22.0,
       "dados_completos": true,
@@ -10007,16 +8592,6 @@
           "valor_por_cota": 0.05,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.085,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.05,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10029,12 +8604,12 @@
       "nome": "Vinci Shopping Centers Fundo de Investimento Imobiliario - FII Cotas",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 103.48,
+      "preco": 103.62,
       "p_vp": 0.9,
       "p_l": 0.0,
       "valor_patrimonial_cota": 115.6,
-      "dy_12m": 9.55,
-      "dy_mensal": 0.7958,
+      "dy_12m": 9.59,
+      "dy_mensal": 0.7992,
       "patrimonio_liquido": 3330000000.0,
       "vacancia_fisica": 5.7,
       "dados_completos": true,
@@ -10104,16 +8679,6 @@
           "valor_por_cota": 0.81,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.81,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.8,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10201,16 +8766,6 @@
           "valor_por_cota": 0.82,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.85,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.75,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10223,12 +8778,12 @@
       "nome": "Versalhes Recebiveis Imobiliarios Fundo de Investimento Imobiliario",
       "segmento": "Multicategoria",
       "setor_atuacao": "Multicategoria",
-      "preco": 1.75,
-      "p_vp": 0.16,
+      "preco": 1.76,
+      "p_vp": 0.15,
       "p_l": 0.0,
       "valor_patrimonial_cota": 11.21,
-      "dy_12m": 19.62,
-      "dy_mensal": 1.635,
+      "dy_12m": 19.36,
+      "dy_mensal": 1.6133,
       "patrimonio_liquido": 334660000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -10298,16 +8853,6 @@
           "valor_por_cota": 0.026,
           "data_com": "2025-08-07",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.034,
-          "data_com": "2025-07-07",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.033,
-          "data_com": "2025-06-06",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10395,16 +8940,6 @@
           "valor_por_cota": 0.93,
           "data_com": "2024-12-30",
           "data_pagamento": "2025-01-09"
-        },
-        {
-          "valor_por_cota": 0.93,
-          "data_com": "2024-11-29",
-          "data_pagamento": "2024-12-09"
-        },
-        {
-          "valor_por_cota": 0.93,
-          "data_com": "2024-10-31",
-          "data_pagamento": "2024-11-08"
         }
       ],
       "ultimo_provento": {
@@ -10417,12 +8952,12 @@
       "nome": "XP Credito Imobiliario - Fundo De Investimento Imobiliario",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 80.1,
+      "preco": 79.81,
       "p_vp": 0.92,
       "p_l": 0.0,
       "valor_patrimonial_cota": 87.11,
-      "dy_12m": 13.46,
-      "dy_mensal": 1.1217,
+      "dy_12m": 13.55,
+      "dy_mensal": 1.1292,
       "patrimonio_liquido": 758000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -10492,16 +9027,6 @@
           "valor_por_cota": 0.96,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.95,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10518,8 +9043,8 @@
       "p_vp": 0.37,
       "p_l": 0.0,
       "valor_patrimonial_cota": 81.65,
-      "dy_12m": 27.59,
-      "dy_mensal": 2.2992,
+      "dy_12m": 25.13,
+      "dy_mensal": 2.0942,
       "patrimonio_liquido": 583810000.0,
       "vacancia_fisica": 4.0,
       "dados_completos": true,
@@ -10584,21 +9109,6 @@
           "valor_por_cota": 0.74,
           "data_com": "2025-07-18",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.74,
-          "data_com": "2025-06-17",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.74,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
-        },
-        {
-          "valor_por_cota": 0.74,
-          "data_com": "2025-04-16",
-          "data_pagamento": "2025-04-25"
         }
       ],
       "ultimo_provento": {
@@ -10611,12 +9121,12 @@
       "nome": "XP Log Fundo Investimento Imobiliario FII",
       "segmento": "Logística",
       "setor_atuacao": "Logística",
-      "preco": 91.45,
-      "p_vp": 0.88,
+      "preco": 91.22,
+      "p_vp": 0.87,
       "p_l": 0.0,
       "valor_patrimonial_cota": 105.03,
-      "dy_12m": 10.7,
-      "dy_mensal": 0.8917,
+      "dy_12m": 10.77,
+      "dy_mensal": 0.8975,
       "patrimonio_liquido": 5400000000.0,
       "vacancia_fisica": 8.1,
       "dados_completos": true,
@@ -10686,16 +9196,6 @@
           "valor_por_cota": 0.82,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.82,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.82,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10708,12 +9208,12 @@
       "nome": "XP Malls Fundo Investimento Imobiliario Investor",
       "segmento": "Shoppings",
       "setor_atuacao": "Shoppings",
-      "preco": 103.76,
-      "p_vp": 0.95,
+      "preco": 103.71,
+      "p_vp": 0.94,
       "p_l": 0.0,
       "valor_patrimonial_cota": 110.11,
-      "dy_12m": 10.56,
-      "dy_mensal": 0.88,
+      "dy_12m": 10.65,
+      "dy_mensal": 0.8875,
       "patrimonio_liquido": 7080000000.0,
       "vacancia_fisica": 4.1,
       "dados_completos": true,
@@ -10783,16 +9283,6 @@
           "valor_por_cota": 0.92,
           "data_com": "2025-07-18",
           "data_pagamento": "2025-07-25"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2025-06-17",
-          "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.92,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
@@ -10880,16 +9370,6 @@
           "valor_por_cota": 0.1,
           "data_com": "2023-12-28",
           "data_pagamento": "2024-01-15"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2023-11-30",
-          "data_pagamento": "2023-12-14"
-        },
-        {
-          "valor_por_cota": 0.1,
-          "data_com": "2023-10-31",
-          "data_pagamento": "2023-11-16"
         }
       ],
       "ultimo_provento": {
@@ -10902,12 +9382,12 @@
       "nome": "XP Selection Fundo de Fundos de Investimento Imobiliario - FII",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 5.91,
+      "preco": 5.94,
       "p_vp": 0.78,
       "p_l": 0.0,
       "valor_patrimonial_cota": 7.65,
-      "dy_12m": 13.77,
-      "dy_mensal": 1.1475,
+      "dy_12m": 13.84,
+      "dy_mensal": 1.1533,
       "patrimonio_liquido": 331160000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
@@ -10977,16 +9457,6 @@
           "valor_por_cota": 0.065,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 0.06,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 0.06,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
@@ -10999,12 +9469,12 @@
       "nome": "BB Renda Corporativa Fundo de Investimento Imobiliario Cotas",
       "segmento": "Outros",
       "setor_atuacao": "Outros",
-      "preco": 102.48,
-      "p_vp": 0.99,
+      "preco": 102.47,
+      "p_vp": 0.98,
       "p_l": 0.0,
       "valor_patrimonial_cota": 104.35,
-      "dy_12m": 14.26,
-      "dy_mensal": 1.1883,
+      "dy_12m": 14.39,
+      "dy_mensal": 1.1992,
       "patrimonio_liquido": 165920000.0,
       "vacancia_fisica": 5.5,
       "dados_completos": true,
@@ -11074,16 +9544,6 @@
           "valor_por_cota": 1.05,
           "data_com": "2025-07-31",
           "data_pagamento": "2025-08-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-06-30",
-          "data_pagamento": "2025-07-14"
-        },
-        {
-          "valor_por_cota": 1.0,
-          "data_com": "2025-05-30",
-          "data_pagamento": "2025-06-13"
         }
       ],
       "ultimo_provento": {
