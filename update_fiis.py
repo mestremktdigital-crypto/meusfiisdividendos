@@ -290,6 +290,10 @@ def _parse_investidor10_html(html):
         or _extract_after(text, r'DY\s+atual\s*:', r'([\d,]+)\s*%')
     )
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
+
+    # Captura P/L (Preço / Lucro) para ações
+    p_l = _extract_after(text, r'\bP\s*/\s*L\b', r'([\d,]+)')
+    
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
 
     # Segmento/setor:
@@ -360,6 +364,8 @@ def _parse_investidor10_html(html):
         resultado["dy_12m_pct"] = _to_float_br(dy_12m)
     if p_vp:
         resultado["p_vp"] = _to_float_br(p_vp)
+    if p_l:
+        resultado["p_l"] = _to_float_br(p_l)
     if vacancia:
         resultado["vacancia_pct"] = _to_float_br(vacancia)
     if segmento:
@@ -514,6 +520,7 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
         # "tudo ou nada" por ticker, é campo a campo, pra aproveitar ao
         # máximo o que o investidor10 já trouxe de mais atual).
         p_vp = i10.get("p_vp") or f.get("p_vp") or 0.0
+        p_l = i10.get("p_l") or 0.0
 
         if achou_inv10 and i10.get("dy_12m_pct") is not None:
             dy_12m = i10.get("dy_12m_pct") or 0.0
@@ -572,6 +579,7 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
             "setor_atuacao": setor_atuacao,
             "preco": float(preco),
             "p_vp": float(p_vp),
+            "p_l": float(p_l),
             "valor_patrimonial_cota": vpa,
             "dy_12m": float(dy_12m or 0.0),
             # Nenhuma fonte dá DY mensal isolado; aproximação por 1/12 do DY 12m,
