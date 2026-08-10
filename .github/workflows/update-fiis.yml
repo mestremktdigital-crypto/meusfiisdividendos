@@ -26,7 +26,6 @@ jobs:
       - name: Gerar fiis.json
         env:
           BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
-          BOLSAI_API_KEY: ${{ secrets.BOLSAI_API_KEY }}
         run: python update_fiis.py
 
       - name: Commit e Push das alterações
