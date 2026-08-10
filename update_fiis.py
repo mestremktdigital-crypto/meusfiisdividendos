@@ -212,15 +212,35 @@ def _parse_investidor10_html(html):
         _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
         or _extract_after(text, r'\bCOTAÇÃO\b', r'R\$\s*([\d\.,]+)')
     )
-    dy_12m = _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
+    # DY (12M) é o rótulo confirmado na página de FII. Ações costumam expor
+    # só "DY" (sem o "(12M)") — NÃO confirmei esse rótulo ao vivo (não tenho
+    # acesso de rede ao investidor10.com.br neste ambiente), é best-effort;
+    # se não bater, o campo simplesmente fica de fora, sem inventar número.
+    dy_12m = (
+        _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
+        or _extract_after(text, r'\bDY\b', r'([\d,]+)\s*%')
+    )
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
-    segmento = _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
-    vpa_txt = _extract_after(text, r'VAL\.\s*PATRIMONIAL\s*P/\s*COTA', r'R\$\s*([\d\.,]+)')
+    # "SEGMENTO" é o rótulo de FII; ações usam "SETOR DE ATUAÇÃO" — também
+    # não confirmado ao vivo, mesma ressalva do DY acima.
+    segmento = (
+        _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
+        or _extract_after(text, r'SETOR DE ATUA[ÇC][ÃA]O', r'([A-Za-zÀ-ú/, ]+?)(?:\s+SUBSETOR|\s+SEGMENTO|\s+ATIVIDADE)')
+    )
+    vpa_txt = (
+        _extract_after(text, r'VAL\.\s*PATRIMONIAL\s*P/\s*COTA', r'R\$\s*([\d\.,]+)')
+        or _extract_after(text, r'\bVPA\b', r'R\$?\s*([\d\.,]+)')
+    )
     # o valor patrimonial do fundo vem como "R$ 7,57" + unidade "Bilhões"
-    # separados (ex: "VALOR PATRIMONIAL R$ 7,57 Bilhões")
+    # separados (ex: "VALOR PATRIMONIAL R$ 7,57 Bilhões"). Pra ações, o
+    # rótulo equivalente costuma ser "PATRIMÔNIO LÍQUIDO" — tentativa extra,
+    # também não confirmada ao vivo.
     vp_match = re.search(
         r'(?<!P/ )VALOR PATRIMONIAL\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
+        text, re.IGNORECASE
+    ) or re.search(
+        r'PATRIM[ÔO]NIO\s*L[ÍI]QUIDO\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
         text, re.IGNORECASE
     )
     valor_mercado = 0.0
@@ -399,7 +419,7 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
         else:
             dy_12m = 0.0
 
-        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or "Fundo Imobiliário"
+        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or ""
         vacancia = i10.get("vacancia_pct") or f.get("vacancia_pct") or 0.0
         valor_mercado = i10.get("valor_mercado") or f.get("valor_mercado") or 0.0
 
