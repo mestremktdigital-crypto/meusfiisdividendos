@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-08-12T12:36:04.705757Z",
+  "gerado_em": "2026-08-13T00:09:41.150195Z",
   "comunicados": [
     {
       "id": "c_ALZR11_1265340",
@@ -5699,20 +5699,11 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRR11_1200958",
-      "ticker": "RBRR11",
-      "tipo": "Informes Periódicos",
-      "titulo": "Informes Periódicos, Informe Mensal - 05/2026",
-      "data": "21.05.2026",
-      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1200958&cvm=true",
-      "resumoIa": null
-    },
-    {
       "id": "c_RBRR11_rend_latest",
       "ticker": "RBRR11",
       "tipo": "Aviso aos Cotistas",
-      "titulo": "Rendimento: R$ 0,98 (Pag: 16/07/2026)",
-      "data": "09/07/2026",
+      "titulo": "Rendimento: R$ 0,90 (Pag: 18/08/2026)",
+      "data": "11/08/2026",
       "urlOriginal": "https://www.fundsexplorer.com.br/funds/rbrr11#comunicados",
       "resumoIa": null
     },
@@ -5861,20 +5852,11 @@
       "resumoIa": null
     },
     {
-      "id": "c_RBRY11_1200961",
-      "ticker": "RBRY11",
-      "tipo": "Relatórios",
-      "titulo": "Relatórios, Relatório Gerencial - 05/2026",
-      "data": "21.05.2026",
-      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1200961&cvm=true",
-      "resumoIa": null
-    },
-    {
       "id": "c_RBRY11_rend_latest",
       "ticker": "RBRY11",
       "tipo": "Aviso aos Cotistas",
-      "titulo": "Rendimento: R$ 1,00 (Pag: 16/07/2026)",
-      "data": "09/07/2026",
+      "titulo": "Rendimento: R$ 1,00 (Pag: 18/08/2026)",
+      "data": "11/08/2026",
       "urlOriginal": "https://www.fundsexplorer.com.br/funds/rbry11#comunicados",
       "resumoIa": null
     },
