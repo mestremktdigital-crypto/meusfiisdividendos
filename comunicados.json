@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-08-15T10:51:47.034195Z",
+  "gerado_em": "2026-08-15T22:51:46.361292Z",
   "comunicados": [
     {
       "id": "c_ALZR11_1293914",
@@ -950,8 +950,8 @@
       "id": "c_BTLG11_rend_latest",
       "ticker": "BTLG11",
       "tipo": "Aviso aos Cotistas",
-      "titulo": "Rendimento: R$ 0,81 (Pag: 24/07/2026)",
-      "data": "15/07/2026",
+      "titulo": "Rendimento: R$ 0,81 (Pag: 25/08/2026)",
+      "data": "14/08/2026",
       "urlOriginal": "https://www.fundsexplorer.com.br/funds/btlg11#comunicados",
       "resumoIa": null
     },
@@ -1235,20 +1235,11 @@
       "resumoIa": null
     },
     {
-      "id": "c_CPTS11_1221208",
-      "ticker": "CPTS11",
-      "tipo": "Aviso aos Cotistas",
-      "titulo": "Aviso aos Cotistas, Rendimentos e Amortizações - 06/2026",
-      "data": "15.06.2026",
-      "urlOriginal": "https://fnet.bmfbovespa.com.br/fnet/publico/exibirDocumento?id=1221208&cvm=true",
-      "resumoIa": null
-    },
-    {
       "id": "c_CPTS11_rend_latest",
       "ticker": "CPTS11",
       "tipo": "Aviso aos Cotistas",
-      "titulo": "Rendimento: R$ 0,09 (Pag: 21/07/2026)",
-      "data": "14/07/2026",
+      "titulo": "Rendimento: R$ 0,09 (Pag: 21/08/2026)",
+      "data": "14/08/2026",
       "urlOriginal": "https://www.fundsexplorer.com.br/funds/cpts11#comunicados",
       "resumoIa": null
     },
