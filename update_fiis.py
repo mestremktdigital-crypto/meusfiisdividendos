@@ -33,9 +33,33 @@ ENABLE_INVESTIDOR10 = os.environ.get("ENABLE_INVESTIDOR10", "true").strip().lowe
 
 TICKERS_FILE = "tickers.txt"
 OUTPUT_FILE = "fiis.json"
-BATCH_SIZE = 1  # O plano atual da brapi só aceita 1 ticker por chamada (lotes de 10 dão 400)
 SCRAPE_TIMEOUT = 15
 SCRAPE_SLEEP = 0.4  # intervalo entre requisições pro Investidor10 (educado com o servidor)
+
+# --------------------------------------------------------------------------
+# Janela de checagem do Investidor10: como só ele fornece nome do ativo,
+# VPA e o histórico mês a mês de proventos, e como esses dados não mudam
+# todo dia (proventos são anunciados historicamente sempre perto do mesmo
+# dia do mês), só raspamos um ticker por vez quando:
+#   (a) nunca tivemos dado dele;
+#   (b) já faz tempo demais que não checamos (rede de segurança, cobre
+#       fundos com calendário irregular); ou
+#   (c) hoje cai dentro da janela em volta do dia em que ele historicamente
+#       anuncia provento.
+# Isso reduz o volume diário de ~1200 tickers pra uma fração disso.
+# --------------------------------------------------------------------------
+JANELA_DIAS_PROVENTO = int(os.environ.get("JANELA_DIAS_PROVENTO", "5"))
+CHECAGEM_SEGURANCA_DIAS = int(os.environ.get("CHECAGEM_SEGURANCA_DIAS", "10"))
+
+# --------------------------------------------------------------------------
+# Identificadores internos de fonte usados no fiis.json em vez do nome do
+# domínio por extenso. É só um rótulo interno — não impede alguém que leia
+# este arquivo .py de descobrir a origem, só evita que o nome do site
+# apareça de forma óbvia pra quem só olha o JSON de saída público.
+# --------------------------------------------------------------------------
+FONTE_FUNDAMENTUS = "f4"
+FONTE_INVESTIDOR10 = "i7"
+FONTE_BRAPI = "b2"
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
@@ -63,8 +87,37 @@ def read_tickers():
         return tickers
 
 
+def read_estado_anterior():
+    """Carrega o fiis.json da execução anterior (se existir), pra recuperar
+    campos que só o Investidor10 fornece (nome, VPA, proventos, checagem)
+    nos dias em que um ticker não está na janela de raspagem. Sem isso,
+    esses campos sumiriam do JSON toda vez que o ticker não fosse checado."""
+    if not os.path.exists(OUTPUT_FILE):
+        return {}
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as fp:
+            data = json.load(fp)
+        return data.get("fiis", {})
+    except Exception as e:
+        print(f"⚠️ Não foi possível ler o estado anterior de {OUTPUT_FILE}: {e}")
+        return {}
+
+
+def _first_not_none(*valores):
+    """Retorna o primeiro valor da lista que não é None, na ordem de
+    prioridade dada. Diferente de um encadeamento de 'or', preserva um
+    0.0 legítimo (ex: DY de um fundo parado) em vez de tratá-lo como
+    'ausente' e cair pra próxima fonte por engano."""
+    for v in valores:
+        if v is not None:
+            return v
+    return None
+
+
 # --------------------------------------------------------------------------
-# FONTE 1: brapi.dev -> preço em tempo (quase) real e nome do ativo
+# FONTE 1 (fallback): brapi.dev — só é chamada pros tickers que o
+# Fundamentus não retornou (ex: ticker recém-listado, BDR, ou algo fora das
+# tabelas dele). Deixou de ser a fonte primária de preço.
 # --------------------------------------------------------------------------
 def fetch_brapi_batch(batch_tickers):
     if not batch_tickers:
@@ -93,28 +146,22 @@ def fetch_brapi_batch(batch_tickers):
             return output
     except Exception as e:
         print(f"  ❌ Erro no lote brapi [{tickers_str}]: {e}")
-        if len(batch_tickers) > 1:
-            print("  🔄 Tentando buscar tickers do lote individualmente...")
-            single_output = {}
-            for single_t in batch_tickers:
-                res = fetch_brapi_batch([single_t])
-                single_output.update(res)
-                time.sleep(0.2)
-            return single_output
         return {}
 
 
-def fetch_brapi_all(tickers):
+def fetch_brapi_fallback(tickers):
+    """Só roda pros tickers que o Fundamentus não cobriu. Mantém a brapi
+    como rede de segurança, não mais como fonte do dia a dia — por isso
+    volta a fazer sentido pedir um ticker por vez, mesmo com cota livre."""
+    if not tickers:
+        return {}
+    print(f"  🔁 {len(tickers)} tickers ausentes no Fundamentus — tentando brapi como fallback...")
     brapi_data = {}
-    total_batches = (len(tickers) + BATCH_SIZE - 1) // BATCH_SIZE
-    for i in range(0, len(tickers), BATCH_SIZE):
-        batch = tickers[i:i + BATCH_SIZE]
-        batch_num = (i // BATCH_SIZE) + 1
-        print(f"🚀 [brapi] Lote {batch_num}/{total_batches} ({len(batch)} tickers)...")
-        batch_res = fetch_brapi_batch(batch)
-        brapi_data.update(batch_res)
-        print(f"  └─ {len(batch_res)} de {len(batch)} retornados.")
+    for t in tickers:
+        res = fetch_brapi_batch([t])
+        brapi_data.update(res)
         time.sleep(0.3)
+    print(f"  └─ {len(brapi_data)} de {len(tickers)} resolvidos via brapi (fallback).")
     return brapi_data
 
 
@@ -154,7 +201,6 @@ def _get_flat_text(html):
     """
     if HAS_BS4:
         soup = BeautifulSoup(html, "html.parser")
-        # remove scripts/estilos pra não poluir o texto
         for tag in soup(["script", "style", "noscript"]):
             tag.decompose()
         text = soup.get_text(separator=" ")
@@ -166,9 +212,7 @@ def _get_flat_text(html):
 def _extract_after(text, label_pattern, value_pattern, window=300):
     """Acha `label_pattern` no texto e procura `value_pattern` logo depois
     (dentro de uma janela de `window` caracteres). Retorna o primeiro grupo
-    capturado ou None. É a base de toda a raspagem: resistente a mudança de
-    HTML/CSS, mas exige que o TEXTO visível da página continue parecido.
-    """
+    capturado ou None."""
     m = re.search(label_pattern, text, re.IGNORECASE)
     if not m:
         return None
@@ -191,33 +235,16 @@ def _http_get(url, use_curl_cffi=True):
 
 
 # --------------------------------------------------------------------------
-# FONTE 2: Investidor10 (scraping) -> nossa fonte principal de fundamentos
-# em tempo (quase) real. Cobre FIIs (/fiis/<ticker>/) E ações (/acoes/<ticker>/)
-# — tenta a URL de FII primeiro (maioria dos tickers da carteira), e só cai
-# pra URL de ação se a de FII não trouxer nada reconhecível (ticker não
-# existe nessa categoria, ou é mesmo uma ação como PETR4/VALE3).
-# Uma requisição por ticker (duas só no caso de ações, que erram a primeira
-# tentativa por definição).
-# --------------------------------------------------------------------------
-# --------------------------------------------------------------------------
-# Histórico de dividendos/proventos: tabela "Histórico de Dividendos" que
-# existe tanto em FII quanto em ação no Investidor10 (colunas: tipo, data
-# com, pagamento, valor). Um ativo pode ter várias linhas com a MESMA data
-# com (ex: JSCP + Dividendos + Rend. Trib. pagos juntos), então agrupamos
-# por mês da data-com e somamos os valores — assim cada "mês" vira um único
-# provento consolidado, do jeito que o app espera pra desenhar 1 barra por
-# mês no gráfico.
+# FONTE 2: Investidor10 (scraping) -> agora só fornece o que mais ninguém
+# dá em lote: nome bonito do ativo, VPA e o histórico de proventos. Só é
+# consultado por ticker quando ele está na janela (ver
+# precisa_checar_investidor10, mais abaixo).
 # --------------------------------------------------------------------------
 PROVENTO_LINHA_RE = re.compile(
     r'([A-ZÀ-Ú][A-Za-zÀ-ú\.]*(?:\s+[A-ZÀ-Ú][A-Za-zÀ-ú\.]*){0,2})\s+'
     r'(\d{2}/\d{2}/\d{4})\s+(\d{2}/\d{2}/\d{4})\s+(\d+,\d+)'
 )
 
-# Tipos de linha que aparecem na mesma tabela "Histórico de Dividendos" do
-# Investidor10 mas que NÃO são distribuição de caixa por cota/ação (o valor
-# reportado nelas é uma proporção/percentual do evento societário, não um
-# R$/cota real) — por isso são excluídos da soma de proventos. Ex.:
-# "Bonificação" 0,05 significa "5% de ações novas grátis", não R$0,05.
 TIPOS_NAO_MONETARIOS = {
     "bonificacao", "bonificação",
     "desdobramento", "desdobro",
@@ -228,9 +255,6 @@ TIPOS_NAO_MONETARIOS = {
 
 
 def _is_provento_monetario(tipo_txt):
-    """True se a linha for de fato uma distribuição em dinheiro
-    (Dividendos, JSCP, Rend. Trib. etc.), False se for um evento societário
-    não-monetário (bonificação, desdobramento, grupamento, subscrição)."""
     tipo_norm = tipo_txt.strip().lower()
     tipo_norm = (
         tipo_norm
@@ -255,13 +279,6 @@ def _is_provento_monetario(tipo_txt):
 
 
 def _parse_investidor10_proventos(text, max_meses=15):
-    """Extrai o histórico de pagamentos (tipo, data com, pagamento, valor)
-    e agrupa por mês da data-com, somando o valor de linhas do mesmo mês
-    (cobre o caso de JSCP + Dividendos + Rend. Trib. no mesmo ciclo).
-    Retorna lista ordenada do mais recente pro mais antigo, cada item no
-    formato que o app espera: valor_por_cota / data_com / data_pagamento
-    (datas em ISO, YYYY-MM-DD). Se a página não tiver a tabela, retorna [].
-    """
     grupos = OrderedDict()
     for tipo, dcom_txt, dpag_txt, valor_txt in PROVENTO_LINHA_RE.findall(text):
         if not _is_provento_monetario(tipo):
@@ -297,54 +314,21 @@ def _parse_investidor10_proventos(text, max_meses=15):
 
 
 def _parse_investidor10_html(html):
-    """Extrai os campos comuns às páginas de FII e de ação do Investidor10.
-
-    IMPORTANTE: FII e ação usam RÓTULOS DE TEXTO DIFERENTES pros mesmos dados
-    (confirmado comparando o HTML real de FII vs. o HTML real de PETR4). Por
-    isso cada campo abaixo tenta primeiro o rótulo de FII e, se não achar
-    nada, cai pro rótulo equivalente de ação. Isso é resistente: se um dia o
-    Investidor10 mudar o texto de um dos dois formatos, o outro continua
-    funcionando.
-
-    Campos que só existem mesmo em FII (VACÂNCIA) ficam de fora do dict pra
-    ação, sem inventar nada.
-    """
     text = _get_flat_text(html)
 
-    # Preço da cota/ação:
-    #   FII  -> rótulo "VALOR DA COTA"
-    #   ação -> "Cotação R$ 40,87" (rótulo e valor colados, sem ":" no meio —
-    #           existem várias outras ocorrências soltas de "Cotação" na
-    #           página, então exigir o "R$" logo em seguida evita pegar a
-    #           errada, ex: dentro do <title> ou nas cotações de commodities)
     preco_txt = (
         _extract_after(text, r'VALOR DA COTA', r'R\$\s*([\d\.,]+)')
         or _extract_after(text, r'Cota[çc][ãa]o\s+R\$', r'([\d\.,]+)', window=20)
         or _extract_after(text, r'\bCOTAÇÃO\b', r'R\$\s*([\d\.,]+)')
     )
-    # DY 12 meses:
-    #   FII  -> "DY (12M)"
-    #   ação -> só "DY 7,20%" no cabeçalho (sem "(12M)"), mas o texto exato
-    #           "DY atual: 7,20%" no gráfico de dividendos é mais específico
-    #           e evita pegar "DY:" da tabela de comparação com outras ações
     dy_12m = (
         _extract_after(text, r'DY\s*\(12M\)', r'([\d,]+)\s*%')
         or _extract_after(text, r'DY\s+atual\s*:', r'([\d,]+)\s*%')
     )
     p_vp = _extract_after(text, r'\bP\s*/\s*VP\b', r'([\d,]+)')
     vacancia = _extract_after(text, r'VAC[ÂA]NCIA\b', r'([\d,]+)\s*%')
-
-    # P/L (Preço / Lucro) para Ações:
     p_l = _extract_after(text, r'\bP\s*/\s*L\b', r'([\d,]+)', window=20)
 
-    # Segmento/setor:
-    #   FII  -> "SEGMENTO <nome> TIPO DE FUNDO" ou "... PRAZO"
-    #   ação -> não tem esses marcadores; usamos o par "Setor <X> Segmento <Y>"
-    #           que aparece junto na ficha da empresa. "Setor" é a categoria
-    #           mais ampla (equivalente em granularidade ao "segmento" de
-    #           FII, ex: "Petróleo, Gás e Biocombustíveis"), então vira o
-    #           campo "segmento"; "Segmento" (mais específico, ex:
-    #           "Exploração, Refino e Distribuição") vira "setor_atuacao".
     segmento = _extract_after(text, r'\bSEGMENTO\b', r'([A-Za-zÀ-ú/ ]+?)(?:\s+TIPO DE FUNDO|\s+PRAZO)')
     setor_atuacao_acao = None
     if not segmento:
@@ -357,18 +341,11 @@ def _parse_investidor10_html(html):
             segmento = m_setor.group(1)
             setor_atuacao_acao = m_setor.group(2).strip()
 
-    # VPA (valor patrimonial por cota/ação):
-    #   FII  -> "VAL. PATRIMONIAL P/COTA R$ X,XX"
-    #   ação -> só "VPA 37,31" (sem "R$", na tabela de múltiplos)
     vpa_txt = (
         _extract_after(text, r'VAL\.\s*PATRIMONIAL\s*P/\s*COTA', r'R\$\s*([\d\.,]+)')
         or _extract_after(text, r'\bVPA\b', r'([\d,]+)', window=20)
     )
 
-    # Patrimônio:
-    #   FII  -> "VALOR PATRIMONIAL R$ 7,57 Bilhões" (já é o patrimônio do fundo)
-    #   ação -> rótulo é outro: "Patrimônio Líquido R$ 480,94 Bilhões"
-    # (?<!P/ ) evita casar com "P/VP ... VALOR PATRIMONIAL" por engano.
     vp_match = re.search(
         r'(?<!P/ )VALOR PATRIMONIAL\D{0,20}?R\$\s*([\d\.,]+)\s*(Bilh\w*|Milh\w*|Mil\b)?',
         text, re.IGNORECASE
@@ -380,12 +357,6 @@ def _parse_investidor10_html(html):
     if vp_match:
         valor_mercado = _to_float_br_com_unidade(vp_match.group(1), vp_match.group(2))
 
-    # nome do ativo: pega do <h2> quando dá, sem depender do texto corrido.
-    # Tenta primeiro o <h2 class="name-company"> (elemento dedicado ao nome
-    # do ativo, existe tanto em FII quanto em ação) antes de cair pro
-    # primeiro <h2> da página — em ações, o primeiro <h2> às vezes é um
-    # banner promocional ("Não adie mais seus planos financeiros") e não o
-    # nome do ativo, então usar cegamente "o primeiro h2" pega o texto errado.
     nome = ""
     if HAS_BS4:
         try:
@@ -418,9 +389,6 @@ def _parse_investidor10_html(html):
     if valor_mercado:
         resultado["valor_mercado"] = valor_mercado
 
-    # Histórico de proventos (mesma tabela em FII e ação) -> alimenta o
-    # gráfico "DIVIDENDOS (12 MESES)" do app com dado real em vez da
-    # estimativa que ele usa quando esses campos não vêm preenchidos.
     proventos = _parse_investidor10_proventos(text)
     if proventos:
         resultado["proventos_12m"] = proventos
@@ -440,47 +408,101 @@ def fetch_investidor10_fii(ticker):
             html = _http_get(url)
         except Exception as e:
             ultimo_erro = e
-            continue  # tenta a próxima categoria (fii -> ação)
+            continue
 
         resultado = _parse_investidor10_html(html)
         if resultado:
             return resultado
-        # página respondeu mas não achou nada reconhecível: também tenta a
-        # próxima categoria antes de desistir.
 
     if ultimo_erro:
-        print(f"    ❌ [investidor10] {ticker} não encontrado (fii/ação): {ultimo_erro}")
+        print(f"    ❌ [i10] {ticker} não encontrado (fii/ação): {ultimo_erro}")
     else:
-        print(f"    ⚠️ [investidor10] {ticker} respondeu mas sem dados reconhecíveis.")
+        print(f"    ⚠️ [i10] {ticker} respondeu mas sem dados reconhecíveis.")
     return {}
 
 
-def fetch_investidor10_all(tickers):
+def _dia_tipico_do_mes(ultimo_provento):
+    """Dia do mês (1-31) da data-com do último provento salvo — usado como
+    estimativa de quando o próximo deve ser anunciado."""
+    if not ultimo_provento or not ultimo_provento.get("data_com"):
+        return None
+    try:
+        return int(ultimo_provento["data_com"].split("-")[2])
+    except (ValueError, IndexError, TypeError):
+        return None
+
+
+def _distancia_dias_no_mes(dia_a, dia_b):
+    """Distância circular aproximada entre dois dias do mês (1-31),
+    considerando o "wrap" de fim pra início do mês. É uma aproximação —
+    não trata meses de tamanhos diferentes com precisão perfeita, o que é
+    aceitável aqui (a rede de segurança de CHECAGEM_SEGURANCA_DIAS cobre
+    qualquer imprecisão de borda)."""
+    diff = abs(dia_a - dia_b)
+    return min(diff, 31 - diff)
+
+
+def precisa_checar_investidor10(ticker, estado_anterior, hoje):
+    """Decide se hoje é dia de raspar este ticker no Investidor10."""
+    prev = estado_anterior.get(ticker)
+    if not prev:
+        return True  # ticker novo — sempre checa pra semear o dado
+
+    ultima_checagem_str = prev.get(f"_chk_{FONTE_INVESTIDOR10}")
+    if not ultima_checagem_str:
+        return True
+
+    try:
+        ultima_checagem = datetime.strptime(ultima_checagem_str, "%Y-%m-%d")
+    except ValueError:
+        return True
+
+    if (hoje - ultima_checagem).days >= CHECAGEM_SEGURANCA_DIAS:
+        return True  # rede de segurança
+
+    dia_tipico = _dia_tipico_do_mes(prev.get("ultimo_provento"))
+    if dia_tipico is not None and _distancia_dias_no_mes(hoje.day, dia_tipico) <= JANELA_DIAS_PROVENTO:
+        return True  # dentro da janela de anúncio esperado
+
+    return False
+
+
+def fetch_investidor10_all(tickers, estado_anterior, hoje):
+    """Retorna (dados_coletados, conjunto_de_tickers_checados_hoje).
+    O segundo valor é necessário pro merge saber quem marcar com a data de
+    checagem de hoje, mesmo quando a raspagem falha (pra não martelar o
+    mesmo ticker todo dia só porque ele deu erro uma vez)."""
     if not ENABLE_INVESTIDOR10:
         print("  ⏭️  ENABLE_INVESTIDOR10=false — pulando Investidor10.")
-        return {}
+        return {}, set()
     if not HAS_BS4:
         print("  ⚠️ beautifulsoup4 não instalado — pulando Investidor10 (adicione ao requirements.txt).")
-        return {}
+        return {}, set()
 
-    print(f"  🔎 Consultando Investidor10 para {len(tickers)} tickers...")
+    selecionados = [t for t in tickers if precisa_checar_investidor10(t, estado_anterior, hoje)]
+    print(f"  🔎 {len(selecionados)} de {len(tickers)} tickers estão na janela de checagem hoje...")
+
     result = {}
+    checados = set()
     ok = 0
-    for t in tickers:
+    for t in selecionados:
         dados = fetch_investidor10_fii(t)
+        checados.add(t)  # marca como checado mesmo em caso de falha
         if dados:
             result[t] = dados
             ok += 1
         time.sleep(SCRAPE_SLEEP)
-    print(f"  ✅ {ok} de {len(tickers)} resolvidos via Investidor10.")
-    return result
+    print(f"  ✅ {ok} de {len(selecionados)} resolvidos via Investidor10.")
+    return result, checados
 
 
 # --------------------------------------------------------------------------
-# FONTE 3 (último recurso): Fundamentus -> dados atrasados em relação ao
-# Investidor10, então só entra pra preencher o que sobrar. Uma única
-# requisição cobre todos os FIIs de uma vez (por isso ainda vale manter,
-# mesmo com o atraso: é praticamente de graça).
+# FONTE 3 (agora primária): fundamentus.com.br em lote -> preço e
+# fundamentos numéricos de TODOS os tickers em só 2 requisições (uma pra
+# FIIs, uma pra ações). Sem cota, sem token, sem limite de requisições por
+# dia. Como o app atualiza depois das 18h (pregão já fechado), o preço de
+# fechamento daqui é equivalente ao "tempo real" que a brapi traria nesse
+# horário — por isso deixa de fazer sentido chamar a brapi todo dia.
 # --------------------------------------------------------------------------
 def fetch_fundamentus_fiis():
     url = "https://www.fundamentus.com.br/fii_resultado.php"
@@ -490,20 +512,14 @@ def fetch_fundamentus_fiis():
         with urllib.request.urlopen(req, timeout=20) as response:
             raw = response.read()
     except Exception as e:
-        print(f"  ❌ Erro ao acessar Fundamentus: {e}")
+        print(f"  ❌ Erro ao acessar Fundamentus (FIIs): {e}")
         return {}
 
-    # O site é antigo e serve em Latin-1, não UTF-8
     html = raw.decode('iso-8859-1', errors='ignore')
 
-    # IMPORTANTE: não depender de haver uma tag <tbody> explícita no HTML —
-    # o Fundamentus nem sempre fecha a tabela dessa forma, e isso fazia o
-    # parser antigo não achar nada (0 FIIs, mesmo com o site no ar).
-    # Pegamos a tabela inteira (cabeçalho + linhas) e filtramos linha por
-    # linha pelo formato do ticker na primeira célula.
     table_match = re.search(r'<table[^>]*>(.*?)</table>', html, re.DOTALL)
     if not table_match:
-        print("  ⚠️ Não foi possível localizar a tabela do Fundamentus (layout pode ter mudado).")
+        print("  ⚠️ Não foi possível localizar a tabela de FIIs do Fundamentus (layout pode ter mudado).")
         return {}
 
     rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
@@ -512,16 +528,16 @@ def fetch_fundamentus_fiis():
     for row in rows:
         cells = re.findall(r'<td[^>]*>(.*?)</td>', row, re.DOTALL)
         if len(cells) < 13:
-            continue  # linha de cabeçalho (usa <th>, não <td>) ou lixo
+            continue
         clean = [re.sub(r'<[^>]+>', '', c).strip() for c in cells]
 
         papel = clean[0].upper()
         if not TICKER_RE.match(papel):
-            continue  # não parece um ticker válido, ignora a linha
+            continue
 
         result[papel] = {
             "segmento": clean[1].strip() or "",
-            "preco": _to_float_br(clean[2]),  # cotação do próprio Fundamentus (fallback de preço)
+            "preco": _to_float_br(clean[2]),
             "dy_12m_pct": _to_float_br(clean[4]),
             "p_vp": _to_float_br(clean[5]),
             "valor_mercado": _to_float_br(clean[6]),
@@ -532,89 +548,122 @@ def fetch_fundamentus_fiis():
     return result
 
 
+def fetch_fundamentus_acoes():
+    """Espelha fetch_fundamentus_fiis(), mas pra ações (resultado.php).
+    Colunas na ordem em que a tabela do Fundamentus expõe:
+    0 papel, 1 cotação, 2 P/L, 3 P/VP, 4 PSR, 5 Div.Yield, 6 P/Ativo,
+    7 P/Cap.Giro, 8 P/EBIT, 9 P/ACL, 10 EV/EBIT, 11 EV/EBITDA, 12 Mrg Ebit,
+    13 Mrg. Líq., 14 ROIC, 15 ROE, 16 Liq. Corr., 17 Liq. 2 meses,
+    18 Patrim. Líq., 19 Dív.Brut/Patrim., 20 Cresc. Rec. 5a.
+    Usamos só o que o app precisa: cotação, P/L, P/VP, DY e patrimônio.
+    """
+    url = "https://www.fundamentus.com.br/resultado.php"
+    req = urllib.request.Request(url, headers=HEADERS)
+
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            raw = response.read()
+    except Exception as e:
+        print(f"  ❌ Erro ao acessar Fundamentus (ações): {e}")
+        return {}
+
+    html = raw.decode('iso-8859-1', errors='ignore')
+
+    table_match = re.search(r'<table[^>]*>(.*?)</table>', html, re.DOTALL)
+    if not table_match:
+        print("  ⚠️ Não foi possível localizar a tabela de ações do Fundamentus (layout pode ter mudado).")
+        return {}
+
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
+    result = {}
+
+    for row in rows:
+        cells = re.findall(r'<td[^>]*>(.*?)</td>', row, re.DOTALL)
+        if len(cells) < 19:
+            continue  # linha de cabeçalho ou lixo — tabela de ações tem mais colunas que a de FII
+        clean = [re.sub(r'<[^>]+>', '', c).strip() for c in cells]
+
+        papel = clean[0].upper()
+        if not TICKER_RE.match(papel):
+            continue
+
+        result[papel] = {
+            "preco": _to_float_br(clean[1]),
+            "p_l": _to_float_br(clean[2]),
+            "p_vp": _to_float_br(clean[3]),
+            "dy_12m_pct": _to_float_br(clean[5]),
+            "valor_mercado": _to_float_br(clean[18]),  # patrimônio líquido
+        }
+
+    print(f"  ✅ {len(result)} ações lidas do Fundamentus.")
+    return result
+
+
+def fetch_fundamentus_all():
+    """Roda as duas buscas em lote (FIIs + ações) — 2 requisições no total
+    pra cobrir toda a tickers.txt, contra as ~1200 que seriam necessárias
+    ticker a ticker. Esta é agora a fonte primária de preço e fundamentos."""
+    print("  🔎 Buscando FIIs em lote...")
+    fiis = fetch_fundamentus_fiis()
+    time.sleep(0.3)
+    print("  🔎 Buscando ações em lote...")
+    acoes = fetch_fundamentus_acoes()
+
+    combined = dict(acoes)
+    combined.update(fiis)  # em caso de colisão de ticker (raríssimo), FII prevalece
+    return combined
+
+
 # --------------------------------------------------------------------------
-# MERGE: combina brapi + investidor10 + fundamentus e deriva VPA / PL quando
-# algo faltar.
-# Ordem de prioridade (mais atual -> mais atrasado):
-#   Preço:       brapi > investidor10 > fundamentus
-#   Fundamentos: investidor10 > fundamentus (fundamentus é ÚLTIMO CASO)
+# MERGE: combina fundamentus (primária) + investidor10 (nome/VPA/proventos,
+# quando checado hoje) + brapi (fallback) + estado anterior (carrega campos
+# que não foram atualizados hoje, pra não sumirem do JSON).
 # Nunca inventa número: quando falta dado em todas as fontes, marca
 # dados_completos=False.
 # --------------------------------------------------------------------------
-def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
+def merge_data(tickers, fundamentus_data, brapi_data, inv10_data, checados_i10, estado_anterior, hoje_str):
     merged = {}
 
     for symbol in tickers:
+        f = fundamentus_data.get(symbol, {})
         b = brapi_data.get(symbol, {})
         i10 = inv10_data.get(symbol, {})
-        f = fundamentus_data.get(symbol, {})
+        prev = estado_anterior.get(symbol, {})
 
-        achou_inv10 = symbol in inv10_data
-        achou_fundamentus = symbol in fundamentus_data
+        preco = _first_not_none(f.get("preco"), b.get("preco"), i10.get("preco"), prev.get("preco")) or 0.0
+        nome = i10.get("nome") or b.get("nome") or prev.get("nome") or symbol
 
-        # Preço: brapi (tempo quase real) > investidor10 > fundamentus
-        preco = b.get("preco") or i10.get("preco") or f.get("preco") or 0.0
-        nome = b.get("nome") or i10.get("nome") or symbol
+        p_vp = _first_not_none(f.get("p_vp"), i10.get("p_vp"), prev.get("p_vp")) or 0.0
+        p_l = _first_not_none(f.get("p_l"), i10.get("p_l"), prev.get("p_l")) or 0.0
+        dy_12m = _first_not_none(f.get("dy_12m_pct"), i10.get("dy_12m_pct"), prev.get("dy_12m")) or 0.0
+        vacancia = _first_not_none(f.get("vacancia_pct"), i10.get("vacancia_pct"), prev.get("vacancia_fisica")) or 0.0
+        patrimonio = _first_not_none(f.get("valor_mercado"), i10.get("valor_mercado"), prev.get("patrimonio_liquido")) or 0.0
 
-        # Fundamentos: investidor10 primeiro sempre; fundamentus só entra
-        # quando o investidor10 não trouxe o campo específico (não é
-        # "tudo ou nada" por ticker, é campo a campo, pra aproveitar ao
-        # máximo o que o investidor10 já trouxe de mais atual).
-        p_vp = i10.get("p_vp") or f.get("p_vp") or 0.0
-        p_l = i10.get("p_l") or 0.0
+        segmento = f.get("segmento") or i10.get("segmento") or b.get("segmento_brapi") or prev.get("segmento") or ""
+        setor_atuacao = i10.get("setor_atuacao") or prev.get("setor_atuacao") or segmento
 
-        if achou_inv10 and i10.get("dy_12m_pct") is not None:
-            dy_12m = i10.get("dy_12m_pct") or 0.0
-        elif achou_fundamentus:
-            dy_12m = f.get("dy_12m_pct") or 0.0
-        else:
-            dy_12m = 0.0
-
-        segmento = i10.get("segmento") or f.get("segmento") or b.get("segmento_brapi") or (
-            "Fundo Imobiliário" if achou_fundamentus else ""
-        )
-        # setor_atuacao: quando o investidor10 traz a classificação mais fina
-        # (caso de ações, ex: "Exploração, Refino e Distribuição"), usa ela;
-        # senão repete o mesmo valor de "segmento", como já era feito antes.
-        setor_atuacao = i10.get("setor_atuacao") or segmento
-        vacancia = i10.get("vacancia_pct") or f.get("vacancia_pct") or 0.0
-        valor_mercado = i10.get("valor_mercado") or f.get("valor_mercado") or 0.0
-
-        # VPA: usa o valor já pronto do investidor10 quando tiver, senão
-        # deriva de Preço ÷ P/VP do Fundamentus (nunca mistura fonte de
-        # preço com fonte de P/VP diferentes, pra não distorcer o número).
         if i10.get("vpa"):
             vpa = round(i10.get("vpa"), 2)
-        elif achou_fundamentus and p_vp > 0 and f.get("preco"):
-            vpa = round(f.get("preco") / p_vp, 2)
+        elif prev.get("valor_patrimonial_cota"):
+            vpa = prev.get("valor_patrimonial_cota")
+        elif p_vp > 0 and preco:
+            vpa = round(preco / p_vp, 2)
         else:
             vpa = 0.0
 
-        # valor_mercado já É o patrimônio quando vem do Investidor10 (que
-        # reporta patrimônio do fundo, não capitalização de mercado);
-        # quando só temos o dado do Fundamentus, valor_mercado ÷ p_vp
-        # aproxima o patrimônio líquido.
-        if valor_mercado:
-            patrimonio_liquido = valor_mercado
-        elif p_vp > 0 and f.get("valor_mercado"):
-            patrimonio_liquido = round(f.get("valor_mercado") / p_vp, 2)
-        else:
-            patrimonio_liquido = 0.0
-
         tem_preco = preco > 0
-        # "Completo" = encontramos o ticker em pelo menos uma fonte de fundamentos.
-        tem_fundamentos = achou_inv10 or achou_fundamentus
+        tem_fundamentos = bool(f) or bool(i10) or bool(prev)
 
         fontes = []
-        if b:
-            fontes.append("brapi.dev")
-        if i10:
-            fontes.append("investidor10.com.br")
         if f:
-            fontes.append("fundamentus.com.br")
-        fonte = " + ".join(fontes) if fontes else "indisponivel"
+            fontes.append(FONTE_FUNDAMENTUS)
+        if i10:
+            fontes.append(FONTE_INVESTIDOR10)
+        if b:
+            fontes.append(FONTE_BRAPI)
+        fonte = "+".join(fontes) if fontes else prev.get("fonte_dados", "indisponivel")
 
-        merged[symbol] = {
+        registro = {
             "nome": nome,
             "segmento": segmento,
             "setor_atuacao": setor_atuacao,
@@ -622,25 +671,25 @@ def merge_data(tickers, brapi_data, inv10_data, fundamentus_data):
             "p_vp": float(p_vp),
             "p_l": float(p_l),
             "valor_patrimonial_cota": vpa,
-            "dy_12m": float(dy_12m or 0.0),
-            # Nenhuma fonte dá DY mensal isolado; aproximação por 1/12 do DY 12m,
-            # igual à convenção já usada antes no script.
-            "dy_mensal": round((dy_12m or 0.0) / 12.0, 4) if dy_12m else 0.0,
-            "patrimonio_liquido": float(patrimonio_liquido),
+            "dy_12m": float(dy_12m),
+            "dy_mensal": round(dy_12m / 12.0, 4) if dy_12m else 0.0,
+            "patrimonio_liquido": float(patrimonio),
             "vacancia_fisica": float(vacancia),
             "dados_completos": bool(tem_preco and tem_fundamentos),
             "fonte_dados": fonte,
         }
 
-        # Proventos reais: só o investidor10 fornece o histórico completo por
-        # pagamento (brapi.dev e fundamentus.com.br não têm esse dado). Se
-        # não veio nada, deixa de fora — sem isso, o app já sabe cair no
-        # cálculo estimado sozinho (preço × DY mensal), então não há motivo
-        # pra inventar número aqui também.
-        proventos_12m = i10.get("proventos_12m")
+        proventos_12m = i10.get("proventos_12m") or prev.get("proventos_12m")
         if proventos_12m:
-            merged[symbol]["proventos_12m"] = proventos_12m
-            merged[symbol]["ultimo_provento"] = i10.get("ultimo_provento")
+            registro["proventos_12m"] = proventos_12m
+            registro["ultimo_provento"] = i10.get("ultimo_provento") or prev.get("ultimo_provento")
+
+        if symbol in checados_i10:
+            registro[f"_chk_{FONTE_INVESTIDOR10}"] = hoje_str
+        elif prev.get(f"_chk_{FONTE_INVESTIDOR10}"):
+            registro[f"_chk_{FONTE_INVESTIDOR10}"] = prev[f"_chk_{FONTE_INVESTIDOR10}"]
+
+        merged[symbol] = registro
 
     return merged
 
@@ -653,30 +702,38 @@ def main():
         print("⚠️ Nenhum ticker encontrado. Encerrando.")
         return
 
-    if not BRAPI_TOKEN:
-        print("⚠️ BRAPI_TOKEN não detectado. As cotações podem vir limitadas.")
-    else:
-        print("✅ BRAPI_TOKEN carregado com sucesso.")
+    hoje_com_hora = datetime.utcnow()
+    hoje = datetime(hoje_com_hora.year, hoje_com_hora.month, hoje_com_hora.day)
+    hoje_str = hoje.strftime("%Y-%m-%d")
 
-    print("\n--- Etapa 1/3: preços via brapi.dev ---")
-    brapi_data = fetch_brapi_all(tickers)
+    estado_anterior = read_estado_anterior()
+    print(f"📦 Estado anterior carregado: {len(estado_anterior)} tickers.")
 
-    print("\n--- Etapa 2/3: fundamentos em tempo real via investidor10.com.br ---")
-    inv10_data = fetch_investidor10_all(tickers)
+    print("\n--- Etapa 1/3: preço e fundamentos via Fundamentus (fonte primária, 2 requisições no total) ---")
+    fundamentus_data = fetch_fundamentus_all()
 
-    print("\n--- Etapa 3/3: fundamentus.com.br (ÚLTIMO CASO, só preenche o que sobrar) ---")
-    fundamentus_data = fetch_fundamentus_fiis()
+    faltantes = [t for t in tickers if t not in fundamentus_data]
+    print(f"\n--- Etapa 2/3: brapi como fallback ({len(faltantes)} tickers ausentes no Fundamentus) ---")
+    if faltantes and not BRAPI_TOKEN:
+        print("⚠️ BRAPI_TOKEN não detectado — fallback pode vir limitado.")
+    brapi_data = fetch_brapi_fallback(faltantes)
 
-    fiis_data = merge_data(tickers, brapi_data, inv10_data, fundamentus_data)
+    print("\n--- Etapa 3/3: Investidor10 (nome, VPA, proventos — só tickers na janela de checagem) ---")
+    inv10_data, checados_i10 = fetch_investidor10_all(tickers, estado_anterior, hoje)
+
+    fiis_data = merge_data(tickers, fundamentus_data, brapi_data, inv10_data, checados_i10, estado_anterior, hoje_str)
 
     completos = sum(1 for v in fiis_data.values() if v["dados_completos"])
-    fontes_usadas = ["brapi.dev"]
-    if ENABLE_INVESTIDOR10 and HAS_BS4:
-        fontes_usadas.append("investidor10.com.br")
-    fontes_usadas.append("fundamentus.com.br")
+
+    fontes_usadas = [FONTE_FUNDAMENTUS]
+    if brapi_data:
+        fontes_usadas.append(FONTE_BRAPI)
+    if inv10_data:
+        fontes_usadas.append(FONTE_INVESTIDOR10)
+
     result = {
-        "gerado_em": datetime.utcnow().isoformat() + "Z",
-        "fonte": " + ".join(fontes_usadas),
+        "gerado_em": hoje_com_hora.isoformat() + "Z",
+        "fonte": "+".join(fontes_usadas),
         "total_fiis": len(fiis_data),
         "fiis_com_dados_completos": completos,
         "fiis": fiis_data,
@@ -685,8 +742,8 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
-    print(f"\n🎉 SUCESSO! {len(fiis_data)} FIIs salvos em {OUTPUT_FILE} "
-          f"({completos} com fundamentos completos).")
+    print(f"\n🎉 SUCESSO! {len(fiis_data)} ativos salvos em {OUTPUT_FILE} "
+          f"({completos} com dados completos, {len(checados_i10)} checados no Investidor10 hoje).")
 
 
 if __name__ == "__main__":
