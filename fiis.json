@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-08-18T11:45:44.385947Z",
+  "gerado_em": "2026-08-18T23:03:20.861415Z",
   "fonte": "f4+b2+i7",
   "total_fiis": 1142,
   "fiis_com_dados_completos": 1046,
@@ -59,7 +59,7 @@
       "preco": 92.4,
       "p_vp": 0.97,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 94.67,
+      "valor_patrimonial_cota": 95.21,
       "dy_12m": 11.55,
       "dy_mensal": 0.9625,
       "patrimonio_liquido": 442521000.0,
@@ -261,7 +261,7 @@
       "preco": 8.17,
       "p_vp": 0.74,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 10.46,
+      "valor_patrimonial_cota": 10.78,
       "dy_12m": 6.6,
       "dy_mensal": 0.55,
       "patrimonio_liquido": 274724000.0,
@@ -359,7 +359,7 @@
       "preco": 7.3,
       "p_vp": 0.78,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 9.08,
+      "valor_patrimonial_cota": 9.15,
       "dy_12m": 14.65,
       "dy_mensal": 1.2208,
       "patrimonio_liquido": 142463000.0,
@@ -473,7 +473,7 @@
       "preco": 9.77,
       "p_vp": 0.92,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 10.67,
+      "valor_patrimonial_cota": 10.78,
       "dy_12m": 9.25,
       "dy_mensal": 0.7708,
       "patrimonio_liquido": 1607280000.0,
@@ -481,6 +481,11 @@
       "dados_completos": true,
       "fonte_dados": "f4+i7",
       "proventos_12m": [
+        {
+          "valor_por_cota": 0.084,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
         {
           "valor_por_cota": 0.08355,
           "data_com": "2026-07-17",
@@ -550,17 +555,12 @@
           "valor_por_cota": 0.08155,
           "data_com": "2025-06-17",
           "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.08155,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
-        "valor_por_cota": 0.08355,
-        "data_com": "2026-07-17",
-        "data_pagamento": "2026-07-24"
+        "valor_por_cota": 0.084,
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -571,7 +571,7 @@
       "preco": 83.0,
       "p_vp": 1.04,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 84.29,
+      "valor_patrimonial_cota": 82.98,
       "dy_12m": 5.61,
       "dy_mensal": 0.4675,
       "patrimonio_liquido": 90119700.0,
@@ -3693,6 +3693,11 @@
       "fonte_dados": "f4+i7",
       "proventos_12m": [
         {
+          "valor_por_cota": 0.56,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
+        {
           "valor_por_cota": 0.57,
           "data_com": "2026-07-16",
           "data_pagamento": "2026-07-23"
@@ -3761,17 +3766,12 @@
           "valor_por_cota": 0.6,
           "data_com": "2025-06-17",
           "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.6,
-          "data_com": "2025-05-19",
-          "data_pagamento": "2025-05-26"
         }
       ],
       "ultimo_provento": {
-        "valor_por_cota": 0.57,
-        "data_com": "2026-07-16",
-        "data_pagamento": "2026-07-23"
+        "valor_por_cota": 0.56,
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -4426,7 +4426,7 @@
       "nome": "BTG Pactual Renda Urbana Fundo de Investimento Imobiliario Responsabilidade Limitada",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 84.71,
+      "preco": 85.92,
       "p_vp": 1.0,
       "p_l": 0.0,
       "valor_patrimonial_cota": 84.46,
@@ -4453,6 +4453,11 @@
       "dados_completos": true,
       "fonte_dados": "f4+i7",
       "proventos_12m": [
+        {
+          "valor_por_cota": 0.92,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
         {
           "valor_por_cota": 0.92,
           "data_com": "2026-07-17",
@@ -4522,17 +4527,12 @@
           "valor_por_cota": 1.98,
           "data_com": "2025-06-16",
           "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 1.07,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
         "valor_por_cota": 0.92,
-        "data_com": "2026-07-17",
-        "data_pagamento": "2026-07-24"
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -7116,7 +7116,7 @@
       "nome": "Cyrela Credito - Fundo de Investimento Imobiliario",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 8.15,
+      "preco": 8.23,
       "p_vp": 0.86,
       "p_l": 0.0,
       "valor_patrimonial_cota": 9.43,
@@ -8842,7 +8842,7 @@
       "nome": "Fundo De Investimento Imobiliario De Desenvolvimento De Escritorios BoutiqueResponsabilidade Limitada",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 1284.4,
+      "preco": 1285.28,
       "p_vp": 1.27,
       "p_l": 0.0,
       "valor_patrimonial_cota": 1010.63,
@@ -9735,6 +9735,11 @@
       "proventos_12m": [
         {
           "valor_por_cota": 0.93,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
+        {
+          "valor_por_cota": 0.93,
           "data_com": "2026-07-17",
           "data_pagamento": "2026-07-24"
         },
@@ -9802,17 +9807,12 @@
           "valor_por_cota": 0.91,
           "data_com": "2025-06-17",
           "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.9,
-          "data_com": "2025-05-16",
-          "data_pagamento": "2025-05-23"
         }
       ],
       "ultimo_provento": {
         "valor_por_cota": 0.93,
-        "data_com": "2026-07-17",
-        "data_pagamento": "2026-07-24"
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -12685,7 +12685,7 @@
       "nome": "Fundo de Investimento Imobiliario Panamby Cotas",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 22.74,
+      "preco": 22.72,
       "p_vp": 0.78,
       "p_l": 0.0,
       "valor_patrimonial_cota": 29.18,
@@ -13534,7 +13534,7 @@
       "nome": "Fundo De Investimento Imobiliario Rooftop III Responsabilidade Limitada Class -Senior-",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 133.36,
+      "preco": 133.48,
       "p_vp": 1.51,
       "p_l": 0.0,
       "valor_patrimonial_cota": 88.61,
@@ -13990,7 +13990,7 @@
       "nome": "Fundo de Investimento Imobiliario True Multiestrategia - Responsabilidade Limitada",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 23.33,
+      "preco": 23.55,
       "p_vp": 0.82,
       "p_l": 0.0,
       "valor_patrimonial_cota": 28.31,
@@ -14446,7 +14446,7 @@
       "nome": "Fundo de Investimentos Imobilairios de Permuta Financeira Lote5 Senior Responsabilidade Limitada",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 66.54,
+      "preco": 61.68,
       "p_vp": 0.55,
       "p_l": 0.0,
       "valor_patrimonial_cota": 114.65,
@@ -14478,7 +14478,7 @@
       "nome": "Galapagos Desenvolvimento Logistico Fundo de Investimento Imobiliario Responsabilidade Limitada",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 126.12,
+      "preco": 126.21,
       "p_vp": 1.11,
       "p_l": 0.0,
       "valor_patrimonial_cota": 113.24,
@@ -14494,7 +14494,7 @@
       "nome": "GALAPAGOS SP SURF FUNDO DE INVESTIMENTO IMOBILIARIO RESPONSABILIDADE LIMITADA",
       "segmento": "",
       "setor_atuacao": "",
-      "preco": 116.08,
+      "preco": 116.16,
       "p_vp": 0.0,
       "p_l": 0.0,
       "valor_patrimonial_cota": 0.0,
@@ -18557,6 +18557,11 @@
       "fonte_dados": "f4+i7",
       "proventos_12m": [
         {
+          "valor_por_cota": 0.35,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
+        {
           "valor_por_cota": 2.517334,
           "data_com": "2026-07-21",
           "data_pagamento": "2026-07-28"
@@ -18625,17 +18630,12 @@
           "valor_por_cota": 0.74,
           "data_com": "2025-05-16",
           "data_pagamento": "2025-05-23"
-        },
-        {
-          "valor_por_cota": 0.74,
-          "data_com": "2025-04-16",
-          "data_pagamento": "2025-04-25"
         }
       ],
       "ultimo_provento": {
-        "valor_por_cota": 2.517334,
-        "data_com": "2026-07-21",
-        "data_pagamento": "2026-07-28"
+        "valor_por_cota": 0.35,
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -25365,7 +25365,7 @@
       "preco": 7.18,
       "p_vp": 0.74,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 9.33,
+      "valor_patrimonial_cota": 9.21,
       "dy_12m": 13.31,
       "dy_mensal": 1.1092,
       "patrimonio_liquido": 1050820000.0,
@@ -25871,7 +25871,7 @@
       "preco": 62.69,
       "p_vp": 0.59,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 109.21,
+      "valor_patrimonial_cota": 102.64,
       "dy_12m": 14.16,
       "dy_mensal": 1.18,
       "patrimonio_liquido": 283875000.0,
@@ -28132,7 +28132,7 @@
       "preco": 99.0,
       "p_vp": 0.93,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 104.38,
+      "valor_patrimonial_cota": 101.63,
       "dy_12m": 11.76,
       "dy_mensal": 0.98,
       "patrimonio_liquido": 498136000.0,
@@ -29451,7 +29451,7 @@
       "preco": 86.49,
       "p_vp": 0.83,
       "p_l": 0.0,
-      "valor_patrimonial_cota": 102.13,
+      "valor_patrimonial_cota": 101.44,
       "dy_12m": 13.66,
       "dy_mensal": 1.1383,
       "patrimonio_liquido": 366289000.0,
@@ -32282,6 +32282,11 @@
       "proventos_12m": [
         {
           "valor_por_cota": 2.9,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-26"
+        },
+        {
+          "valor_por_cota": 2.9,
           "data_com": "2026-07-17",
           "data_pagamento": "2026-07-27"
         },
@@ -32349,17 +32354,12 @@
           "valor_por_cota": 2.9,
           "data_com": "2025-06-17",
           "data_pagamento": "2025-06-26"
-        },
-        {
-          "valor_por_cota": 2.9,
-          "data_com": "2025-05-19",
-          "data_pagamento": "2025-05-27"
         }
       ],
       "ultimo_provento": {
         "valor_por_cota": 2.9,
-        "data_com": "2026-07-17",
-        "data_pagamento": "2026-07-27"
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-26"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -33506,6 +33506,11 @@
       "fonte_dados": "f4+i7",
       "proventos_12m": [
         {
+          "valor_por_cota": 0.1,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
+        {
           "valor_por_cota": 0.13,
           "data_com": "2026-07-16",
           "data_pagamento": "2026-07-23"
@@ -33574,17 +33579,12 @@
           "valor_por_cota": 0.12,
           "data_com": "2025-06-17",
           "data_pagamento": "2025-06-25"
-        },
-        {
-          "valor_por_cota": 0.11,
-          "data_com": "2025-05-19",
-          "data_pagamento": "2025-05-26"
         }
       ],
       "ultimo_provento": {
-        "valor_por_cota": 0.13,
-        "data_com": "2026-07-16",
-        "data_pagamento": "2026-07-23"
+        "valor_por_cota": 0.1,
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -33603,6 +33603,11 @@
       "dados_completos": true,
       "fonte_dados": "f4+i7",
       "proventos_12m": [
+        {
+          "valor_por_cota": 0.02375,
+          "data_com": "2026-08-18",
+          "data_pagamento": "2026-08-25"
+        },
         {
           "valor_por_cota": 0.016,
           "data_com": "2026-07-16",
@@ -33672,17 +33677,12 @@
           "valor_por_cota": 0.049177,
           "data_com": "2025-04-16",
           "data_pagamento": "2025-04-25"
-        },
-        {
-          "valor_por_cota": 0.051911,
-          "data_com": "2025-03-20",
-          "data_pagamento": "2025-03-27"
         }
       ],
       "ultimo_provento": {
-        "valor_por_cota": 0.016,
-        "data_com": "2026-07-16",
-        "data_pagamento": "2026-07-23"
+        "valor_por_cota": 0.02375,
+        "data_com": "2026-08-18",
+        "data_pagamento": "2026-08-25"
       },
       "_chk_i7": "2026-08-18"
     },
@@ -38892,7 +38892,7 @@
       "nome": "AXIA Energia SA Non-Cum Perp Pfd Registered Shs C",
       "segmento": "Utilidade Pública",
       "setor_atuacao": "Energia Elétrica",
-      "preco": 50.08,
+      "preco": 49.71,
       "p_vp": 1.2,
       "p_l": 12.21,
       "valor_patrimonial_cota": 41.53,
@@ -39086,7 +39086,7 @@
       "nome": "B3 SA - Brasil, Bolsa, Balcao",
       "segmento": "Financeiro",
       "setor_atuacao": "Serviços Financeiros Diversos",
-      "preco": 14.41,
+      "preco": 14.3,
       "p_vp": 3.91,
       "p_l": 13.73,
       "valor_patrimonial_cota": 3.71,
@@ -58389,9 +58389,9 @@
       "nome": "GRUPO JEREISSATI",
       "segmento": "Financeiro",
       "setor_atuacao": "Exploração de Imóveis",
-      "preco": 10.98,
-      "p_vp": 2.68,
-      "p_l": 20.74,
+      "preco": 10.57,
+      "p_vp": 2.53,
+      "p_l": 19.57,
       "valor_patrimonial_cota": 4.09,
       "dy_12m": 1.98,
       "dy_mensal": 0.165,
@@ -69463,7 +69463,7 @@
       "nome": "Localiza Rent A Car SA Non-Cum Perp Pfd Registered Shs",
       "segmento": "Consumo Cíclico",
       "setor_atuacao": "Aluguel de carros",
-      "preco": 32.23,
+      "preco": 32.0,
       "p_vp": 1.34,
       "p_l": 10.61,
       "valor_patrimonial_cota": 24.11,
