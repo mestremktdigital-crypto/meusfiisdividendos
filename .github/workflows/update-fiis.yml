@@ -2,7 +2,7 @@ name: Atualizar Dados de Mercado FIIs
 
 on:
   schedule:
-    - cron: '0 21 * * 1-5' # Roda às 18:00 (Horário de Brasília) de segunda a sexta
+    - cron: '30 22 * * 1-5' # Roda às 19:30 (Horário de Brasília) de segunda a sexta
   workflow_dispatch:
 
 permissions:
