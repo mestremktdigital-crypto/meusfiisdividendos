@@ -52,6 +52,18 @@ JANELA_DIAS_PROVENTO = int(os.environ.get("JANELA_DIAS_PROVENTO", "5"))
 CHECAGEM_SEGURANCA_DIAS = int(os.environ.get("CHECAGEM_SEGURANCA_DIAS", "10"))
 
 # --------------------------------------------------------------------------
+# Disjuntor de cota da brapi: se o Fundamentus falhar amplamente (fora do ar,
+# timeout, bloqueio — como aconteceu em 18/08/2026, ver log), a etapa de
+# fallback não deve tentar resolver TODOS os tickers via brapi de uma vez.
+# Plano Gratuito da brapi: 15.000 requisições/mês, 1 ticker por chamada
+# (confirmado em https://brapi.dev/faq/como-a-api-e-calculada). Jogar os
+# ~1140 tickers da tickers.txt pra brapi numa única execução já consome
+# quase 8% da cota MENSAL de uma vez só.
+# --------------------------------------------------------------------------
+LIMIAR_FALHA_AMPLA_PCT = float(os.environ.get("LIMIAR_FALHA_AMPLA_PCT", "0.5"))
+BRAPI_FALLBACK_MAX_TICKERS = int(os.environ.get("BRAPI_FALLBACK_MAX_TICKERS", "300"))
+
+# --------------------------------------------------------------------------
 # Identificadores internos de fonte usados no fiis.json em vez do nome do
 # domínio por extenso. É só um rótulo interno — não impede alguém que leia
 # este arquivo .py de descobrir a origem, só evita que o nome do site
@@ -151,8 +163,16 @@ def fetch_brapi_batch(batch_tickers):
 
 def fetch_brapi_fallback(tickers):
     """Só roda pros tickers que o Fundamentus não cobriu. Mantém a brapi
-    como rede de segurança, não mais como fonte do dia a dia — por isso
-    volta a fazer sentido pedir um ticker por vez, mesmo com cota livre."""
+    como rede de segurança, não mais como fonte do dia a dia.
+
+    IMPORTANTE: pede UM ticker por chamada de propósito. Confirmado na
+    documentação oficial da brapi (https://brapi.dev/faq/como-a-api-e-calculada):
+    cada chamada HTTP conta como 1 requisição de cota INDEPENDENTE de quantos
+    tickers vêm juntos — e o plano Gratuito só aceita 1 ticker por chamada
+    mesmo (múltiplos tickers por chamada é recurso dos planos Startup/Pro).
+    Ou seja, agrupar tickers aqui não economizaria cota nenhuma no plano
+    gratuito, e ainda arriscaria a chamada falhar/ignorar o excesso. Não mexer
+    nisso sem antes confirmar o plano contratado."""
     if not tickers:
         return {}
     print(f"  🔁 {len(tickers)} tickers ausentes no Fundamentus — tentando brapi como fallback...")
@@ -504,25 +524,115 @@ def fetch_investidor10_all(tickers, estado_anterior, hoje):
 # fechamento daqui é equivalente ao "tempo real" que a brapi traria nesse
 # horário — por isso deixa de fazer sentido chamar a brapi todo dia.
 # --------------------------------------------------------------------------
+def _extrair_tabela_resultado(html):
+    """Localiza especificamente a tabela com id="resultado" — a tabela de
+    dados real, tanto em resultado.php quanto em fii_resultado.php.
+
+    O bug original usava `re.search(r'<table[^>]*>(.*?)</table>', ...)`, que
+    pega a PRIMEIRA <table> do HTML (menu, busca "Procurar por ação/fii",
+    "Fundamentus Mobile" etc. também são montados com <table> nesse site
+    legado) — não a tabela de resultados. Isso fazia a extração perder
+    quase todas as linhas silenciosamente, sem lançar erro, e todo o
+    restante caía no fallback da brapi (consumindo cota à toa).
+
+    Tenta achar por id="resultado" primeiro (com BS4, se disponível, que é
+    mais robusto a variações de aspas/atributos); cai pra regex ancorada no
+    id como segunda opção; só usa "primeira tabela genérica" como último
+    recurso, e nesse caso o alerta de sanidade abaixo deve pegar o problema.
+    """
+    if HAS_BS4:
+        try:
+            soup = BeautifulSoup(html, "html.parser")
+            tabela = soup.find("table", {"id": "resultado"})
+            if tabela is not None:
+                return str(tabela)
+        except Exception:
+            pass
+
+    m = re.search(r'<table[^>]*\bid=["\']resultado["\'][^>]*>(.*?)</table>', html, re.DOTALL)
+    if m:
+        return m.group(1)
+
+    # Último recurso (mantém compatibilidade se o id mudar de nome) — o
+    # alerta de sanidade em _alerta_se_poucos_resultados avisa se isso
+    # capturou a coisa errada.
+    m = re.search(r'<table[^>]*>(.*?)</table>', html, re.DOTALL)
+    return m.group(1) if m else None
+
+
+def _alerta_se_poucos_resultados(rotulo, quantidade, minimo_esperado):
+    """Log bem visível quando a extração retorna muito menos linhas do que
+    o esperado. Sem isso, uma falha de parsing (mudança de layout, bloqueio
+    parcial etc.) é silenciosa: o script simplesmente empurra tudo pro
+    fallback da brapi e consome cota sem ninguém perceber até o extrato de
+    uso da API estourar."""
+    if quantidade < minimo_esperado:
+        print(f"  🚨 ALERTA: só {quantidade} {rotulo} extraídos do Fundamentus "
+              f"(esperado bem mais que {minimo_esperado}). A extração da tabela pode "
+              f"estar quebrada — isso vai jogar a maioria dos tickers pro fallback da "
+              f"brapi e consumir cota. Verifique se o layout do site mudou.")
+
+
+FUNDAMENTUS_TIMEOUT = int(os.environ.get("FUNDAMENTUS_TIMEOUT", "25"))
+FUNDAMENTUS_TENTATIVAS = int(os.environ.get("FUNDAMENTUS_TENTATIVAS", "3"))
+
+
+def _fetch_fundamentus_html(url):
+    """GET com retry/backoff pro Fundamentus, priorizando curl_cffi
+    (impersona Chrome/TLS de navegador real) desde a PRIMEIRA tentativa —
+    igual já era feito pro Investidor10 em _http_get() (que resolvia bem as
+    requisições dele). Isso nunca tinha sido aplicado ao Fundamentus em
+    nenhuma versão anterior do script; ele sempre usou urllib puro, que se
+    anuncia com um User-Agent de navegador mas não replica a "impressão
+    digital" TLS de um Chrome de verdade — algo que sites com proteção
+    anti-bot mais chata podem usar pra identificar e enfileirar/limitar
+    tráfego de datacenter (o que apareceria pro nosso lado como timeout,
+    igual o log de 18/08, e não como um 403 explícito).
+
+    Não dá pra garantir 100% que o Fundamentus vai responder (é site de
+    terceiro, fora do nosso controle) — mas com curl_cffi como método
+    principal + retry/backoff, a chance de um timeout pontual conseguir ser
+    contornado sobe bastante. Se curl_cffi não estiver instalado, cai pro
+    urllib puro em todas as tentativas (comportamento antigo)."""
+    ultimo_erro = None
+    for tentativa in range(1, FUNDAMENTUS_TENTATIVAS + 1):
+        usar_cffi = HAS_CURL_CFFI
+        try:
+            if usar_cffi:
+                resp = cffi_requests.get(url, headers=HEADERS, timeout=FUNDAMENTUS_TIMEOUT,
+                                          impersonate="chrome")
+                resp.raise_for_status()
+                return resp.content
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=FUNDAMENTUS_TIMEOUT) as response:
+                return response.read()
+        except Exception as e:
+            ultimo_erro = e
+            metodo = "curl_cffi" if usar_cffi else "urllib"
+            print(f"    ⏳ Tentativa {tentativa}/{FUNDAMENTUS_TENTATIVAS} ({metodo}) falhou: {e}")
+            if tentativa < FUNDAMENTUS_TENTATIVAS:
+                time.sleep(2 * tentativa)  # backoff: 2s, 4s, ...
+    raise ultimo_erro
+
+
 def fetch_fundamentus_fiis():
     url = "https://www.fundamentus.com.br/fii_resultado.php"
-    req = urllib.request.Request(url, headers=HEADERS)
 
     try:
-        with urllib.request.urlopen(req, timeout=20) as response:
-            raw = response.read()
+        raw = _fetch_fundamentus_html(url)
     except Exception as e:
-        print(f"  ❌ Erro ao acessar Fundamentus (FIIs): {e}")
+        print(f"  ❌ Erro ao acessar Fundamentus (FIIs) após {FUNDAMENTUS_TENTATIVAS} tentativas: {e}")
         return {}
 
     html = raw.decode('iso-8859-1', errors='ignore')
 
-    table_match = re.search(r'<table[^>]*>(.*?)</table>', html, re.DOTALL)
-    if not table_match:
-        print("  ⚠️ Não foi possível localizar a tabela de FIIs do Fundamentus (layout pode ter mudado).")
+    table_html = _extrair_tabela_resultado(html)
+    if table_html is None:
+        print("  ⚠️ Não foi possível localizar a tabela #resultado de FIIs do Fundamentus "
+              "(layout pode ter mudado).")
         return {}
 
-    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_html, re.DOTALL)
     result = {}
 
     for row in rows:
@@ -545,6 +655,7 @@ def fetch_fundamentus_fiis():
         }
 
     print(f"  ✅ {len(result)} FIIs lidos do Fundamentus.")
+    _alerta_se_poucos_resultados("FIIs", len(result), minimo_esperado=300)
     return result
 
 
@@ -558,23 +669,22 @@ def fetch_fundamentus_acoes():
     Usamos só o que o app precisa: cotação, P/L, P/VP, DY e patrimônio.
     """
     url = "https://www.fundamentus.com.br/resultado.php"
-    req = urllib.request.Request(url, headers=HEADERS)
 
     try:
-        with urllib.request.urlopen(req, timeout=20) as response:
-            raw = response.read()
+        raw = _fetch_fundamentus_html(url)
     except Exception as e:
-        print(f"  ❌ Erro ao acessar Fundamentus (ações): {e}")
+        print(f"  ❌ Erro ao acessar Fundamentus (ações) após {FUNDAMENTUS_TENTATIVAS} tentativas: {e}")
         return {}
 
     html = raw.decode('iso-8859-1', errors='ignore')
 
-    table_match = re.search(r'<table[^>]*>(.*?)</table>', html, re.DOTALL)
-    if not table_match:
-        print("  ⚠️ Não foi possível localizar a tabela de ações do Fundamentus (layout pode ter mudado).")
+    table_html = _extrair_tabela_resultado(html)
+    if table_html is None:
+        print("  ⚠️ Não foi possível localizar a tabela #resultado de ações do Fundamentus "
+              "(layout pode ter mudado).")
         return {}
 
-    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_match.group(1), re.DOTALL)
+    rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_html, re.DOTALL)
     result = {}
 
     for row in rows:
@@ -596,6 +706,7 @@ def fetch_fundamentus_acoes():
         }
 
     print(f"  ✅ {len(result)} ações lidas do Fundamentus.")
+    _alerta_se_poucos_resultados("ações", len(result), minimo_esperado=300)
     return result
 
 
@@ -714,9 +825,30 @@ def main():
 
     faltantes = [t for t in tickers if t not in fundamentus_data]
     print(f"\n--- Etapa 2/3: brapi como fallback ({len(faltantes)} tickers ausentes no Fundamentus) ---")
-    if faltantes and not BRAPI_TOKEN:
+
+    faltantes_para_brapi = faltantes
+    if tickers and len(faltantes) / len(tickers) > LIMIAR_FALHA_AMPLA_PCT:
+        # Não são "alguns tickers que o Fundamentus não cobre" (BDR, recém-listado
+        # etc.) — é uma fração grande demais pra ser normal, provavelmente o
+        # Fundamentus caiu/bloqueou/deu timeout por completo (como em 18/08).
+        # Jogar TODOS esses tickers pra brapi de uma vez queima a cota mensal
+        # inteira (plano Gratuito: 15.000 req/mês, 1 ticker por chamada — ver
+        # https://brapi.dev/faq/como-a-api-e-calculada) em pouquíssimas execuções
+        # ruins. Por isso, nesse cenário, limitamos quantos tickers vão pra brapi
+        # nesta execução e priorizamos os que não têm NENHUM dado em cache do dia
+        # anterior (os demais mantêm o último preço/fundamento bom salvo).
+        print(f"  🚨 ALERTA: {len(faltantes)} de {len(tickers)} tickers "
+              f"({len(faltantes) / len(tickers):.0%}) ficaram sem dado do Fundamentus — isso indica "
+              f"falha ampla da fonte (fora do ar, timeout, bloqueio), não apenas tickers legitimamente "
+              f"ausentes das tabelas dele. Pra proteger a cota mensal da brapi, o fallback desta "
+              f"execução fica limitado a {BRAPI_FALLBACK_MAX_TICKERS} tickers, priorizando quem não "
+              f"tem nenhum dado salvo de execuções anteriores. O restante mantém o último preço/"
+              f"fundamentos bons conhecidos (fonte_dados vai refletir isso).")
+        faltantes_para_brapi = sorted(faltantes, key=lambda t: t in estado_anterior)[:BRAPI_FALLBACK_MAX_TICKERS]
+
+    if faltantes_para_brapi and not BRAPI_TOKEN:
         print("⚠️ BRAPI_TOKEN não detectado — fallback pode vir limitado.")
-    brapi_data = fetch_brapi_fallback(faltantes)
+    brapi_data = fetch_brapi_fallback(faltantes_para_brapi)
 
     print("\n--- Etapa 3/3: Investidor10 (nome, VPA, proventos — só tickers na janela de checagem) ---")
     inv10_data, checados_i10 = fetch_investidor10_all(tickers, estado_anterior, hoje)
