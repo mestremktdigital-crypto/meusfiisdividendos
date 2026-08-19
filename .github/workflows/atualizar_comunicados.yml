@@ -1,8 +1,8 @@
 name: Atualizar Comunicados de FIIs
 on:
   schedule:
-    # Executa todos os dias às 10:00 UTC e 22:00 UTC (exemplo)
-    - cron: '0 10,22 * * *'
+    # Executa todos os dias às 10:00 UTC e 23:00 UTC (exemplo)
+    - cron: '0 10,23 * * *'
   workflow_dispatch: # Permite disparar manualmente
 
 jobs:
