@@ -30,6 +30,13 @@ BRAPI_TOKEN = os.environ.get("BRAPI_TOKEN", "").strip()
 # Permite desligar o Investidor10 via secret/variável de ambiente, caso
 # comece a dar problema recorrente no GitHub Actions.
 ENABLE_INVESTIDOR10 = os.environ.get("ENABLE_INVESTIDOR10", "true").strip().lower() != "false"
+# Permite desligar a brapi via secret/variável de ambiente — usado na
+# execução de checagem da madrugada (04h), que só existe pra cobrir casos em
+# que a execução principal (20h30) rodou com o Fundamentus fora do ar. Nessa
+# checagem tardia não queremos gastar cota da brapi (plano free); se o
+# Fundamentus falhar de novo, os tickers ficam sem dado novo e o merge cai
+# pro estado_anterior, em vez de queimar requisições da brapi.
+ENABLE_BRAPI = os.environ.get("ENABLE_BRAPI", "true").strip().lower() != "false"
 
 TICKERS_FILE = "tickers.txt"
 OUTPUT_FILE = "fiis.json"
@@ -846,9 +853,14 @@ def main():
               f"fundamentos bons conhecidos (fonte_dados vai refletir isso).")
         faltantes_para_brapi = sorted(faltantes, key=lambda t: t in estado_anterior)[:BRAPI_FALLBACK_MAX_TICKERS]
 
-    if faltantes_para_brapi and not BRAPI_TOKEN:
-        print("⚠️ BRAPI_TOKEN não detectado — fallback pode vir limitado.")
-    brapi_data = fetch_brapi_fallback(faltantes_para_brapi)
+    if not ENABLE_BRAPI:
+        print("  🚫 ENABLE_BRAPI=false — pulando fallback da brapi nesta execução "
+              f"({len(faltantes_para_brapi)} tickers ficam com o estado_anterior, se houver).")
+        brapi_data = {}
+    else:
+        if faltantes_para_brapi and not BRAPI_TOKEN:
+            print("⚠️ BRAPI_TOKEN não detectado — fallback pode vir limitado.")
+        brapi_data = fetch_brapi_fallback(faltantes_para_brapi)
 
     print("\n--- Etapa 3/3: Investidor10 (nome, VPA, proventos — só tickers na janela de checagem) ---")
     inv10_data, checados_i10 = fetch_investidor10_all(tickers, estado_anterior, hoje)
