@@ -1,8 +1,9 @@
 name: Atualizar Comunicados de FIIs
 on:
   schedule:
-    # Executa todos os dias às 10:00 UTC e 23:00 UTC (exemplo)
-    - cron: '0 10,23 * * *'
+    # Executa de segunda a sexta às 18:00 (Horário de Brasília).
+    # BRT = UTC-3 sem horário de verão -> 18:00 BRT = 21:00 UTC do mesmo dia.
+    - cron: '0 21 * * 1-5'
   workflow_dispatch: # Permite disparar manualmente
 
 jobs:
