@@ -5,10 +5,10 @@
     "privacy_policy_url": "https://mestrehsapps.blogspot.com/p/politica-de-privacidade-meus-fiis.html"
   },
   "ads": {
-    "ad_status": true,
-    "admob_banner_id": "ca-app-pub-3940256099942544/6300978111",
-    "admob_interstitial_id": "ca-app-pub-3940256099942544/1033173712",
-    "admob_rewarded_id": "ca-app-pub-3940256099942544/5224354917",
+    "ad_status": false,
+    "admob_banner_id": "ca-app-pub-2439199829480169/1000233778",
+    "admob_interstitial_id": "ca-app-pub-2439199829480169/6325496462",
+    "admob_rewarded_id": "ca-app-pub-2439199829480169/6260299312",
     "interstitial_ad_interval": 3,
     "rewarded_ad_interval": 1
   },
@@ -18,8 +18,8 @@
   "market_data": {
     "status": true,
     "urls": [
-      "https://raw.githubusercontent.com/mestremktdigital-crypto/meusfiisdividendos/main/fiis.json",
-      "https://cdn.jsdelivr.net/gh/mestremktdigital-crypto/meusfiisdividendos@main/fiis.json"
+      "https://raw.githubusercontent.com/mestremktdigital-crypto/mfspdvendo/main/fiis.json",
+      "https://cdn.jsdelivr.net/gh/mestremktdigital-crypto/mfspdvendo@main/fiis.json"
     ],
     "update_interval_hours": 12,
     "stale_warning_hours": 30
@@ -27,8 +27,8 @@
   "comunicados_data": {
     "status": true,
     "urls": [
-      "https://raw.githubusercontent.com/mestremktdigital-crypto/meusfiisdividendos/main/comunicados.json",
-      "https://cdn.jsdelivr.net/gh/mestremktdigital-crypto/meusfiisdividendos@main/comunicados.json"
+      "https://raw.githubusercontent.com/mestremktdigital-crypto/mfspdvendo/main/comunicados.json",
+      "https://cdn.jsdelivr.net/gh/mestremktdigital-crypto/mfspdvendo@main/comunicados.json"
     ],
     "update_interval_hours": 12,
     "stale_warning_hours": 30
