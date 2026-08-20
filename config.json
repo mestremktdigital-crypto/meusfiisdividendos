@@ -5,7 +5,7 @@
     "privacy_policy_url": "https://mestrehsapps.blogspot.com/p/politica-de-privacidade-meus-fiis.html"
   },
   "ads": {
-    "ad_status": false,
+    "ad_status": true,
     "admob_banner_id": "ca-app-pub-2439199829480169/1000233778",
     "admob_interstitial_id": "ca-app-pub-2439199829480169/6325496462",
     "admob_rewarded_id": "ca-app-pub-2439199829480169/6260299312",
