@@ -2,9 +2,9 @@ name: Atualizar Dados de Mercado FIIs
 
 on:
   schedule:
-    # Execução principal: 20:30 (Horário de Brasília) de segunda a sexta.
-    # BRT = UTC-3 sem horário de verão -> 20:30 BRT = 23:30 UTC do mesmo dia.
-    - cron: '30 23 * * 1-5'
+    # Execução principal: 20:55 (Horário de Brasília) de segunda a sexta.
+    # BRT = UTC-3 sem horário de verão -> 20:55 BRT = 23:55 UTC do mesmo dia.
+    - cron: '55 23 * * 1-5'
     # Checagem de segurança: 04:00 (Horário de Brasília) de terça a sábado,
     # cobrindo o dia útil anterior. Só existe pra pegar os casos em que a
     # execução principal rodou com o Fundamentus fora do ar (ex: 18/08/2026).
