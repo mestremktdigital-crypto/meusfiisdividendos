@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-08-21T03:30:01.527210Z",
-  "fonte": "f4+b2+i7",
+  "gerado_em": "2026-08-21T09:09:55.975673Z",
+  "fonte": "f4+i7",
   "total_fiis": 1142,
-  "fiis_com_dados_completos": 1046,
+  "fiis_com_dados_completos": 1048,
   "fiis": {
     "ADSH11": {
       "nome": "AD SHOPPING FUNDO DE INVESTIMENTO IMOBILIÁRIO",
@@ -39090,12 +39090,12 @@
       "p_vp": 3.87,
       "p_l": 13.58,
       "valor_patrimonial_cota": 3.71,
-      "dy_12m": 5.23,
-      "dy_mensal": 0.4358,
+      "dy_12m": 5.26,
+      "dy_mensal": 0.4383,
       "patrimonio_liquido": 18700000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.221177,
@@ -39396,7 +39396,7 @@
       "nome": "EXCELSIOR ALIMENTOS",
       "segmento": "Consumo não Cíclico",
       "setor_atuacao": "Carnes e Derivados",
-      "preco": 0.0,
+      "preco": 2.31,
       "p_vp": 0.08,
       "p_l": 0.53,
       "valor_patrimonial_cota": 29.38,
@@ -39404,8 +39404,8 @@
       "dy_mensal": 3.5608,
       "patrimonio_liquido": 153410000.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "i7+b2",
+      "dados_completos": true,
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.9871,
@@ -44200,7 +44200,7 @@
       "patrimonio_liquido": 117220000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": false,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.392802,
@@ -53170,7 +53170,7 @@
       "patrimonio_liquido": 671550000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.763078,
@@ -69467,12 +69467,12 @@
       "p_vp": 1.3,
       "p_l": 10.25,
       "valor_patrimonial_cota": 24.11,
-      "dy_12m": 3.33,
-      "dy_mensal": 0.2775,
+      "dy_12m": 3.39,
+      "dy_mensal": 0.2825,
       "patrimonio_liquido": 27100000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.535127,
@@ -70057,7 +70057,7 @@
       "nome": "METALURGICA RIOSULENSE",
       "segmento": "Bens Industriais",
       "setor_atuacao": "Material Rodoviário",
-      "preco": 0.0,
+      "preco": 0.04,
       "p_vp": 0.0,
       "p_l": 0.0,
       "valor_patrimonial_cota": 49.55,
@@ -70065,8 +70065,8 @@
       "dy_mensal": 1.5833,
       "patrimonio_liquido": 300900000.0,
       "vacancia_fisica": 0.0,
-      "dados_completos": false,
-      "fonte_dados": "i7+b2",
+      "dados_completos": true,
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 2.122077,
@@ -71282,7 +71282,7 @@
       "nome": "SCHULZ",
       "segmento": "Bens Industriais",
       "setor_atuacao": "Motores, Compressores e Outros",
-      "preco": 27.94,
+      "preco": 26.59,
       "p_vp": 6.07,
       "p_l": 36.6,
       "valor_patrimonial_cota": 4.38,
@@ -71291,7 +71291,7 @@
       "patrimonio_liquido": 1570000000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": true,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.070303,
@@ -72785,7 +72785,7 @@
       "patrimonio_liquido": 866770000.0,
       "vacancia_fisica": 0.0,
       "dados_completos": false,
-      "fonte_dados": "i7+b2",
+      "fonte_dados": "i7",
       "proventos_12m": [
         {
           "valor_por_cota": 0.1232,
