@@ -1,10 +1,13 @@
 name: Atualizar Dados de Mercado FIIs
-
 on:
   schedule:
-    # Execução principal: 20:45 (Horário de Brasília) de segunda a sexta.
-    # BRT = UTC-3 sem horário de verão -> 20:30 BRT = 23:30 UTC do mesmo dia.
-    - cron: '45 23 * * 1-5'
+    # Execução principal: ~20:45 (Horário de Brasília) de segunda a sexta.
+    # BRT = UTC-3 sem horário de verão -> 20:47 BRT = 23:47 UTC do mesmo dia.
+    # Minuto 47 (em vez de 45/00) é proposital: evita horários "redondos"
+    # perto da virada do dia em UTC, que concentram fila de agendamento no
+    # GitHub Actions e causavam atraso grande na execução (ex: rodou 00:30
+    # em vez de 20:45 em um dos testes).
+    - cron: '47 23 * * 1-5'
     # Checagem de segurança: 04:00 (Horário de Brasília) de terça a sábado,
     # cobrindo o dia útil anterior. Só existe pra pegar os casos em que a
     # execução principal rodou com o Fundamentus fora do ar (ex: 18/08/2026).
@@ -23,34 +26,28 @@ on:
         options:
           - 'true'
           - 'false'
-
 permissions:
   contents: write
-
 jobs:
   update-market-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repositório
         uses: actions/checkout@v3
-
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
       - name: Instalar dependências
         run: pip install -r requirements.txt
-
       - name: Gerar fiis.json
         env:
           BRAPI_TOKEN: ${{ secrets.BRAPI_TOKEN }}
           # Desliga a brapi automaticamente na execução agendada das 04h
-          # (segundo cron acima). Na execução das 20h30 e no disparo manual,
+          # (segundo cron acima). Na execução das 20h47 e no disparo manual,
           # respeita o input/normal (default true).
           ENABLE_BRAPI: ${{ (github.event.schedule == '0 7 * * 2-6' && 'false') || (github.event.inputs.enable_brapi || 'true') }}
         run: python update_fiis.py
-
       - name: Commit e Push das alterações
         run: |
           git config --global user.name "github-actions[bot]"
